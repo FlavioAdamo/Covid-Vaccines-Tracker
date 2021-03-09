@@ -1,0 +1,98 @@
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M81C714R71"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M81C714R71');
+  </script>
+  <title>Covid Vaccines Tracks | World - All country DATA</title>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <link rel="icon" href="Images/syringe.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+
+
+  <nav class="navbar fixed-top bg-light navbar-light" style="font-family: 'Lato', sans-serif;">
+    <div class="container">
+          <a class="navbar-brand topTitle" href="#"><img src="Images/Logo.png" width="160px"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+        <span class="navbar-text" style="float:right;">
+          <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+            <center>
+              <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+              <a class="a2a_button_facebook"></a>
+              <a class="a2a_button_whatsapp"></a>
+              <a class="a2a_button_twitter"></a>
+            </center>
+            <script async src="https://static.addtoany.com/menu/page.js"></script>
+            </div>
+        </span>
+      </div>
+    </div>
+    </nav>
+  <br>
+
+  <div class="container" id="counters" style="padding-top: 60px;">   </div>
+
+
+  <div class="container" style="padding-top:20px;">
+    <div class="row" id="filterDiv" style="display: none;">
+      <div class="col-12 col-md-4">
+        <div class="row justify-content-md-center" style="padding-top: 30px; padding-bottom: 20px;">
+          <div class="col-4 deletepadding" >
+            <div class="normalText" style="padding-left: 20px;padding-top: 5px;">Order by:</div>
+        </div>
+        <div class="col-8 deletepadding">
+          <div class="dropdown" style="float: right;">
+            <button class="btn btn-light btn-lg dropdown-toggle normalText" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="Images/syringe.png" style="width: 20px; padding-right:10px;">Doses Administered 
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item normalText" onclick="UpdateListFilter(0)"><img src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered </a>
+              <a class="dropdown-item normalText" onclick="UpdateListFilter(1)"><img src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated </a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    <div class="row" id="collapse"></div>
+
+    <div id="loadingmodal" style="padding-top: 50%;">
+      <center>
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </center>
+    </div>
+
+    <div class="row" id="license" style="padding: 10; display: none;">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <center>
+          Source: <a title="in HTML.it puoi trovare risorse per webmaster"
+          href="https://ourworldindata.org/" target="_blank" >
+          Our World in Data
+          </a>
+        </center>
+      </div>
+    </div>
+
+</body>
