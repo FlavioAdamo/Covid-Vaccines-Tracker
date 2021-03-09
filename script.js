@@ -2,8 +2,8 @@ const dataUrl = "https://raw.githubusercontent.com/owid/covid-19-data/master/pub
 const masterDataUrl = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv";
 let lastDataAvaible = [];
 let secondlastData = [];
-var accordion = ' <div class="col-md-4"><div class="accordion" ><div class="row deletepadding"><div class="col-1" style="padding-top: 2px;"><text class="position">{{position}}</text></div><div class="col deletepadding"><text class="countryname">{{country}}</text></div><div class="col" style="padding-right:0;"><text class="currentVaccineNumber"><img src="Images/syringe.png" style="height:14px;"> {{totalVaccines}}</text></div><div class="col-1 deletepadding" style="max-width: 22px;"><text class="position"></text></div></div><div class="row" style="padding-top: 5px;"><div class="col-1"><text class="position"></text></div><div class="col-7 deletepadding" style="padding-top: 4px;"><text class="popolationpercent"> <img src="Images/Population.png" style="width: 20px; padding-right: 5px;"/>{{popolationPercent}}</text></div><div class="col-3 deletepadding"><div><text class="differenceCounter">{{totalVaccinesDifferences}}</text></div></div></div></div></div>';    
-var counterstemplate = '    <div class="row"><div class="four col-md-6" style="padding-top: 15px;"><div class="counter-box green"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{totvalue}}</span> <p>Vaccine administered around the world</p></div></div><div class="four col-md-6" style="padding-top: 15px;"><div class="counter-box blue"><i class="fa fa-thumbs-o-up"></i><span class="counter1">{{totvaccinated}}</span> <p>Of the global population received<br> at least 1 dose of vaccine</p></div></div></div>'
+const accordion = ' <div class="col-md-4"><div class="accordion" ><div class="row deletepadding"><div class="col-1" style="padding-top: 2px;"><text class="position">{{position}}</text></div><div class="col deletepadding"><text class="countryname">{{country}}</text></div><div class="col" style="padding-right:0;"><text class="currentVaccineNumber"><img src="Images/syringe.png" style="height:14px;"> {{totalVaccines}}</text></div><div class="col-1 deletepadding" style="max-width: 22px;"><text class="position"></text></div></div><div class="row" style="padding-top: 5px;"><div class="col-1"><text class="position"></text></div><div class="col-7 deletepadding" style="padding-top: 4px;"><text class="popolationpercent"> <img src="Images/Population.png" style="width: 20px; padding-right: 5px;"/>{{popolationPercent}}</text></div><div class="col-3 deletepadding"><div><text class="differenceCounter">{{totalVaccinesDifferences}}</text></div></div></div></div></div>';    
+const counterstemplate = '    <div class="row"><div class="four col-md-6" style="padding-top: 15px;"><div class="counter-box green"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{totvalue}}</span> <p>Vaccine administered around the world</p></div></div><div class="four col-md-6" style="padding-top: 15px;"><div class="counter-box blue"><i class="fa fa-thumbs-o-up"></i><span class="counter1">{{totvaccinated}}</span> <p>Of the global population received<br> at least 1 dose of vaccine</p></div></div></div>'
 
 $( document ).ready(async () => {  
     lastDataAvaible = await GetLastData();
@@ -64,63 +64,40 @@ function loadCollapse(sortType){
   }
 
     for (let index = 1; index < temp.length-1; index++) {
-        var splittedData = temp[index].toString().split(',');
-        var totdifferenceTemp = "+" + splittedData[6];
-        if (splittedData[6] === "") {
-          var totdifferenceTemp = "+0";
-        }
-        var secondSplittedData = secontemp[index].toString().split(',');
-        if(splittedData[10] != ""){
-          var data = {
-            name : splittedData[0].toString(),
-            totalVaccine : splittedData[3].toString(),
-            type : splittedData[2].toString(),
-            lastDate : splittedData[2].toString(),
-            position : index,
-            vaccinatedPercent: splittedData[10] + "% fully vaccinated",
-            totalVaccineDifferences : totdifferenceTemp
-            }
-          }
-         if (splittedData[9] != "" && splittedData[9] != "0"){
-            var data = {
-              name : splittedData[0].toString(),
-              totalVaccine : splittedData[3].toString(),
-              type : splittedData[2].toString(),
-              lastDate : splittedData[2].toString(),
-              position : index,
-              vaccinatedPercent: splittedData[9] + "% received at least 1 dose",
-              totalVaccineDifferences : totdifferenceTemp
-          }
-        }
-        else if (splittedData[8] != "" && splittedData[8] != "0"){
-          var data = {
-            name : splittedData[0].toString(),
-            totalVaccine : splittedData[3].toString(),
-            type : splittedData[2].toString(),
-            lastDate : splittedData[2].toString(),
-            position : index,
-            vaccinatedPercent: splittedData[8] + "% received at least 1 dose",
-            totalVaccineDifferences : totdifferenceTemp
-        }
+      var splittedData = temp[index].toString().split(',');
+      var totdifferenceTemp = "+" + splittedData[6];
+      var vaccinatedPercentage = "";
+      if (splittedData[6] === "") {
+        var totdifferenceTemp = "+0";
       }
-        else{
-          var data = {
-            name : splittedData[0].toString(),
-            totalVaccine : splittedData[3].toString(),
-            type : splittedData[2].toString(),
-            lastDate : splittedData[2].toString(),
-            position : index,
-            vaccinatedPercent:"Data not available",
-            totalVaccineDifferences : totdifferenceTemp
-        }
+
+      if(splittedData[10] != ""){
+        vaccinatedPercentage = splittedData[10] + "% fully vaccinated";
       }
-        var html = accordion.replaceAll('{{totalVaccines}}', formatNumberWithCommas(data.totalVaccine)).replace('{{country}}', data.name).replace('{{vaccineType}}',data.type).replace('{{lastUpdate}}', data.lastDate).replace('{{position}}', data.position).replace('{{popolationPercent}}', data.vaccinatedPercent).replace('{{totalVaccinesDifferences}}',data.totalVaccineDifferences);
-        $("#collapse").append(html);     
+      else if (splittedData[9] != "" && splittedData[9] != "0"){
+        vaccinatedPercentage = splittedData[9] + "% received at least 1 dose";
+      }
+      else if (splittedData[8] != "" && splittedData[8] != "0"){
+        vaccinatedPercentage = splittedData[8] + "% received at least 1 dose";
+      }
+      else{
+        vaccinatedPercentage = "Data not available";
+      }
+        
+      var data = {
+        name : splittedData[0].toString(),
+        totalVaccine : splittedData[3].toString(),
+        type : splittedData[2].toString(),
+        lastDate : splittedData[2].toString(),
+        position : index,
+        vaccinatedPercent: vaccinatedPercentage,
+        totalVaccineDifferences : totdifferenceTemp
+        }
+      var html = accordion.replaceAll('{{totalVaccines}}', formatNumberWithCommas(data.totalVaccine)).replace('{{country}}', data.name).replace('{{vaccineType}}',data.type).replace('{{lastUpdate}}', data.lastDate).replace('{{position}}', data.position).replace('{{popolationPercent}}', data.vaccinatedPercent).replace('{{totalVaccinesDifferences}}',data.totalVaccineDifferences);
+      $("#collapse").append(html);     
     }
     $('#license').css('display', 'inline');
     $('#filterDiv').css('display', 'inline');
-    
-
 }
 
 function loadCounetrsTemplate(data){
