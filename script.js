@@ -31,7 +31,6 @@ async function GetLastData(){
   return lastadata;
 }
 
-
 async function getSecondLastData(){
   var alldata = [];
   var secondlastdata = [];
@@ -132,7 +131,6 @@ function sortListByFullyVaccination(data){
   return result.reverse();
 }
 
-
 function sortListByVaccination(data){
   var result = [];
   var temp = [];
@@ -140,12 +138,6 @@ function sortListByVaccination(data){
     temp.push(data[index].split(','));  
   }
   result = temp.sort(function(a,b) {
-    if(isNaN(a[3].toString())){
-      return a[4]-b[3]
-    }
-    if(isNaN(b[3].toString())){
-      return a[3]-b[4]
-    }
     return a[3]-b[3]
   });
   return result.reverse();
@@ -179,6 +171,5 @@ async function GetWorldData(){
 
 function formatNumberWithCommas(number) {
   return parseInt(number).toLocaleString();
-  //return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
