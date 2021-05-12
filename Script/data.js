@@ -1,8 +1,8 @@
-const dataUrl = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/";
-var masterDataUrl = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv";
+const DATA_URL = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/";
+const MASTER_DATA_URL = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv";
 var allData = [];
 let lastDataAvaible = [];
-let = secondlastData = []
+let secondlastData = []
 
 
 async function loadVariables(){
@@ -13,18 +13,24 @@ async function loadVariables(){
 }
 
 async function GetAllData(){
-    const {data} = await axios.get(masterDataUrl);
+    const {data} = await axios.get(MASTER_DATA_URL);
     return data.split("\n");
 }
 
 async function GetCountryData(country_name){
-    return allData.filter(word => word.split(',')[0] == country_name.toString());
+    var query =  allData.filter(word => word.split(',')[0] == country_name.toString());
+    return query;
+  }
+
+async function GetWorldLastData(){
+    var query =  allData.filter(word => word.split(',')[0] == "World")
+    return query[query.length - 1].split(',');
   }
 
 async function GetLastData(){
     var alldata = [];
     var lastadata = [];
-    const {data} = await axios.get(masterDataUrl);
+    const {data} = await axios.get(MASTER_DATA_URL);
     let lines = data.split('\n');
     for (let i = 1; i < lines.length; i++) {
       alldata.push(lines[i].toString().split(','));
@@ -41,7 +47,7 @@ async function GetLastData(){
 async function getSecondLastData(){
     var alldata = [];
     var secondlastdata = [];
-    const {data} = await axios.get(masterDataUrl);
+    const {data} = await axios.get(MASTER_DATA_URL);
     let lines = data.split('\n');
     for (let i = 1; i < lines.length; i++) {
       alldata.push(lines[i].toString().split(','));
@@ -66,4 +72,8 @@ async function GetContinentsData(){
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "South America"));
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "United Kingdom"));
     return continents;
+  }
+
+  function formatNumberWithCommas(number) {
+    return parseInt(number).toLocaleString();
   }

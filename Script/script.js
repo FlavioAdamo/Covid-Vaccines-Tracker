@@ -1,10 +1,11 @@
-const accordion = ' <div class="col-md-4"><div class="accordion" onclick="showCountryData({{countryName}})" ><div class="row deletepadding"><div class="col-1" style="padding-top: 2px;"><text class="position">{{position}}</text></div><div class="col deletepadding"><text class="countryname">{{country}}</text></div><div class="col" style="padding-right:0;"><text class="currentVaccineNumber"><img src="Images/syringe.png" style="height:14px;"> {{totalVaccines}}</text></div><div class="col-1 deletepadding" style="max-width: 22px;"><text class="position"></text></div></div><div class="row" style="padding-top: 5px;"><div class="col-1"><text class="position"></text></div><div class="col-7 deletepadding" style="padding-top: 4px;"><text class="popolationpercent"> <img src="Images/Population.png" style="width: 20px; padding-right: 5px;"/>{{popolationPercent}}</text></div><div class="col-3 deletepadding"><div><text class="differenceCounter">{{totalVaccinesDifferences}}</text></div></div></div></div></div>';    
-const counterstemplate = '<div class="row"> <div class="four col-md-6" style="padding-top: 15px;"> <div class="counter-box green"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{totvalue}}</span> <p>Vaccine administered around the world</p> </div> </div> <div class="four col-md-6" style="padding-top: 15px;"> <div class="counter-box blue"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{peopleVaccinated}}</span> <p>People received at least one dose</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div class="counter-box green-light"><i class="fa fa-thumbs-o-up"></i><span class="counter2">{{totvaccinated}}</span> <p>Of the population received<br> at least 1 dose of vaccine</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div class="counter-box blue-light"><i class="fa fa-thumbs-o-up"></i><span class="counter1">{{fullyVaccinated}}</span> <p>Of the population is<br> fully vaccinated</p> </div> </div> </div>';
+const ACCORDION = ' <div class="col-md-4"><div class="accordion" onclick="showCountryData({{countryName}})" ><div class="row deletepadding"><div class="col-1" style="padding-top: 2px;"><text class="position">{{position}}</text></div><div class="col deletepadding"><text class="countryname">{{country}}</text></div><div class="col" style="padding-right:0;"><text class="currentVaccineNumber"><img src="Images/syringe.png" style="height:14px;"> {{totalVaccines}}</text></div><div class="col-1 deletepadding" style="max-width: 22px;"><text class="position"></text></div></div><div class="row" style="padding-top: 5px;"><div class="col-1"><text class="position"></text></div><div class="col-7 deletepadding" style="padding-top: 4px;"><text class="popolationpercent"> <img src="Images/Population.png" style="width: 20px; padding-right: 5px;"/>{{popolationPercent}}</text></div><div class="col-3 deletepadding"><div><text class="differenceCounter">{{totalVaccinesDifferences}}</text></div></div></div></div></div>';    
+const COUNTERS_TEMPLATE = '<div class="row"> <div class="four col-md-6" style="padding-top: 15px;"> <div class="counter-box green"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{totvalue}}</span> <p>Vaccine administered around the world</p> </div> </div> <div class="four col-md-6" style="padding-top: 15px;"> <div class="counter-box blue"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{peopleVaccinated}}</span> <p>People received at least one dose</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div class="counter-box green-light"><i class="fa fa-thumbs-o-up"></i><span class="counter2">{{totvaccinated}}</span> <p>Of the population received<br> at least 1 dose of vaccine</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div class="counter-box blue-light"><i class="fa fa-thumbs-o-up"></i><span class="counter1">{{fullyVaccinated}}</span> <p>Of the population is<br> fully vaccinated</p> </div> </div> </div>';
 
 $( document ).ready(async () => {  
     await loadVariables();
+    console.loadCollapse
     $('#loadingmodal').css('display', 'none');
-    loadCounetrsTemplate(lastDataAvaible[lastDataAvaible.length - 3].split(','));
+    loadCounetrsTemplate(await GetWorldLastData());
     loadCounterScript();
     loadCollapse(0);
 });
@@ -43,7 +44,7 @@ function loadCollapse(sortType){
       }
         
       var data = {
-        name : splittedData[0].toString(),
+        name : " " + splittedData[0].toString(),
         totalVaccine : splittedData[3].toString(),
         type : splittedData[2].toString(),
         lastDate : splittedData[2].toString(),
@@ -51,7 +52,7 @@ function loadCollapse(sortType){
         vaccinatedPercent: vaccinatedPercentage,
         totalVaccineDifferences : totdifferenceTemp
         }
-      var html = accordion.replaceAll('{{totalVaccines}}', formatNumberWithCommas(data.totalVaccine)).replace('{{country}}', data.name).replace('{{vaccineType}}',data.type).replace('{{lastUpdate}}', data.lastDate).replace('{{position}}', data.position).replace('{{popolationPercent}}', data.vaccinatedPercent).replace('{{totalVaccinesDifferences}}',data.totalVaccineDifferences).replace("{{countryName}}", "'" + data.name + "'");
+      var html = ACCORDION.replaceAll('{{totalVaccines}}', formatNumberWithCommas(data.totalVaccine)).replace('{{country}}', data.name).replace('{{vaccineType}}',data.type).replace('{{lastUpdate}}', data.lastDate).replace('{{position}}', data.position).replace('{{popolationPercent}}', data.vaccinatedPercent).replace('{{totalVaccinesDifferences}}',data.totalVaccineDifferences).replace("{{countryName}}", "'" + data.name + "'");
       $("#collapse").append(html);     
     }
     $('#license').css('display', 'inline');
@@ -59,9 +60,7 @@ function loadCollapse(sortType){
 }
 
 function loadCounetrsTemplate(data){
-  var secondData = sortListByFullyVaccination(lastDataAvaible);
-  var newdailyvaccine = parseInt(data[3] - parseInt(secondData.toString().split(',')[3]));
-  $("#counters").append(counterstemplate.replace('{{totvalue}}', data[3]).replace('{{totvaccinated}}',data[9] + "%").replace('{{fullyVaccinated}}' , data[10] + "%").replace('{{peopleVaccinated}}' , data[4])); 
+  $("#counters").append(COUNTERS_TEMPLATE.replace('{{totvalue}}', data[3]).replace('{{totvaccinated}}',data[9] + "%").replace('{{fullyVaccinated}}' , data[10] + "%").replace('{{peopleVaccinated}}' , data[4])); 
 }
 
 function loadCounterScript(){
@@ -117,11 +116,7 @@ function UpdateListFilter(selectedItem){
   }
 }
 
-function formatNumberWithCommas(number) {
-  return parseInt(number).toLocaleString();
-}
-
 function showCountryData(countryname){
-  //window.location.href = "file:///Users/flavie/Documents/Project/Progetti_Web/VacciniWeb/Covid-Vaccines-Tracker/View/country.html" + "?" + countryname;
+  window.location.href = "file:///Users/flavie/Documents/Project/Progetti_Web/VacciniWeb/Covid-Vaccines-Tracker/View/country.html" + "?" + countryname.replace(" ", "");
 }
 

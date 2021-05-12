@@ -27,7 +27,7 @@
     outline:none;
   }
 
-.accordion:focus {outline:0; outline-color: #444;}
+.ACCORDION:focus {outline:0; outline-color: #444;}
 
 .position{
   padding-top: 3px;
