@@ -117,6 +117,6 @@ function UpdateListFilter(selectedItem){
 }
 
 function showCountryData(countryname){
-  window.location.href = "https://covidvaccinetrack.com//View/country.html" + "?" + countryname.replace(" ", "");
+  window.location.href = "file:///Users/flavie/Documents/Project/Progetti_Web/VacciniWeb/Covid-Vaccines-Tracker/View/country.html" + "?" + countryname.replace(" ", "");
 }
 

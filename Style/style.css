@@ -7,6 +7,12 @@
   text-align: center;
 }
 
+.countryNameTitle{
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 28px;
+  text-align: center;
+}
+
 .accordion {
     font-family: 'Noto Sans', sans-serif;
     background-color: #fff!important;
@@ -27,7 +33,7 @@
     outline:none;
   }
 
-.ACCORDION:focus {outline:0; outline-color: #444;}
+.accordion:focus {outline:0; outline-color: #444;}
 
 .position{
   padding-top: 3px;

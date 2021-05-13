@@ -18,7 +18,8 @@ async function GetAllData(){
 }
 
 async function GetCountryData(country_name){
-    var query =  allData.filter(word => word.split(',')[0] == country_name.toString());
+    var query =  allData.filter(word => word.split(',')[0] == country_name.toString().replaceAll("%20", " "));
+    console.log(query);
     return query;
   }
 
