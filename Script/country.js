@@ -58,3 +58,8 @@ function loadCounterScript(){
         });
       });
   }
+
+("#navLogo").click(function(){
+    alert("aa")
+    window.location.href ="index.html";
+  });

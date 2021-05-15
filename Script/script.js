@@ -3,22 +3,20 @@ const COUNTERS_TEMPLATE = '<div class="row"> <div class="four col-md-6" style="p
 
 $( document ).ready(async () => {  
     await loadVariables();
-    console.loadCollapse
     $('#loadingmodal').css('display', 'none');
     loadCounetrsTemplate(await GetWorldLastData());
     loadCounterScript();
     loadCollapse(0);
+    loadContinents(0);
 });
 
 function loadCollapse(sortType){
   switch (sortType) {
     case 0:
-      var temp = sortListByVaccination(lastDataAvaible);
-      var secontemp = sortListByVaccination(secondlastData);     
+      var temp = sortListByVaccination(GetCountriesLastData());
       break;
     case 1:
-      var temp = sortListByFullyVaccination(lastDataAvaible);
-      var secontemp = sortListByFullyVaccination(secondlastData);      
+      var temp = sortListByFullyVaccination(GetCountriesLastData());
        break;
   }
 
@@ -53,7 +51,53 @@ function loadCollapse(sortType){
         totalVaccineDifferences : totdifferenceTemp
         }
       var html = ACCORDION.replaceAll('{{totalVaccines}}', formatNumberWithCommas(data.totalVaccine)).replace('{{country}}', data.name).replace('{{vaccineType}}',data.type).replace('{{lastUpdate}}', data.lastDate).replace('{{position}}', data.position).replace('{{popolationPercent}}', data.vaccinatedPercent).replace('{{totalVaccinesDifferences}}',data.totalVaccineDifferences).replace("{{countryName}}", "'" + data.name + "'");
-      $("#collapse").append(html);     
+      $("#collapseCountries").append(html);     
+    }
+    $('#license').css('display', 'inline');
+    $('#filterDiv').css('display', 'inline');
+}
+
+function loadContinents(sortType){
+  switch (sortType) {
+    case 0:
+      var temp = sortListByVaccination(GetContinentsData());
+      break;
+    case 1:
+      var temp = sortListByFullyVaccination(GetContinentsData());
+       break;
+  }
+    for (let index = 0; index < temp.length; index++) {
+      var splittedData = temp[index].toString().split(',');
+      var totdifferenceTemp = "+" + splittedData[6];
+      var vaccinatedPercentage = "";
+      if (splittedData[6] === "") {
+        var totdifferenceTemp = "+0";
+      }
+
+      if(splittedData[10] != ""){
+        vaccinatedPercentage = splittedData[10] + "% fully vaccinated";
+      }
+      else if (splittedData[9] != "" && splittedData[9] != "0"){
+        vaccinatedPercentage = splittedData[9] + "% received at least 1 dose";
+      }
+      else if (splittedData[8] != "" && splittedData[8] != "0"){
+        vaccinatedPercentage = splittedData[8] + "% received at least 1 dose";
+      }
+      else{
+        vaccinatedPercentage = "Data not available";
+      }
+        
+      var data = {
+        name : " " + splittedData[0].toString(),
+        totalVaccine : splittedData[3].toString(),
+        type : splittedData[2].toString(),
+        lastDate : splittedData[2].toString(),
+        position : index + 1,
+        vaccinatedPercent: vaccinatedPercentage,
+        totalVaccineDifferences : totdifferenceTemp
+        }
+      var html = ACCORDION.replaceAll('{{totalVaccines}}', formatNumberWithCommas(data.totalVaccine)).replace('{{country}}', data.name).replace('{{vaccineType}}',data.type).replace('{{lastUpdate}}', data.lastDate).replace('{{position}}', data.position).replace('{{popolationPercent}}', data.vaccinatedPercent).replace('{{totalVaccinesDifferences}}',data.totalVaccineDifferences).replace("{{countryName}}", "'" + data.name + "'");
+      $("#collapseContinents").append(html);     
     }
     $('#license').css('display', 'inline');
     $('#filterDiv').css('display', 'inline');
@@ -117,6 +161,6 @@ function UpdateListFilter(selectedItem){
 }
 
 function showCountryData(countryname){
-  window.location.href = "file:///Users/flavie/Documents/Project/Progetti_Web/VacciniWeb/Covid-Vaccines-Tracker/View/country.html" + "?" + countryname.replace(" ", "");
+  window.location.href ="View/country.html" + "?" + countryname.replace(" ", "");
 }
 

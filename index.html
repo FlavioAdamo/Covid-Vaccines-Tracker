@@ -1,4 +1,12 @@
 <head>
+  <!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-M81C714R71"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M81C714R71');
+  </script>-->
   <title>Covid Vaccines Tracks | World - All country DATA</title>
   <meta charset="utf-8">
   <meta http-equiv="Cache-control" content="no-cache">
@@ -6,12 +14,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="Style/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="Script/script.js" ></script>
-  <script src="Script/data.js" ></script>
 </head>
 
 <body>
@@ -19,7 +21,7 @@
 
   <nav class="navbar fixed-top bg-light navbar-light" style="font-family: 'Lato', sans-serif;">
     <div class="container">
-          <a class="navbar-brand topTitle" href="#"><img src="Images/Logo.png" width="160px"></a>
+          <a class="navbar-brand topTitle" href="#"><img id="navLogo" src="Images/Logo.png" width="160px"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -66,16 +68,22 @@
       </div>
 
     <div class="row" id="collapse">
-      
+      <div class="col-md-12" style="padding-top: 10px;">
+        <div class=" col-7 col-md-6 categoryNameLeft">Continents</div>
+      </div>
+
+      <div class="row dataList" id="collapseContinents"></div>   
+
+      <div class="col-md-12" style="padding-top: 30px;">
+        <div class=" col-7 col-md-6 categoryNameRight">Countries</div>
+      </div>
+
+      <div class="row dataList"  id="collapseCountries"></div>   
     </div>
 
     <div id="loadingmodal" style="padding-top: 50%;">
       <center>
         <div class="lds-ellipsis">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
         </div>
       </center>
     </div>
@@ -90,5 +98,13 @@
         </center>
       </div>
     </div>
-
+  </div>
+</div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="Script/script.js" ></script>
+<script src="Script/data.js" ></script>
