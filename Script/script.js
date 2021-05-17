@@ -100,7 +100,7 @@ function loadContinents(sortType){
       $("#collapseContinents").append(html);     
     }
     $('#license').css('display', 'inline');
-    $('#filterDiv').css('display', 'inline');
+    $('#filterDiv').hide();
 }
 
 function loadCounetrsTemplate(data){
