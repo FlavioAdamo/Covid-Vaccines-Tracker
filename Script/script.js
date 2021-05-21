@@ -1,4 +1,5 @@
-const ACCORDION = ' <div class="col-md-4"><div class="accordion" onclick="showCountryData({{countryName}})" ><div class="row deletepadding"><div class="col-1" style="padding-top: 2px;"><text class="position">{{position}}</text></div><div class="col deletepadding"><text class="countryname">{{country}}</text></div><div class="col" style="padding-right:0;"><text class="currentVaccineNumber"><img src="Images/syringe.png" style="height:14px;"> {{totalVaccines}}</text></div><div class="col-1 deletepadding" style="max-width: 22px;"><text class="position"></text></div></div><div class="row" style="padding-top: 5px;"><div class="col-1"><text class="position"></text></div><div class="col-7 deletepadding" style="padding-top: 4px;"><text class="popolationpercent"> <img src="Images/Population.png" style="width: 20px; padding-right: 5px;"/>{{popolationPercent}}</text></div><div class="col-3 deletepadding"><div><text class="differenceCounter">{{totalVaccinesDifferences}}</text></div></div></div></div></div>';    
+(function(){ })();
+const ACCORDION = ' <div class="col-md-4"><div class="accordion" onclick="showCountryData({{countryName}})" ><div class="row deletepadding"><div class="col-1" style="padding-top: 2px;"><text class="position">{{position}}</text></div><div class="col deletepadding"><text class="countryname">{{country}}</text></div><div class="col" style="padding-right:0;"><text class="currentVaccineNumber"><img alt="syringe" src="Images/syringe.png" style="height:14px;"> {{totalVaccines}}</text></div><div class="col-1 deletepadding" style="max-width: 22px;"><text class="position"></text></div></div><div class="row" style="padding-top: 5px;"><div class="col-1"><text class="position"></text></div><div class="col-7 deletepadding" style="padding-top: 4px;"><text class="popolationpercent"> <img alt="syringe" src="Images/Population.png" style="width: 20px; padding-right: 5px;"/>{{popolationPercent}}</text></div><div class="col-3 deletepadding"><div><text class="differenceCounter">{{totalVaccinesDifferences}}</text></div></div></div></div></div>';    
 const COUNTERS_TEMPLATE = '<div class="row"> <div class="four col-md-6" style="padding-top: 15px;"> <div class="counter-box green"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{totvalue}}</span> <p>Vaccine administered around the world</p> </div> </div> <div class="four col-md-6" style="padding-top: 15px;"> <div class="counter-box blue"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{peopleVaccinated}}</span> <p>People received at least one dose</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div class="counter-box green-light"><i class="fa fa-thumbs-o-up"></i><span class="counter2">{{totvaccinated}}</span> <p>Of the population received<br> at least 1 dose of vaccine</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div class="counter-box blue-light"><i class="fa fa-thumbs-o-up"></i><span class="counter1">{{fullyVaccinated}}</span> <p>Of the population is<br> fully vaccinated</p> </div> </div> </div>';
 
 $( document ).ready(async () => {  
@@ -8,6 +9,7 @@ $( document ).ready(async () => {
     loadCounterScript();
     loadCollapse(0);
     loadContinents(0);
+    $('#collapse').show();
 });
 
 function loadCollapse(sortType){
@@ -150,12 +152,12 @@ function UpdateListFilter(selectedItem){
     case 0:
       $("#collapse").empty();
       loadCollapse(0);
-      $("#dropdownMenuButton").html('<img src="../Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered');
+      $("#dropdownMenuButton").html('<img alt="syringe" src="../Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered');
       break;
     case 1:
       $("#collapse").empty();
       loadCollapse(1);
-      $("#dropdownMenuButton").html('<img src="../Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated');
+      $("#dropdownMenuButton").html('<img alt="population" src="../Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated');
       break;
   }
 }

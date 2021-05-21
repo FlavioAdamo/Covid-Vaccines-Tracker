@@ -7,6 +7,10 @@
   text-align: center;
 }
 
+.page{
+  background-color: #fafafa;
+}
+
 .countryNameTitle{
   font-size: 28px;
   text-align: center;
@@ -14,25 +18,24 @@
 
 .container{
   font-family: 'Roboto', sans-serif;
+  overflow: 'hidden' !important;
 }
 
 .accordion {
-    background-color: #fff!important;
-    color: rgb(0, 0, 0);
-    padding: 10px 0px;
-    padding-left: 5px;
-    padding-bottom: 10px;
-    width: 100%;
-    border: 1px solid #f7f7f7;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    text-align: left;
-    outline: none;
-    font-size: 17px;
-    font-weight: 400;
-    transition: 0.4s;
-    outline:none;
+  background-color: #fff!important;
+  color: rgb(0, 0, 0);
+  padding: 15 0;
+  width: 100%;
+  border-bottom: 1px solid #f7f7f7;
+  border-top: none;
+  /* border-left: none; */
+  border-right: none;
+  text-align: left;
+  outline: none;
+  font-size: 17px;
+  font-weight: 400;
+  transition: 0.4s;
+  outline: none;
   }
 
 .accordion:focus {outline:0; outline-color: #444;}
@@ -50,6 +53,16 @@
 
 .countryname{
   padding-left: 4px;
+}
+
+.countryname:hover{
+  margin-bottom: 1px solid black;
+}
+
+.infotext{
+  color: #3b3b3b;
+  font-size: 1;
+  font-weight: 500ss;
 }
 
 .currentVaccineNumber {
@@ -202,9 +215,6 @@
 
 .bg-dark {
   background-color: #43a047!important;
-  -webkit-box-shadow: 0 6px 4px -4px #f1f1f1;
-  -moz-box-shadow: 0 6px 4px -4px #f1f1f1;
-  box-shadow: 0 6px 4px -4px #f1f1f1;
 }
 
 .totalVaccineData{
@@ -226,8 +236,9 @@
 
 .active, .accordion:hover {
   background-color: #2dd6771a!important;
-  color: #000;
+  color: rgb(32, 32, 32);
   font-weight: 500;
+  margin-bottom: 1px solid black;
 }
 
 
@@ -238,7 +249,10 @@
   display: block;
   background: #f6f6f6;
   padding: 30px 20px 37px;
-  text-align: center
+  text-align: center;
+  -webkit-box-shadow: 6px 6px 4px -4px #f1f1f1;
+  -moz-box-shadow: 6px 6px 4px -4px #f1f1f1;
+  box-shadow: 6px 6px 4px -4px #f1f1f1;
 }
 
 .counter-box p {
@@ -292,22 +306,22 @@
 }
 
 .counter-box.green {
-  background: #6abf69;
+  background-image: linear-gradient(to bottom right, #6abf69, #2fbeba);
   padding: 35px 20px 43px;
 }
 
 .counter-box.blue {
-  background: #2fbeba;
+  background-image: linear-gradient(to bottom left, rgb(47, 192, 173), #2fbeba);
   padding: 35px 20px 43px;
 }
 
 .counter-box.blue-light {
-  background: #00bbd40a;
+  background: #ffffff;
   padding: 30px 20px 37px;
 }
 
 .counter-box.green-light{
-  background: #00d4a60a;
+  background: #ffffff;
   padding: 30px 20px 37px;
 
 }
@@ -319,6 +333,13 @@
 .counter-box.green i,
 .counter-box.green .counter {
   color: #ffffff
+}
+
+.bg-light {
+  background-color: #ffffff!important;
+  -webkit-box-shadow: 0 6px 4px -4px #f1f1f1;
+  -moz-box-shadow: 0 6px 4px -4px #f1f1f1;
+  box-shadow: 0 6px 4px -4px #f1f1f1;
 }
 
 .counter-box.blue-light .counter,
@@ -388,6 +409,15 @@
   display: flex;
 
 }
+.left-right-padding15{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.gropulist{
+  background-color: #fff;
+  border-radius: 8px;
+}
 
 .custom-toggler .navbar-toggler-icon {
   background-image: url("Images/sharing.png");
@@ -396,13 +426,6 @@
   width: 30px;
   height: 30px;
   display: flex;
-}
-
-.navbar-toggler:focus,
-.navbar-toggler:active,
-.navbar-toggler-icon:focus {
-    outline: none;
-    box-shadow: none;
 }
 
 .categoryNameLeft{

@@ -1,27 +1,26 @@
-<head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M81C714R71"></script>
-  <!--<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-M81C714R71"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
 
-  gtag('config', 'G-M81C714R71');
-  </script>-->
-  <title>Covid Vaccines Tracks | World - All country DATA</title>
-  <meta charset="utf-8">
+gtag('config', 'G-M81C714R71');
+</script>-->
+<head>
+  <title>Covid Vaccines Tracks | World - All countries DATA</title>
+  <meta name="description" content="Covid vaccines tracker. This website track the number of dosed administered in real time around the World.">
   <meta http-equiv="Cache-control" content="no-cache">
-  <link rel="icon" href="Images/syringe.png" />
+  <link rel="icon" alt="syringe" href="Images/syringe.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="Style/style.css">
 </head>
 
 <body>
-
-
+  <div class="page">
   <nav class="navbar fixed-top bg-light navbar-light" style="font-family: 'Lato', sans-serif;">
     <div class="container">
-          <a class="navbar-brand topTitle" href="#"><img id="navLogo" src="Images/Logo.png" width="160px"></a>
+          <a class="navbar-brand topTitle" href="#"><img id="navLogo" alt="covidvaccinetrack logo" src="Images/Logo.png" width="160px"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,8 +44,7 @@
   <div class="container" id="counters" style="padding-top: 60px;">
    </div>
 
-
-  <div class="container" style="padding-top:20px;">
+  <!--div class="container" style="padding-top:20px;">
     <div class="row">
       <div id="filterDiv" class="col-12 col-md-4">
         <div class="row justify-content-md-center" style="padding-top: 30px; padding-bottom: 20px;">
@@ -56,30 +54,28 @@
         <div class="col-8 deletepadding">
           <div class="dropdown" style="float: right;">
             <button class="btn btn-light btn-lg dropdown-toggle normalText" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="Images/syringe.png" style="width: 20px; padding-right:10px;">Doses Administered 
+              <img alt="syringe" src="Images/syringe.png" style="width: 20px; padding-right:10px;">Doses Administered 
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item normalText" onclick="UpdateListFilter(0)"><img src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered </a>
-              <a class="dropdown-item normalText" onclick="UpdateListFilter(1)"><img src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated </a>
+              <a class="dropdown-item normalText" onclick="UpdateListFilter(0)"><img alt="syringe" src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered </a>
+              <a class="dropdown-item normalText" onclick="UpdateListFilter(1)"><img alt="popolation" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated </a>
             </div>
           </div>
         </div>
         </div>
+      </div>-->
+
+      <div class="container">
+        <div class="row left-right-padding15" id="collapse" style="display: none;padding-top: 15px;">
+           <div class="col-md-12">
+             <div class="row gropulist" id="collapseContinents"></div>   
+           </div>
+          <div class="" style="padding-top: 15px;">
+              <div class="col-md-12">
+                <div class="row gropulist"  id="collapseCountries"></div>   
+             </div> </div> 
+       </div>
       </div>
-
-    <div class="row" id="collapse">
-      <div class="col-md-12" style="padding-top: 40px;">
-        <div class=" col-7 col-md-6 categoryNameLeft">Continents</div>
-      </div>
-
-      <div class="row dataList" id="collapseContinents"></div>   
-
-      <div class="col-md-12" style="padding-top: 30px;">
-        <div class=" col-7 col-md-6 categoryNameRight">Countries</div>
-      </div>
-
-      <div class="row dataList"  id="collapseCountries"></div>   
-    </div>
 
     <div id="loadingmodal" style="padding-top: 50%;">
       <center>
@@ -92,7 +88,7 @@
       <div class="col-sm-12 col-md-12 col-lg-12">
         <center>
           Source: <a title="in HTML.it puoi trovare risorse per webmaster"
-          href="https://ourworldindata.org/" target="_blank" >
+          href="https://ourworldindata.org/" rel="noopener" target="_blank" >
           Our World in Data
           </a>
         </center>
@@ -100,11 +96,12 @@
     </div>
   </div>
 </div>
+  </div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="Script/script.js" ></script>
 <script src="Script/data.js" ></script>
