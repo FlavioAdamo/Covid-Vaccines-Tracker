@@ -8,20 +8,27 @@ let secondlastData = []
 async function loadVariables(){
     allData = await GetAllData();
     lastDataAvaible = await GetLastData();
-    secondlastData = await getSecondLastData();
 }
 
 async function GetAllData(){
+  //you would never guess what this function does
     const {data} = await axios.get(MASTER_DATA_URL);
     return data.split("\n");
 }
 
 async function GetCountryData(country_name){
+  //you would never guess what this function does too
     return allData.filter(word => word.split(',')[0] == country_name.toString().replaceAll("%20", " "));
 }
 
+async function GetWorldLastData(){
+  //Get the "World" last data
+  var query =  allData.filter(word => word.split(',')[0] == "World")
+  return query[query.length - 1].split(',');
+}
+
 function GetCountriesLastData(){
-  //DELATE "NON COUNTRIES" FROM LASTDATAAVAIBLE
+  //delete "non countries" from lastDataAvaible
     var query =  lastDataAvaible.filter(word => word.split(',')[0] != "World" 
     && word.split(',')[0] != "Europe"
     && word.split(',')[0] != "Asia"
@@ -36,12 +43,10 @@ function GetCountriesLastData(){
     return query;
   }
   
-async function GetWorldLastData(){
-    var query =  allData.filter(word => word.split(',')[0] == "World")
-    return query[query.length - 1].split(',');
-  }
 
 async function GetLastData(){
+  //Get all the last avaible data for each country & continents
+  //this could be improved a lot
     var alldata = [];
     var lastadata = [];
     const {data} = await axios.get(MASTER_DATA_URL);
@@ -58,26 +63,8 @@ async function GetLastData(){
     return lastadata;
 }
 
-async function getSecondLastData(){
-    var alldata = [];
-    var secondlastdata = [];
-    const {data} = await axios.get(MASTER_DATA_URL);
-    let lines = data.split('\n');
-    for (let i = 1; i < lines.length; i++) {
-      alldata.push(lines[i].toString().split(','));
-    }
-    for (let i = 0; i < alldata.length - 1; i++) {
-      if(alldata[i][1] != alldata[i + 1][1] && alldata[i][1] == alldata[i - 1][1])
-      {
-        secondlastdata.push(alldata[i-1].toString());
-      }else if(alldata[i][1] != alldata[i + 1][1] && alldata[i][1] != alldata[i - 1][1]){
-        secondlastdata.push(alldata[i].toString());
-      }
-    }
-    return secondlastdata;
-  }
-
 function GetContinentsData(){
+  //Get the data for each continents
     var continents = []
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Europe").toString());
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Asia").toString());
@@ -89,6 +76,7 @@ function GetContinentsData(){
   }
 
   async function GetCountriesByIncome(){
+    //I dont know why i did this, i will probably add this in a future version
     var incomeData = []
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "High income"));
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Upper middle income"));
@@ -97,5 +85,6 @@ function GetContinentsData(){
   }
 
   function formatNumberWithCommas(number) {
+    //just read the name of the function
     return parseInt(number).toLocaleString();
   }

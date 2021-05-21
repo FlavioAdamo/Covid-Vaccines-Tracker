@@ -14,15 +14,27 @@ $( document ).ready(async () => {
 });
 
 async function GetCountryName(){
+    //Get the name of the country by reading di url
     var query = window.location.search.substring(1).split("&");
     return query;
 }
 
 async function GetCountryLastData(){
+    //Get the latest data avaible for each country
     return countryData[countryData.length - 1].split(',');
 }
 
+async function loadCountryCounetrsTemplate(data){
+    //Load the counters on top
+    $("#country_counters").append(
+        COUNTRY_COUNTERS_TEMPLATE .replace('{{totvalue}}', data[3])
+        .replace('{{totvaccinated}}',data[9] + "%")
+        .replace('{{fullyVaccinated}}' , data[10] + "%")
+        .replace('{{peopleVaccinated}}' , data[4])); 
+}
+
 function hideCountersWithNoData(data){
+    //Hide the counters on the top if the the data is not avaible
     if(data[3] == null || data[3] == ""){
         $("#total_doses").hide();
     }
@@ -37,15 +49,9 @@ function hideCountersWithNoData(data){
     }
 }
 
-async function loadCountryCounetrsTemplate(data){
-    $("#country_counters").append(
-        COUNTRY_COUNTERS_TEMPLATE .replace('{{totvalue}}', data[3])
-        .replace('{{totvaccinated}}',data[9] + "%")
-        .replace('{{fullyVaccinated}}' , data[10] + "%")
-        .replace('{{peopleVaccinated}}' , data[4])); 
-  }
-
 function loadCounterScript(){
+    //Load the animation to the counter
+    //actually is a copy & paste from some russian website 
     $('.counter').each(function () {
       $(this).prop('Counter',0.0).animate({
         Counter: $(this).text()

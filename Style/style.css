@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .page{
-  background-color: #fafafa;
+  background-color: #F8F9FA;
 }
 
 .container{
@@ -101,10 +101,7 @@
   background: #f6f6f6;
   padding: 30px 20px 37px;
   text-align: center;
-  -webkit-box-shadow: 6px 6px 4px -4px #f1f1f1;
-  -moz-box-shadow: 6px 6px 4px -4px #f1f1f1;
-  box-shadow: 6px 6px 4px -4px #f1f1f1;
-}
+  box-shadow: 6px 6px 4px -4px #f1f1}
 
 .counter-box p {
   margin: 5px 0 0;
@@ -229,7 +226,22 @@
 .gropulist{
   background-color: #fff;
   border-radius: 8px;
-}
+  box-shadow: 6px 6px 4px -4px #f1f1}
+
+  .groupList-title{
+    position: relative;
+    padding: 13px 1rem;
+    border-bottom: none;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background-color: rgb(253, 253, 253);
+    box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+    z-index: 2;
+    /* font-size: 20; */
+    color: #424242;
+    font-size: 20px;
+    font-weight: 500;
+  }
 
 .custom-toggler .navbar-toggler-icon {
   background-image: url("Images/sharing.png");
@@ -240,22 +252,11 @@
   display: flex;
 }
 
-.categoryNameLeft{
+.categoryName{
   color: #424242;
   font-size: 24px;
   font-weight: 500;
-  border-bottom: 2px solid grey;
-  padding-bottom: 14px;
-}
-
-.categoryNameRight{
-  text-align: right;
-  float: right;
-  color: #424242;
-  font-size: 24px;
-  font-weight: 500;
-  border-bottom: 2px solid grey;
-  padding-bottom: 14;
+  padding: 15 15 10;
 }
 
 .dataList{

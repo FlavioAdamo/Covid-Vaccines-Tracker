@@ -1,4 +1,4 @@
-(function(){ })();
+//THIS IS A MESS, NEED A LOT OF IMPR
 const ACCORDION = ' <div class="col-md-4"><div class="accordion" onclick="showCountryData({{countryName}})" ><div class="row deletepadding"><div class="col-1" style="padding-top: 2px;"><text class="position">{{position}}</text></div><div class="col deletepadding"><text class="countryname">{{country}}</text></div><div class="col" style="padding-right:0;"><text class="currentVaccineNumber"><img alt="syringe" src="Images/syringe.png" style="height:14px;"> {{totalVaccines}}</text></div><div class="col-1 deletepadding" style="max-width: 22px;"><text class="position"></text></div></div><div class="row" style="padding-top: 5px;"><div class="col-1"><text class="position"></text></div><div class="col-7 deletepadding" style="padding-top: 4px;"><text class="popolationpercent"> <img alt="syringe" src="Images/Population.png" style="width: 20px; padding-right: 5px;"/>{{popolationPercent}}</text></div><div class="col-3 deletepadding"><div><text class="differenceCounter">{{totalVaccinesDifferences}}</text></div></div></div></div></div>';    
 const COUNTERS_TEMPLATE = '<div class="row"> <div class="four col-md-6" style="padding-top: 15px;"> <div class="counter-box green"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{totvalue}}</span> <p>Vaccine administered around the world</p> </div> </div> <div class="four col-md-6" style="padding-top: 15px;"> <div class="counter-box blue"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{peopleVaccinated}}</span> <p>People received at least one dose</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div class="counter-box green-light"><i class="fa fa-thumbs-o-up"></i><span class="counter2">{{totvaccinated}}</span> <p>Of the population received<br> at least 1 dose of vaccine</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div class="counter-box blue-light"><i class="fa fa-thumbs-o-up"></i><span class="counter1">{{fullyVaccinated}}</span> <p>Of the population is<br> fully vaccinated</p> </div> </div> </div>';
 
@@ -13,6 +13,7 @@ $( document ).ready(async () => {
 });
 
 function loadCollapse(sortType){
+  //given an id this switch will sort the list of data
   switch (sortType) {
     case 0:
       var temp = sortListByVaccination(GetCountriesLastData());
@@ -29,7 +30,7 @@ function loadCollapse(sortType){
       if (splittedData[6] === "") {
         var totdifferenceTemp = "+0";
       }
-
+      //show the fully vaccinated %, if not present show the % of people that have received at least 1 dose
       if(splittedData[10] != ""){
         vaccinatedPercentage = splittedData[10] + "% fully vaccinated";
       }
@@ -60,6 +61,7 @@ function loadCollapse(sortType){
 }
 
 function loadContinents(sortType){
+  //Same as the function on top, but for the continents
   switch (sortType) {
     case 0:
       var temp = sortListByVaccination(GetContinentsData());
@@ -106,10 +108,13 @@ function loadContinents(sortType){
 }
 
 function loadCounetrsTemplate(data){
+  //load the counters on top
   $("#counters").append(COUNTERS_TEMPLATE.replace('{{totvalue}}', data[3]).replace('{{totvaccinated}}',data[9] + "%").replace('{{fullyVaccinated}}' , data[10] + "%").replace('{{peopleVaccinated}}' , data[4])); 
 }
 
 function loadCounterScript(){
+      //Load the animation to the counter
+    //actually is a copy & paste from some russian website 
   $('.counter').each(function () {
     $(this).prop('Counter',0.0).animate({
       Counter: $(this).text()
@@ -124,6 +129,7 @@ function loadCounterScript(){
 }
 
 function sortListByFullyVaccination(data){
+  //sorting by fult vaccinated
   var result = [];
   var temp = [];
   for (let index = 0; index < data.length; index++) {
@@ -136,6 +142,7 @@ function sortListByFullyVaccination(data){
 }
 
 function sortListByVaccination(data){
+    //sorting by vaccination
   var result = [];
   var temp = [];
   for (let index = 0; index < data.length; index++) {
@@ -163,6 +170,7 @@ function UpdateListFilter(selectedItem){
 }
 
 function showCountryData(countryname){
+  //href to the clicked item page 
   window.location.href ="View/country.html" + "?" + countryname.replace(" ", "");
 }
 
