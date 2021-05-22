@@ -2,30 +2,28 @@ var countryName = "";
 var countryData = [];
 var countryLastData = [];
 
-$( document ).ready(async () => {  
+$(document).ready(async () => {
     await loadVariables();
     countryName = await GetCountryName();
     countryData = await GetCountryData(countryName);
     countryLastData = await GetCountryLastData();
-    await loadCountryCounetrsTemplate(countryLastData)
+    await loadCountryCountersTemplate(countryLastData)
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
     loadCountryName();
 });
 
-async function GetCountryName(){
-    //Get the name of the country by reading di url
-    var query = window.location.search.substring(1).split("&");
-    return query;
+async function GetCountryName() {
+    // Get the name of the country by reading di url
+    return window.location.search.substring(1).split("&");
 }
 
-async function GetCountryLastData(){
-    //Get the latest data avaible for each country
+async function GetCountryLastData() {
+    // Get the latest data avaible for each country
     return countryData[countryData.length - 1].split(',');
 }
 
-async function loadCountryCounetrsTemplate(data){
-    //Load the counters on the top
+async function loadCountryCountersTemplate(data) {
     const TEMPLATE = document.querySelector("#country_counters_template");
     const CONTENT = TEMPLATE.content.cloneNode(true);
 
@@ -49,29 +47,28 @@ function hideCountersWithNoData(data){
     if(data[3] == null || data[3] == ""){
         $("#total_doses").hide();
     }
-    if(data[4] == null || data[4] == ""){
+    if (data[4] == null || data[4] == "") {
         $("#people_vaccinated").hide();
     }
-    if(data[9] == null || data[9] == ""){
+    if (data[9] == null || data[9] == "") {
         $("#vaccinated_percent").hide();
     }
-    if(data[10] == null || data[10] == ""){
+    if (data[10] == null || data[10] == "") {
         $("#fully_vaccinated_percent").hide();
     }
 }
 
-function loadCounterScript(){
-    //Load the animation to the counter
-    //actually is a copy & paste from some russian website 
+
+function loadCounterScript() {
+    // Load the animation to the counter
+    // actually is a copy & paste from some russian website 
     $('.counter').each(function () {
-      $(this).prop('Counter',0.0).animate({
-        Counter: $(this).text()
-        }, {
-        duration: 2000,
-        easing: 'swing',
-        step: function (now) {
-        $(this).text(formatNumberWithCommas(Math.ceil(now)));
-          }
+        $(this).prop('Counter', 0.0).animate({ Counter: $(this).text() }, {
+            duration: 2000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(formatNumberWithCommas(Math.ceil(now)));
+            }
         });
       });
   }
