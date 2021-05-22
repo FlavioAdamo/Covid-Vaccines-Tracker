@@ -1,5 +1,5 @@
 <head>
-  <title>Covid Vaccines Tracks | World - All countries DATA</title>
+  <title>Covid Vaccines Track | World - All countries DATA</title>
   <meta name="description" content="Covid vaccines tracker. This website track the number of dosed administered in real time around the World.">
   <meta http-equiv="Cache-control" content="no-cache">
   <link rel="icon" alt="syringe" href="Images/syringe.png" />
@@ -23,7 +23,10 @@
                 <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
                 <a class="a2a_button_facebook"></a>
                 <a class="a2a_button_whatsapp"></a>
-                <a class="a2a_button_twitter"></a>
+                <a class="a2a_button_twitter"></a> 
+                <a class="github-btn" href="https://github.com/FlavioAdamo/Covid-Vaccines-Tracker">
+                  <img class="github-img nav" src="Images/github-mark.png" data-toggle="tooltip" data-placement="bottom" title="Contribute on GitHub!">
+                </a>
               </center>
               <script async src="https://static.addtoany.com/menu/page.js"></script>
             </div>
@@ -87,9 +90,16 @@
               </a>
             </center>
           </div>
+          <div class="col-sm-12 col-md-12 col-lg-12">
+              Github: 
+              <a class="github-btn" href="https://github.com/FlavioAdamo/Covid-Vaccines-Tracker">
+                <img class="github-img" src="Images/github-mark.png" data-toggle="tooltip" data-placement="right" title="Contribute on GitHub!">
+              </a>
+          </div>
         </div>
       </div>
     </div>
+    <br><br><br>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -98,5 +108,11 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="Script/script.js"></script>
   <script src="Script/data.js"></script>
+  <script>
+    // Enable tooltips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+  </script>
 </body>
 

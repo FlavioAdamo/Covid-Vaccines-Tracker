@@ -5,6 +5,37 @@
   cursor: pointer;
 }
 
+.flexbox {
+  display: flexbox;
+}
+
+.flexbox.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.github-btn {
+  text-decoration: none;
+  line-height: 100%;
+}
+
+.github-btn:hover {
+  text-decoration: none;
+}
+
+.github-img {
+  display: inline;
+  line-height: 100%;
+  width: 35px;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.github-img.nav {
+  width: 33px;
+}
+
 .dropdown-item:hover {
   filter: brightness(90%);
   transition: all 250ms;
