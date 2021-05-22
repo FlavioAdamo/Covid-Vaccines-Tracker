@@ -104,7 +104,6 @@ function loadContinents(sortType){
       $("#collapseContinents").append(html);     
     }
     $('#license').css('display', 'inline');
-    $('#filterDiv').hide();
 }
 
 function loadCounetrsTemplate(data){
@@ -157,14 +156,22 @@ function sortListByVaccination(data){
 function UpdateListFilter(selectedItem){
   switch (selectedItem) {
     case 0:
-      $("#collapse").empty();
+      $("#collapseCountries").empty();
+      $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
+      $("#collapseContinents").empty();
+      $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
       loadCollapse(0);
-      $("#dropdownMenuButton").html('<img alt="syringe" src="../Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered');
+      loadContinents(0);
+      $("#dropdownMenuButton").html('<img alt="syringe" src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered');
       break;
     case 1:
-      $("#collapse").empty();
+      $("#collapseCountries").empty();
+      $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
+      $("#collapseContinents").empty();
+      $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
       loadCollapse(1);
-      $("#dropdownMenuButton").html('<img alt="population" src="../Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated');
+      loadContinents(1);                  
+      $("#dropdownMenuButton").html('<img alt="population" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated');
       break;
   }
 }
