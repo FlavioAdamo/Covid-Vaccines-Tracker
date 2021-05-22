@@ -30,6 +30,7 @@ async function loadCountryCounetrsTemplate(data){
         .replace('{{fullyVaccinated}}' , data[10] + "%")
         .replace('{{peopleVaccinated}}' , data[4])
     );
+
 }
 
 function hideCountersWithNoData(data){
