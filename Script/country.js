@@ -10,6 +10,7 @@ $(document).ready(async () => {
     await loadCountryCountersTemplate(countryLastData)
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
+    loadCountryName();
 });
 
 async function GetCountryName() {
@@ -36,10 +37,14 @@ async function loadCountryCountersTemplate(data) {
     $("#country_counters").append(CONTENT);
 }
 
+function loadCountryName(){
+    let noSpecialCharactersCountryName = countryName.toString().replace("%20", " ")
+    document.querySelector("#countryname").innerHTML = noSpecialCharactersCountryName;
+}
 
-function hideCountersWithNoData(data) {
-    // Hide the counters on the top if the the data is not avaible
-    if (data[3] == null || data[3] == "") {
+function hideCountersWithNoData(data){
+    //Hide the counters on the top if the the data is not avaible
+    if(data[3] == null || data[3] == ""){
         $("#total_doses").hide();
     }
     if (data[4] == null || data[4] == "") {
