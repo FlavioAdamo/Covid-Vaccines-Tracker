@@ -34,14 +34,14 @@ function loadCollapse(sortType){
       if(splittedData[10] != ""){
         vaccinatedPercentage = splittedData[10] + "% fully vaccinated";
       }
-      else if (splittedData[9] != "" && splittedData[9] != "0"){
+      else if (splittedData[9] != "" && splittedData[9] != "0"&  splittedData[8]< 100){
         vaccinatedPercentage = splittedData[9] + "% received at least 1 dose";
       }
-      else if (splittedData[8] != "" && splittedData[8] != "0"){
+      else if (splittedData[8] != "" && splittedData[8] != "0" &  splittedData[8]< 100){
         vaccinatedPercentage = splittedData[8] + "% received at least 1 dose";
       }
       else{
-        vaccinatedPercentage = "Data not available";
+        vaccinatedPercentage = splittedData[8] + " vaccinations per hundred people" ;
       }
         
       var data = {
