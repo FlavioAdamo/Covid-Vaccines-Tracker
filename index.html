@@ -1,167 +1,149 @@
 <head>
-  <title>Covid Vaccines Tracks | World - All countries DATA</title>
-  <meta name="description" content="Covid vaccines tracker. This website track the number of dosed administered in real time around the World.">
-  <meta http-equiv="Cache-control" content="no-cache">
-  <link rel="icon" alt="syringe" href="Images/syringe.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="Style/style.css">
+    <title>Covid Vaccines Tracks | World - All countries DATA</title>
+    <meta name="description"
+        content="Covid vaccines tracker. This website track the number of dosed administered in real time around the World.">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <link rel="icon" alt="syringe" href="Images/syringe.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="Style/style.css">
 </head>
 
 <body>
-  <div class="page">
-  <nav class="navbar fixed-top bg-light navbar-light" style="font-family: 'Lato', sans-serif;">
-    <div class="container">
-          <a class="navbar-brand topTitle" href="#"><img id="navLogo" alt="covidvaccinetrack logo" src="Images/Logo.png" width="160px"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-        <span class="navbar-text" style="float:right;">
-          <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-            <center>
-              <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-              <a class="a2a_button_facebook"></a>
-              <a class="a2a_button_whatsapp"></a>
-              <a class="a2a_button_twitter"></a>
-            </center>
-            <script async src="https://static.addtoany.com/menu/page.js"></script>
-            </div>
-        </span>
-      </div>
-    </div>
-    </nav>
-  <br>
-
-  <div class="container" id="counters" style="padding-top: 60px;">
-    <template id="countersTemplate">
-      <div class="row"> 
-        <div class="four col-md-6" style="padding-top: 15px;"> 
-          <div class="counter-box green">
-            <i class="fa fa-thumbs-o-up"></i><span class="counter" id="totvalue">{{totvalue}}</span> 
-            <p>Vaccine administered around the world</p> 
-          </div> 
-        </div> 
-        <div class="four col-md-6" style="padding-top: 15px;"> 
-          <div class="counter-box blue">
-            <i class="fa fa-thumbs-o-up"></i><span class="counter" id="peopleVaccinated">{{peopleVaccinated}}</span> 
-            <p>People received at least one dose</p> 
-          </div> 
-        </div> 
-        <div class="col-6 col-md-6" style="padding-top: 15px;"> 
-          <div class="counter-box green-light">
-            <i class="fa fa-thumbs-o-up"></i><span class="counter2" id="totvaccinated">{{totvaccinated}}</span> 
-            <p>Of the population received<br> at least 1 dose of vaccine</p> 
-          </div> 
-        </div> 
-        <div class="col-6 col-md-6" style="padding-top: 15px;"> 
-          <div class="counter-box blue-light"><i class="fa fa-thumbs-o-up"></i><span class="counter1" id="fullyVaccinated">{{fullyVaccinated}}</span> 
-            <p>Of the population is<br> fully vaccinated</p> 
-          </div> 
-        </div> 
-      </div>
-    </template>
-   </div>
-<!--COMMENTED UNTIL BUG FIX-->
-  <div class="container" style="padding-top:20px;">
-    <div class="row">
-      <div id="filterDiv" class="col-12 col-md-4">
-        <div class="row justify-content-md-center" style="padding-top: 15px; padding-left:10px; padding-right: 20px;">
-          <div class="col-4 deletepadding" >
-            <div class="normalText" style="padding-left: 20px;padding-top: 5px;">Order by:</div>
-        </div>
-        <div class="col-8 deletepadding">
-          <div class="dropdown" style="float: right;">
-            <button class="btn btn-light dropdown-toggle normalText" style="padding-left: 20px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img alt="syringe" src="Images/syringe.png" style="width: 20px; padding-right:10px;">Doses Administered 
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item normalText" onclick="UpdateListFilter(0)"><img alt="syringe" src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered </a>
-              <a class="dropdown-item normalText" onclick="UpdateListFilter(1)"><img alt="popolation" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated </a>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row left-right-padding15" id="collapse" style="display: none;padding-top: 15px;">
-           <div class="col-md-12">
-             <div class="row gropulist" id="collapseContinents">
-              <div class="col-12 groupList-title">Continents</div>
-             </div>   
-           </div>
-          <div style="padding-top: 15px;">
-              <div class="col-md-12">
-                <div class="row gropulist"  id="collapseCountries">
-                  <div class="col-12 groupList-title">Countries</div>
-                    <template id="accordion">
-                      <div class="col-md-4">
-                        <div class="accordion">
-                          <div class="row deletepadding">
-                            <div class="col-1" style="padding-top: 2px;">
-                              <text class="position">{{position}}</text>
-                            </div>
-                            <div class="col deletepadding">
-                              <text class="countryname">{{country}}</text>
-                            </div>
-                            <div class="col" style="padding-right:0;">
-                              <text class="currentVaccineNumber">
-                                <img alt="syringe" src="Images/syringe.png" style="height:14px;"> {{totalVaccines}}
-                              </text>
-                            </div>
-                            <div class="col-1 deletepadding" style="max-width: 22px;">
-                              <text class="position"></text>
-                            </div>
-                          </div>
-                          <div class="row" style="padding-top: 5px;">
-                            <div class="col-1">
-                              <text class="position"></text>
-                            </div>
-                            <div class="col-7 deletepadding" style="padding-top: 4px;">
-                              <text class="popolationpercent">
-                                <img alt="syringe" src="Images/Population.png" style="width: 20px; padding-right: 5px;"/> {{popolationPercent}}
-                              </text>
-                            </div>
-                            <div class="col-3 deletepadding">
-                              <div>
-                                <text class="differenceCounter">{{totalVaccinesDifferences}}</text>
-                              </div>
-                            </div>
-                          </div>
+    <div class="page">
+        <nav class="navbar fixed-top bg-light navbar-light" style="font-family: 'Lato', sans-serif;">
+            <div class="container">
+                <a class="navbar-brand topTitle" href="#"><img id="navLogo" alt="covidvaccinetrack logo"
+                        src="Images/Logo.png" width="160px"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+                    <span class="navbar-text" style="float:right;">
+                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                            <center>
+                                <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                                <a class="a2a_button_facebook"></a>
+                                <a class="a2a_button_whatsapp"></a>
+                                <a class="a2a_button_twitter"></a>
+                            </center>
+                            <script async src="https://static.addtoany.com/menu/page.js"></script>
                         </div>
-                      </div>
-                    </template>
-                </div>   
-             </div> </div> 
-       </div>
-      </div>
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <br>
 
-    <div id="loadingmodal" style="padding-top: 50%;">
-      <center>
-        <div class="lds-ellipsis">
+        <div class="container" id="counters" style="padding-top: 60px;">
+            <template id="countersTemplate">
+                <div class="row">
+                    <div class="four col-md-6" style="padding-top: 15px;">
+                        <div class="counter-box green">
+                            <i class="fa fa-thumbs-o-up"></i><span class="counter" id="totvalue">{{totvalue}}</span>
+                            <p>Vaccine administered around the world</p>
+                        </div>
+                    </div>
+                    <div class="four col-md-6" style="padding-top: 15px;">
+                        <div class="counter-box blue">
+                            <i class="fa fa-thumbs-o-up"></i><span class="counter"
+                                id="peopleVaccinated">{{peopleVaccinated}}</span>
+                            <p>People received at least one dose</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6" style="padding-top: 15px;">
+                        <div class="counter-box green-light">
+                            <i class="fa fa-thumbs-o-up"></i><span class="counter2"
+                                id="totvaccinated">{{totvaccinated}}</span>
+                            <p>Of the population received<br> at least 1 dose of vaccine</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6" style="padding-top: 15px;">
+                        <div class="counter-box blue-light"><i class="fa fa-thumbs-o-up"></i><span class="counter1"
+                                id="fullyVaccinated">{{fullyVaccinated}}</span>
+                            <p>Of the population is<br> fully vaccinated</p>
+                        </div>
+                    </div>
+                </div>
+            </template>
         </div>
-      </center>
-    </div>
+        <!--COMMENTED UNTIL BUG FIX-->
+        <div class="container" style="padding-top:20px;">
+            <div class="row">
+                <div id="filterDiv" class="col-12">
+                    <div class="row p-3" style="justify-content: center;">
+                        <div class="col-sm-6 col-md-2 align-self-center deletepadding widthFitContent">
+                            <div class="normalText">Order by:</div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 deletepadding widthFitContent">
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle normalText" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <img alt="syringe" src="Images/syringe.png"
+                                        style="width: 20px; padding-right:10px;">Doses Administered
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item normalText" onclick="UpdateListFilter(0)"><img alt="syringe"
+                                            src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses
+                                        Administered </a>
+                                    <a class="dropdown-item normalText" onclick="UpdateListFilter(1)"><img
+                                            alt="popolation" src="Images/Population.png"
+                                            style="width: 25px; padding-right:10px;">% fully vaccinated </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 deletepadding">
+                            <input class="float-right form-control" type="search" name="search" placeholder="Search..."
+                                id="search">
+                        </div>
+                    </div>
+                </div>
 
-    <div class="row" id="license" style="padding: 10; display: none;">
-      <div class="col-sm-12 col-md-12 col-lg-12">
-        <center>
-          Source: <a title="in HTML.it puoi trovare risorse per webmaster"
-          href="https://ourworldindata.org/" rel="noopener" target="_blank" >
-          Our World in Data
-          </a>
-        </center>
-      </div>
+                <div class="container">
+                    <div class="row left-right-padding15" id="collapse" style="display: none;padding-top: 15px;">
+                        <div class="col-md-12">
+                            <div class="row gropulist" id="collapseContinents">
+                                <div class="col-12 groupList-title">Continents</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="padding-top: 15px;">
+                            <div class="row gropulist" id="collapseCountries">
+                                <div class="col-12 groupList-title">Countries</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="loadingmodal" style="padding-top: 50%;">
+                    <center>
+                        <div class="lds-ellipsis">
+                        </div>
+                    </center>
+                </div>
+
+                <div class="row" id="license" style="padding: 10; display: none;">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <center>
+                            Source: <a title="in HTML.it puoi trovare risorse per webmaster"
+                                href="https://ourworldindata.org/" rel="noopener" target="_blank">
+                                Our World in Data
+                            </a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-  </div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="Script/script.js" ></script>
-<script src="Script/data.js" ></script>
+<script src="Script/script.js"></script>
+<script src="Script/data.js"></script>

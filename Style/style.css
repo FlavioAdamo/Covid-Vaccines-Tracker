@@ -112,7 +112,7 @@
   font-size: 12px;
   font-weight: bold;
   color: #00bcd4;
-  padding: 4px 6px;
+  padding: 5px 10px;
   border-radius: 30px;
 }
 
@@ -306,4 +306,17 @@
 
 .dataList {
   padding-left: 15px;
+}
+
+.card:hover {
+    box-shadow: 0 0 11px rgb(33 33 33 / 20%);
+    transition: box-shadow 0.5s;
+}
+
+.widthFitContent{
+    width: fit-content;
+}
+
+.heightFitContent{
+    height: fit-content;
 }
