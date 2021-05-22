@@ -1,4 +1,3 @@
-const COUNTRY_COUNTERS_TEMPLATE = '<div class="row"> <div class="four col-md-6" style="padding-top: 15px;"> <div id="total_doses" class="counter-box green"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{totvalue}}</span> <p>Vaccine administered</p> </div> </div> <div class="four col-md-6" style="padding-top: 15px;"> <div id="people_vaccinated" class="counter-box blue"><i class="fa fa-thumbs-o-up"></i><span class="counter">{{peopleVaccinated}}</span> <p>People received at least one dose</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div id="vaccinated_percent" class="counter-box green-light"><i class="fa fa-thumbs-o-up"></i><span class="counter2">{{totvaccinated}}</span> <p>Of the population received<br> at least 1 dose of vaccine</p> </div> </div> <div class="col-6 col-md-6" style="padding-top: 15px;"> <div id="fully_vaccinated_percent" class="counter-box blue-light"><i class="fa fa-thumbs-o-up"></i><span class="counter1">{{fullyVaccinated}}</span> <p>Of the population is<br> fully vaccinated</p> </div> </div> </div>';
 var countryName = "";
 var countryData = [];
 var countryLastData = [];
@@ -25,12 +24,17 @@ async function GetCountryLastData(){
 }
 
 async function loadCountryCounetrsTemplate(data){
-    //Load the counters on top
-    $("#country_counters").append(
-        COUNTRY_COUNTERS_TEMPLATE .replace('{{totvalue}}', data[3])
-        .replace('{{totvaccinated}}',data[9] + "%")
-        .replace('{{fullyVaccinated}}' , data[10] + "%")
-        .replace('{{peopleVaccinated}}' , data[4])); 
+    const TEMPLATE = document.querySelector("#country_counters_template");
+    const CONTENT = TEMPLATE.content.cloneNode(true);
+
+    // Change content
+    CONTENT.querySelector("#totvalue").innerHTML = data[3];
+    CONTENT.querySelector("#totvaccinated").innerHTML = `${data[9]}%`;
+    
+    CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
+    CONTENT.querySelector("#peopleVaccinated").innerHTML = data[4];
+
+    $("#country_counters").append(CONTENT);
 }
 
 function hideCountersWithNoData(data){
