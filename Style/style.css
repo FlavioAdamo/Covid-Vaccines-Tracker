@@ -1,16 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-.page{
-  background-color: #F8F9FA;
+.accordion,
+.dropdown-item {
+  cursor: pointer;
 }
 
-.container{
-  font-family: 'Roboto', sans-serif;
-  overflow: 'hidden' !important;
+.flexbox {
+  display: flexbox;
+}
+
+.flexbox.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.github-btn {
+  text-decoration: none;
+  line-height: 100%;
+}
+
+.github-btn:hover {
+  text-decoration: none;
+}
+
+.github-img {
+  display: inline;
+  line-height: 100%;
+  width: 35px;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.github-img.nav {
+  width: 33px;
+}
+
+.dropdown-item:hover {
+  filter: brightness(90%);
+  transition: all 250ms;
+}
+
+.page {
+  background-color: #f8f9fa;
+}
+
+.container {
+  font-family: "Roboto", sans-serif;
+  overflow: "hidden" !important;
 }
 
 .accordion {
-  background-color: #fff!important;
+  background-color: #fff !important;
   color: rgb(0, 0, 0);
   padding: 15 0;
   width: 100%;
@@ -24,21 +65,21 @@
   font-weight: 400;
   transition: 0.4s;
   outline: none;
-  }
+}
 
-.position{
+.position {
   padding-top: 3px;
   font-size: smaller;
   color: #969696;
 }
 
-.deletepadding{
+.deletepadding {
   padding-right: 0px;
   padding-left: 5px;
 }
 
-.countryname{
-  display: inline-block; /*DL: Attempt to fix triple digit styling issue*/
+.countryname {
+  display: inline-block; /* DL: Attempt to fix triple digit styling issue */
   padding-left: 7px;
 }
 
@@ -54,15 +95,15 @@
   border-radius: 30px;
 }
 
-.differenceCounter{
-    padding-left: 15px;
-    padding-left: 15px;
-    font-size: 13px;
-    font-weight: bold;
-    color: rgb(71 144 103);
-    padding: 4px 6px;
-    border-radius: 30px;
-    float: right;
+.differenceCounter {
+  padding-left: 15px;
+  padding-left: 15px;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(71 144 103);
+  padding: 4px 6px;
+  border-radius: 30px;
+  float: right;
 }
 
 .popolationpercent {
@@ -75,66 +116,70 @@
   border-radius: 30px;
 }
 
-.topTitle{
-  font-family: 'Rubik', sans-serif;
+.topTitle {
+  font-family: "Rubik", sans-serif;
   font-size: 21px;
   font-weight: 300;
   color: #69bf8a;
-
 }
 
 .navbar-light .navbar-toggler {
   border: 0px !important;
 }
 
-.active, .accordion:hover {
+.active,
+.accordion:hover {
   font-size: 18px;
   font-weight: 400;
   margin-bottom: 1px solid black;
 }
 
-
 .counter-box {
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   height: 100%;
   border-radius: 8px;
   display: block;
   background: #f6f6f6;
   padding: 30px 20px 37px;
   text-align: center;
-  box-shadow: 6px 6px 4px -4px #f1f1}
+  box-shadow: 6px 6px 4px -4px #f1f1;
+}
 
 .counter-box p {
   margin: 5px 0 0;
   padding: 0;
   color: #909090;
   font-size: 15px;
-  font-weight: 500
+  font-weight: 500;
 }
 
 .counter-box i {
   font-size: 50px;
   margin: 0 0 15px;
-  color: #d2d2d2
+  color: #d2d2d2;
 }
 
 .counter {
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-variant: tabular-nums;
   display: block;
   font-size: 32px;
   font-weight: 700;
   color: #666;
-  line-height: 28px
+  line-height: 28px;
 }
+
 .counter1 {
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-variant: tabular-nums;
   display: block;
   font-size: 32px;
   font-weight: 700;
   color: #00bcd4;
-  line-height: 28px
+  line-height: 28px;
 }
 
 .counter2 {
@@ -143,7 +188,7 @@
   font-size: 32px;
   font-weight: 700;
   color: #2abfa7;
-  line-height: 28px
+  line-height: 28px;
 }
 
 .counter-box.green {
@@ -161,23 +206,22 @@
   padding: 30px 20px 37px;
 }
 
-.counter-box.green-light{
+.counter-box.green-light {
   background: #ffffff;
   padding: 30px 20px 37px;
-
 }
 
 .counter-box.blue p,
 .counter-box.blue i,
-.counter-box.blue .counter ,
+.counter-box.blue .counter,
 .counter-box.green p,
 .counter-box.green i,
 .counter-box.green .counter {
-  color: #ffffff
+  color: #ffffff;
 }
 
 .bg-light {
-  background-color: #ffffff!important;
+  background-color: #ffffff !important;
   -webkit-box-shadow: 0 6px 4px -4px #f1f1f1;
   -moz-box-shadow: 0 6px 4px -4px #f1f1f1;
   box-shadow: 0 6px 4px -4px #f1f1f1;
@@ -185,21 +229,20 @@
 
 .counter-box.blue-light .counter,
 .counter-box.blue-light p,
-.counter-box.blue-light i{
+.counter-box.blue-light i {
   color: #00bcd4;
 }
 
 .counter-box.green-light .counter,
 .counter-box.green-light p,
-.counter-box.green-light i{
+.counter-box.green-light i {
   color: #2abfa7;
 }
 
 .counter-box.green-light p,
-.counter-box.blue-light p{
+.counter-box.blue-light p {
   font-size: 13px;
 }
-
 
 .navbar-light .navbar-toggler-icon {
   background-image: url("../Images/sharing.png");
@@ -217,32 +260,33 @@
   width: 30px;
   height: 30px;
   display: flex;
-
 }
-.left-right-padding15{
+
+.left-right-padding15 {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.gropulist{
+.gropulist {
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 6px 6px 4px -4px #f1f1}
+  box-shadow: 6px 6px 4px -4px #f1f1;
+}
 
-  .groupList-title{
-    position: relative;
-    padding: 13px 1rem;
-    border-bottom: none;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    background-color: rgb(253, 253, 253);
-    box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
-    z-index: 2;
-    /* font-size: 20; */
-    color: #424242;
-    font-size: 20px;
-    font-weight: 500;
-  }
+.groupList-title {
+  position: relative;
+  padding: 13px 1rem;
+  border-bottom: none;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  background-color: rgb(253, 253, 253);
+  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+  z-index: 2;
+  /* font-size: 20; */
+  color: #424242;
+  font-size: 20px;
+  font-weight: 500;
+}
 
 .custom-toggler .navbar-toggler-icon {
   background-image: url("Images/sharing.png");
@@ -253,14 +297,13 @@
   display: flex;
 }
 
-.categoryName{
+.categoryName {
   color: #424242;
   font-size: 24px;
   font-weight: 500;
   padding: 15 15 10;
 }
 
-.dataList{
+.dataList {
   padding-left: 15px;
 }
-  
