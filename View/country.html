@@ -10,7 +10,7 @@
 <body>
   <nav class="navbar fixed-top bg-light navbar-light" style="font-family: 'Lato', sans-serif;">
     <div class="container">
-      <a id="navLogo" class="navbar-brand topTitle" href="#"><img src="../Images/Logo.png" width="160px"></a>
+      <a id="navLogo" class="navbar-brand topTitle" href="../"><img src="../Images/Logo.png" width="160px"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -30,6 +30,46 @@
     </div>
   </nav>
   <br>
+
+  <div style="padding-top: 60px;">
+    <h1 id="country-heading"></h1>
+    <div class="container" id="country_counters">
+      <template id="country_counters_template">
+        <div class="row">
+          <div class="four col-md-6" style="padding-top: 15px;">
+            <div id="total_doses" class="counter-box green">
+              <i class="fa fa-thumbs-o-up"></i>
+              <span class="counter" id="totvalue">{{totvalue}}</span>
+              <p>Vaccine administered</p>
+            </div>
+          </div>
+          <div class="four col-md-6" style="padding-top: 15px;">
+            <div id="people_vaccinated" class="counter-box blue">
+              <i class="fa fa-thumbs-o-up"></i>
+              <span class="counter" id="peopleVaccinated">{{peopleVaccinated}}</span>
+              <p>People received at least one dose</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-6" style="padding-top: 15px;">
+            <div id="vaccinated_percent" class="counter-box green-light">
+              <i class="fa fa-thumbs-o-up"></i>
+              <span class="counter2" id="totvaccinated">{{totvaccinated}}</span>
+              <p>Of the population received<br> at least 1 dose of vaccine</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-6" style="padding-top: 15px;">
+            <div id="fully_vaccinated_percent" class="counter-box blue-light">
+              <i class="fa fa-thumbs-o-up"></i>
+              <span class="counter1" id="fullyVaccinated">{{fullyVaccinated}}</span>
+              <p>Of the population is<br> fully vaccinated</p>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+  <br>
+
       
   <div style="padding-top: 60px;">
     <div class="container" id="country_counters"></div>

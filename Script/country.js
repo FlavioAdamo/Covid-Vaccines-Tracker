@@ -7,14 +7,16 @@ $( document ).ready(async () => {
     countryName = await GetCountryName();
     countryData = await GetCountryData(countryName);
     countryLastData = await GetCountryLastData();
-    await loadCountryCounetrsTemplate(countryLastData)
+    await loadCountryCountersTemplate(countryLastData);
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
 });
 
 async function GetCountryName(){
     //Get the name of the country by reading di url
-    var query = window.location.search.substring(1).split("&");
+    var query = window.location.search.substring(1).split("&")[0];
+    const heading = document.querySelector('#country-heading');
+    heading.innerText = query.replace("%20", " ");
     return query;
 }
 
@@ -23,9 +25,10 @@ async function GetCountryLastData(){
     return countryData[countryData.length - 1].split(',');
 }
 
-async function loadCountryCounetrsTemplate(data){
+async function loadCountryCountersTemplate(data){
     //Load the counters on the top
     const TEMPLATE = document.querySelector("#country_counters_template");
+    console.log(TEMPLATE);
     const CONTENT = TEMPLATE.content.cloneNode(true);
 
     // Change content
@@ -58,14 +61,14 @@ function loadCounterScript(){
     //Load the animation to the counter
     //actually is a copy & paste from some russian website 
     $('.counter').each(function () {
-      $(this).prop('Counter',0.0).animate({
+        $(this).prop('Counter',0.0).animate({
         Counter: $(this).text()
         }, {
         duration: 2000,
         easing: 'swing',
         step: function (now) {
         $(this).text(formatNumberWithCommas(Math.ceil(now)));
-          }
+        }
         });
-      });
-  }
+    });
+}

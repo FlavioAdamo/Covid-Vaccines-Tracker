@@ -1,0 +1,25 @@
+{
+  "name": "covid-vaccines-tracker",
+  "version": "1.0.0",
+  "description": "A Tracker Application for COVID-19 Vaccination rate by country",
+  "main": "Script/script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlavioAdamo/Covid-Vaccines-Tracker.git"
+  },
+  "keywords": [
+    "Covid",
+    "vaccine",
+    "tracker",
+    "app"
+  ],
+  "author": "Flavio Adamo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlavioAdamo/Covid-Vaccines-Tracker/issues"
+  },
+  "homepage": "https://github.com/FlavioAdamo/Covid-Vaccines-Tracker#readme"
+}

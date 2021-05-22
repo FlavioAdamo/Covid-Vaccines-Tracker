@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+/* .hover:hover {
+  background-color: red;
+} */
+
 .flexbox {
   display: flexbox;
 }
@@ -51,7 +55,7 @@
 }
 
 .accordion {
-  background-color: #fff !important;
+  background-color: #fff;
   color: rgb(0, 0, 0);
   padding: 15 0;
   width: 100%;
@@ -65,6 +69,13 @@
   font-weight: 400;
   transition: 0.4s;
   outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+}
+
+.accordion:hover {
+  background-color: #eee;
 }
 
 .position {
@@ -83,12 +94,19 @@
   padding-left: 7px;
 }
 
+#country-heading {
+  text-align: center;
+  margin: 2rem 0;
+}
+
 .currentVaccineNumber {
   background-color: #37b12d1a;
   float: right;
   font-size: 15px;
   margin-left: 5;
   color: #159655;
+  display: inline-block; /* These two lines keep the Vaccine Number container as one line as the page grows smaller */
+  white-space: nowrap; /* These two lines keep the Vaccine Number container as one line as the page grows smaller */
   padding: 3px;
   padding-right: 10px;
   padding-right: 10px;

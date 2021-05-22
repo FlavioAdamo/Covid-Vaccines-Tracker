@@ -23,13 +23,13 @@ async function GetCountryData(country_name) {
 
 
 async function GetWorldLastData(){
-  //Get the "World" last data
-  var query =  allData.filter(word => word.split(',')[0] == "World");
-  return query[query.length - 1].split(',');
+    //Get the "World" last data
+    var query =  allData.filter(word => word.split(',')[0] == "World");
+    return query[query.length - 1].split(',');
 }
 
 function GetCountriesLastData(){
-  //delete "non countries" from lastDataAvaible
+    //delete "non countries" from lastDataAvaible
     return  lastDataAvaible.filter(word => word.split(',')[0] != "World" 
     && word.split(',')[0] != "Europe"
     && word.split(',')[0] != "Asia"
@@ -65,7 +65,7 @@ async function GetLastData() {
 
 
 function GetContinentsData(){
-  //Get the data for each continents
+    //Get the data for each continents
     var continents = [];
 
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Europe").toString());
@@ -78,7 +78,7 @@ function GetContinentsData(){
 }
 
 
-  async function GetCountriesByIncome(){
+    async function GetCountriesByIncome(){
     //I dont know why i did this, i will probably add this in a future version
     var incomeData = [];
 
