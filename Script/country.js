@@ -33,6 +33,10 @@ async function loadCountryCountersTemplate(data) {
     CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
     CONTENT.querySelector("#peopleVaccinated").innerHTML = data[4];
 
+    // removes %20 then adds to title card for country (id="countryname")
+    let noSpecialCharactersCountryName = countryName.toString().replaceAll("%20", " ");
+    CONTENT.querySelector("#countryname").innerHTML = noSpecialCharactersCountryName;
+
     $("#country_counters").append(CONTENT);
 }
 
