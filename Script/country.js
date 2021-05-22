@@ -7,7 +7,7 @@ $( document ).ready(async () => {
     countryName = await GetCountryName();
     countryData = await GetCountryData(countryName);
     countryLastData = await GetCountryLastData();
-    await loadCountryCounetrsTemplate(countryLastData)
+    await loadCountryCountersTemplate(countryLastData)
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
 });
@@ -22,7 +22,9 @@ async function GetCountryLastData(){
     return countryData[countryData.length - 1].split(',');
 }
 
-async function loadCountryCounetrsTemplate(data){
+async function loadCountryCountersTemplate(data){
+    const TEMPLATE = document.querySelector("#country_counters_template");
+    const CONTENT = TEMPLATE.content.cloneNode(true);
     // Load the counters on top
     $("#country_counters").append(
         COUNTRY_COUNTERS_TEMPLATE .replace('{{totvalue}}', data[3])
