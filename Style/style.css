@@ -34,11 +34,12 @@
 
 .deletepadding{
   padding-right: 0px;
-  padding-left: 0px;
+  padding-left: 5px;
 }
 
 .countryname{
-  padding-left: 4px;
+  display: inline-block; /*DL: Attempt to fix triple digit styling issue*/
+  padding-left: 7px;
 }
 
 .currentVaccineNumber {
