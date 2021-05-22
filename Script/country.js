@@ -24,6 +24,7 @@ async function GetCountryLastData(){
 }
 
 async function loadCountryCounetrsTemplate(data){
+    //Load the counters on the top
     const TEMPLATE = document.querySelector("#country_counters_template");
     const CONTENT = TEMPLATE.content.cloneNode(true);
 

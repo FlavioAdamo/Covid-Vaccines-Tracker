@@ -55,7 +55,7 @@ function loadCollapse(sortType){
         }
       
       const CONTENT = ACCORDION.content.cloneNode(true);
-      
+      //Load the counters on the top
       // Change content
       CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(data.totalVaccine)}`;
       CONTENT.querySelector('.countryname').innerHTML = data.name;

@@ -39,6 +39,7 @@ function GetCountriesLastData(){
     && word.split(',')[0] != "High income"
     && word.split(',')[0] != "Upper middle income"
     && word.split(',')[0] != "Lower middle income"
+    && word.split(',')[0] != "Low income"
     && word.split(',')[0] != "European Union");
   }
   
