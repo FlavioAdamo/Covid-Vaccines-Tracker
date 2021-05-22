@@ -1,5 +1,5 @@
 <head>
-  <title>Covid Vaccines Tracks | World - All countries DATA</title>
+  <title>Covid Vaccines Track | World - All countries DATA</title>
   <meta name="description" content="Covid vaccines tracker. This website track the number of dosed administered in real time around the World.">
   <meta http-equiv="Cache-control" content="no-cache">
   <link rel="icon" alt="syringe" href="Images/syringe.png" />
@@ -10,29 +10,53 @@
 
 <body>
   <div class="page">
-  <nav class="navbar fixed-top bg-light navbar-light" style="font-family: 'Lato', sans-serif;">
-    <div class="container">
-          <a class="navbar-brand topTitle" href="#"><img id="navLogo" alt="covidvaccinetrack logo" src="Images/Logo.png" width="160px"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-        <span class="navbar-text" style="float:right;">
-          <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-            <center>
-              <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-              <a class="a2a_button_facebook"></a>
-              <a class="a2a_button_whatsapp"></a>
-              <a class="a2a_button_twitter"></a>
-            </center>
-            <script async src="https://static.addtoany.com/menu/page.js"></script>
+    <nav class="navbar fixed-top bg-light navbar-light" style="font-family: 'Lato', sans-serif;">
+      <div class="container">
+        <a class="navbar-brand topTitle" href="/"><img id="navLogo" alt="covidvaccinetrack logo" src="Images/Logo.png" width="160px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+          <span class="navbar-text" style="float:right;">
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+              <center>
+                <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                <a class="a2a_button_facebook"></a>
+                <a class="a2a_button_whatsapp"></a>
+                <a class="a2a_button_twitter"></a> 
+                <a class="github-btn" href="https://github.com/FlavioAdamo/Covid-Vaccines-Tracker">
+                  <img class="github-img nav" src="Images/github-mark.png" data-toggle="tooltip" data-placement="bottom" title="Contribute on GitHub!">
+                </a>
+              </center>
+              <script async src="https://static.addtoany.com/menu/page.js"></script>
             </div>
-        </span>
+          </span>
+        </div>
       </div>
-    </div>
     </nav>
-  <br>
+    <br>
 
+<<<<<<< HEAD
+    <div class="container" id="counters" style="padding-top: 60px;"></div>
+    <!--COMMENTED UNTIL BUG FIX-->
+    <div class="container" style="padding-top:20px;">
+      <div class="row">
+        <div id="filterDiv" class="col-12 col-md-4">
+          <div class="row justify-content-md-center" style="padding-top: 15px; padding-left:10px; padding-right: 20px;">
+            <div class="col-4 deletepadding">
+              <div class="normalText" style="padding-left: 20px;padding-top: 5px;">Order by:</div>
+            </div>
+            <div class="col-8 deletepadding">
+              <div class="dropdown" style="float: right;">
+                <button class="btn btn-light dropdown-toggle normalText" style="padding-left: 20px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img alt="syringe" src="Images/syringe.png" style="width: 20px; padding-right:10px;">Doses Administered 
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item normalText" onclick="UpdateListFilter(0)"><img alt="syringe" src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered </a>
+                  <a class="dropdown-item normalText" onclick="UpdateListFilter(1)"><img alt="popolation" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated </a>
+                </div>
+              </div>
+=======
   <div class="container" id="counters" style="padding-top: 60px;">
     <template id="countersTemplate">
       <div class="row"> 
@@ -78,23 +102,29 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item normalText" onclick="UpdateListFilter(0)"><img alt="syringe" src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered </a>
               <a class="dropdown-item normalText" onclick="UpdateListFilter(1)"><img alt="popolation" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated </a>
+>>>>>>> 83aab9aafa7ef86ec5d05399067b6941bcc9d783
             </div>
           </div>
         </div>
-        </div>
-      </div>
 
-      <div class="container">
-        <div class="row left-right-padding15" id="collapse" style="display: none;padding-top: 15px;">
-           <div class="col-md-12">
-             <div class="row gropulist" id="collapseContinents">
-              <div class="col-12 groupList-title">Continents</div>
-             </div>   
-           </div>
-          <div style="padding-top: 15px;">
+        <div class="container">
+          <div class="row left-right-padding15" id="collapse" style="display: none;padding-top: 15px;">
+            <div class="col-md-12">
+              <div class="row gropulist" id="collapseContinents">
+                <div class="col-12 groupList-title">Continents</div>
+              </div>
+            </div>
+            <div style="padding-top: 15px;">
               <div class="col-md-12">
                 <div class="row gropulist"  id="collapseCountries">
                   <div class="col-12 groupList-title">Countries</div>
+<<<<<<< HEAD
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+=======
                     <template id="accordion">
                       <div class="col-md-4">
                         <div class="accordion">
@@ -136,32 +166,45 @@
              </div> </div> 
        </div>
       </div>
+>>>>>>> 83aab9aafa7ef86ec5d05399067b6941bcc9d783
 
-    <div id="loadingmodal" style="padding-top: 50%;">
-      <center>
-        <div class="lds-ellipsis">
+        <div id="loadingmodal" style="padding-top: 50%;">
+          <center><div class="lds-ellipsis"></div></center>
         </div>
-      </center>
-    </div>
 
-    <div class="row" id="license" style="padding: 10; display: none;">
-      <div class="col-sm-12 col-md-12 col-lg-12">
-        <center>
-          Source: <a title="in HTML.it puoi trovare risorse per webmaster"
-          href="https://ourworldindata.org/" rel="noopener" target="_blank" >
-          Our World in Data
-          </a>
-        </center>
+        <div class="row" id="license" style="padding: 10; display: none;">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <center>
+              Source: 
+              <a title="in HTML.it puoi trovare risorse per webmaster"
+              href="https://ourworldindata.org/" rel="noopener" target="_blank">
+              Our World in Data
+              </a>
+            </center>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-12">
+              Github: 
+              <a class="github-btn" href="https://github.com/FlavioAdamo/Covid-Vaccines-Tracker">
+                <img class="github-img" src="Images/github-mark.png" data-toggle="tooltip" data-placement="right" title="Contribute on GitHub!">
+              </a>
+          </div>
+        </div>
       </div>
     </div>
+    <br><br><br>
   </div>
-</div>
-  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="Script/script.js"></script>
+  <script src="Script/data.js"></script>
+  <script>
+    // Enable tooltips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+  </script>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="Script/script.js" ></script>
-<script src="Script/data.js" ></script>
