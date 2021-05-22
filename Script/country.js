@@ -25,15 +25,17 @@ async function GetCountryLastData() {
 async function loadCountryCountersTemplate(data) {
     const TEMPLATE = document.querySelector("#country_counters_template");
     const CONTENT = TEMPLATE.content.cloneNode(true);
-    // Load the counters on top
-    $("#country_counters").append(
-        COUNTRY_COUNTERS_TEMPLATE.replace('{{totvalue}}', data[3])
-            .replace('{{totvaccinated}}', data[9] + "%")
-            .replace('{{fullyVaccinated}}', data[10] + "%")
-            .replace('{{peopleVaccinated}}', data[4])
-    );
 
+    // Change content
+    CONTENT.querySelector("#totvalue").innerHTML = data[3];
+    CONTENT.querySelector("#totvaccinated").innerHTML = `${data[9]}%`;
+    
+    CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
+    CONTENT.querySelector("#peopleVaccinated").innerHTML = data[4];
+
+    $("#country_counters").append(CONTENT);
 }
+
 
 function hideCountersWithNoData(data) {
     // Hide the counters on the top if the the data is not avaible
@@ -51,6 +53,7 @@ function hideCountersWithNoData(data) {
     }
 }
 
+
 function loadCounterScript() {
     // Load the animation to the counter
     // actually is a copy & paste from some russian website 
@@ -62,5 +65,5 @@ function loadCounterScript() {
                 $(this).text(formatNumberWithCommas(Math.ceil(now)));
             }
         });
-    });
-}
+      });
+  }
