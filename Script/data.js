@@ -35,7 +35,7 @@ function GetCountriesLastData(){
     && word.split(',')[0] != "North America"
     && word.split(',')[0] != "Africa"
     && word.split(',')[0] != "South America"
-    && word.split(',')[0] != "Australia"
+    && word.split(',')[0] != "Oceania"
     && word.split(',')[0] != "High income"
     && word.split(',')[0] != "Upper middle income"
     && word.split(',')[0] != "Lower middle income"
@@ -71,7 +71,7 @@ function GetContinentsData(){
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "North America").toString());
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Africa").toString());
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "South America").toString());
-    continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Australia").toString());
+    continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Oceania").toString());
     return continents;
   }
 
