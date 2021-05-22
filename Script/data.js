@@ -2,7 +2,7 @@ const DATA_URL = "https://raw.githubusercontent.com/owid/covid-19-data/master/pu
 const MASTER_DATA_URL = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.csv";
 var allData = [];
 let lastDataAvaible = [];
-let secondlastData = []
+let secondlastData = [];
 
 
 async function loadVariables() {
@@ -21,26 +21,26 @@ async function GetCountryData(country_name) {
     return allData.filter(word => word.split(',')[0] == country_name.toString().replaceAll("%20", " "));
 }
 
-async function GetWorldLastData() {
-    // Get the "World" last data
-    var query = allData.filter(word => word.split(',')[0] == "World")
-    return query[query.length - 1].split(',');
+
+async function GetWorldLastData(){
+  //Get the "World" last data
+  var query =  allData.filter(word => word.split(',')[0] == "World");
+  return query[query.length - 1].split(',');
 }
 
-function GetCountriesLastData() {
-    // delete "non countries" from lastDataAvaible
-    var query = lastDataAvaible.filter(word => word.split(',')[0] != "World"
-        && word.split(',')[0] != "Europe"
-        && word.split(',')[0] != "Asia"
-        && word.split(',')[0] != "North America"
-        && word.split(',')[0] != "Africa"
-        && word.split(',')[0] != "South America"
-        && word.split(',')[0] != "Oceania"
-        && word.split(',')[0] != "High income"
-        && word.split(',')[0] != "Upper middle income"
-        && word.split(',')[0] != "Lower middle income"
-        && word.split(',')[0] != "European Union")
-    return query;
+function GetCountriesLastData(){
+  //delete "non countries" from lastDataAvaible
+    return  lastDataAvaible.filter(word => word.split(',')[0] != "World" 
+    && word.split(',')[0] != "Europe"
+    && word.split(',')[0] != "Asia"
+    && word.split(',')[0] != "North America"
+    && word.split(',')[0] != "Africa"
+    && word.split(',')[0] != "South America"
+    && word.split(',')[0] != "Oceania"
+    && word.split(',')[0] != "High income"
+    && word.split(',')[0] != "Upper middle income"
+    && word.split(',')[0] != "Lower middle income"
+    && word.split(',')[0] != "European Union");
 }
 
 
@@ -62,9 +62,11 @@ async function GetLastData() {
     return lastadata;
 }
 
-function GetContinentsData() {
-    // Get the data for each continents
-    var continents = []
+
+function GetContinentsData(){
+  //Get the data for each continents
+    var continents = [];
+
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Europe").toString());
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Asia").toString());
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "North America").toString());
@@ -74,9 +76,11 @@ function GetContinentsData() {
     return continents;
 }
 
-async function GetCountriesByIncome() {
-    // I dont know why i did this, i will probably add this in a future version
-    var incomeData = []
+
+  async function GetCountriesByIncome(){
+    //I dont know why i did this, i will probably add this in a future version
+    var incomeData = [];
+
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "High income"));
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Upper middle income"));
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Low middle income"));

@@ -36,6 +36,7 @@
     </nav>
     <br>
 
+<<<<<<< HEAD
     <div class="container" id="counters" style="padding-top: 60px;"></div>
     <!--COMMENTED UNTIL BUG FIX-->
     <div class="container" style="padding-top:20px;">
@@ -55,6 +56,53 @@
                   <a class="dropdown-item normalText" onclick="UpdateListFilter(1)"><img alt="popolation" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated </a>
                 </div>
               </div>
+=======
+  <div class="container" id="counters" style="padding-top: 60px;">
+    <template id="countersTemplate">
+      <div class="row"> 
+        <div class="four col-md-6" style="padding-top: 15px;"> 
+          <div class="counter-box green">
+            <i class="fa fa-thumbs-o-up"></i><span class="counter" id="totvalue">{{totvalue}}</span> 
+            <p>Vaccine administered around the world</p> 
+          </div> 
+        </div> 
+        <div class="four col-md-6" style="padding-top: 15px;"> 
+          <div class="counter-box blue">
+            <i class="fa fa-thumbs-o-up"></i><span class="counter" id="peopleVaccinated">{{peopleVaccinated}}</span> 
+            <p>People received at least one dose</p> 
+          </div> 
+        </div> 
+        <div class="col-6 col-md-6" style="padding-top: 15px;"> 
+          <div class="counter-box green-light">
+            <i class="fa fa-thumbs-o-up"></i><span class="counter2" id="totvaccinated">{{totvaccinated}}</span> 
+            <p>Of the population received<br> at least 1 dose of vaccine</p> 
+          </div> 
+        </div> 
+        <div class="col-6 col-md-6" style="padding-top: 15px;"> 
+          <div class="counter-box blue-light"><i class="fa fa-thumbs-o-up"></i><span class="counter1" id="fullyVaccinated">{{fullyVaccinated}}</span> 
+            <p>Of the population is<br> fully vaccinated</p> 
+          </div> 
+        </div> 
+      </div>
+    </template>
+   </div>
+<!--COMMENTED UNTIL BUG FIX-->
+  <div class="container" style="padding-top:20px;">
+    <div class="row">
+      <div id="filterDiv" class="col-12 col-md-4">
+        <div class="row justify-content-md-center" style="padding-top: 15px; padding-left:10px; padding-right: 20px;">
+          <div class="col-4 deletepadding" >
+            <div class="normalText" style="padding-left: 20px;padding-top: 5px;">Order by:</div>
+        </div>
+        <div class="col-8 deletepadding">
+          <div class="dropdown" style="float: right;">
+            <button class="btn btn-light dropdown-toggle normalText" style="padding-left: 20px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img alt="syringe" src="Images/syringe.png" style="width: 20px; padding-right:10px;">Doses Administered 
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item normalText" onclick="UpdateListFilter(0)"><img alt="syringe" src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered </a>
+              <a class="dropdown-item normalText" onclick="UpdateListFilter(1)"><img alt="popolation" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated </a>
+>>>>>>> 83aab9aafa7ef86ec5d05399067b6941bcc9d783
             </div>
           </div>
         </div>
@@ -70,11 +118,55 @@
               <div class="col-md-12">
                 <div class="row gropulist"  id="collapseCountries">
                   <div class="col-12 groupList-title">Countries</div>
+<<<<<<< HEAD
                 </div>
               </div>
             </div>
           </div>
         </div>
+=======
+                    <template id="accordion">
+                      <div class="col-md-4">
+                        <div class="accordion">
+                          <div class="row deletepadding">
+                            <div class="col-1" style="padding-top: 2px;">
+                              <text class="position">{{position}}</text>
+                            </div>
+                            <div class="col deletepadding">
+                              <text class="countryname">{{country}}</text>
+                            </div>
+                            <div class="col" style="padding-right:0;">
+                              <text class="currentVaccineNumber">
+                                <img alt="syringe" src="Images/syringe.png" style="height:14px;"> {{totalVaccines}}
+                              </text>
+                            </div>
+                            <div class="col-1 deletepadding" style="max-width: 22px;">
+                              <text class="position"></text>
+                            </div>
+                          </div>
+                          <div class="row" style="padding-top: 5px;">
+                            <div class="col-1">
+                              <text class="position"></text>
+                            </div>
+                            <div class="col-7 deletepadding" style="padding-top: 4px;">
+                              <text class="popolationpercent">
+                                <img alt="syringe" src="Images/Population.png" style="width: 20px; padding-right: 5px;"/> {{popolationPercent}}
+                              </text>
+                            </div>
+                            <div class="col-3 deletepadding">
+                              <div>
+                                <text class="differenceCounter">{{totalVaccinesDifferences}}</text>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </template>
+                </div>   
+             </div> </div> 
+       </div>
+      </div>
+>>>>>>> 83aab9aafa7ef86ec5d05399067b6941bcc9d783
 
         <div id="loadingmodal" style="padding-top: 50%;">
           <center><div class="lds-ellipsis"></div></center>
