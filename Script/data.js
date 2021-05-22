@@ -22,26 +22,26 @@ async function GetCountryData(country_name) {
 }
 
 
-async function GetWorldLastData(){
-  //Get the "World" last data
-  var query =  allData.filter(word => word.split(',')[0] == "World");
-  return query[query.length - 1].split(',');
+async function GetWorldLastData() {
+    //Get the "World" last data
+    var query = allData.filter(word => word.split(',')[0] == "World");
+    return query[query.length - 1].split(',');
 }
 
-function GetCountriesLastData(){
-  //delete "non countries" from lastDataAvaible
-    return  lastDataAvaible.filter(word => word.split(',')[0] != "World" 
-    && word.split(',')[0] != "Europe"
-    && word.split(',')[0] != "Asia"
-    && word.split(',')[0] != "North America"
-    && word.split(',')[0] != "Africa"
-    && word.split(',')[0] != "South America"
-    && word.split(',')[0] != "Oceania"
-    && word.split(',')[0] != "High income"
-    && word.split(',')[0] != "Upper middle income"
-    && word.split(',')[0] != "Lower middle income"
-    && word.split(',')[0] != "Low income"
-    && word.split(',')[0] != "European Union");
+function GetCountriesLastData() {
+    //delete "non countries" from lastDataAvaible
+    return lastDataAvaible.filter(word => word.split(',')[0] != "World"
+        && word.split(',')[0] != "Europe"
+        && word.split(',')[0] != "Asia"
+        && word.split(',')[0] != "North America"
+        && word.split(',')[0] != "Africa"
+        && word.split(',')[0] != "South America"
+        && word.split(',')[0] != "Oceania"
+        && word.split(',')[0] != "High income"
+        && word.split(',')[0] != "Upper middle income"
+        && word.split(',')[0] != "Lower middle income"
+        && word.split(',')[0] != "Low income"
+        && word.split(',')[0] != "European Union");
 }
 
 
@@ -64,8 +64,8 @@ async function GetLastData() {
 }
 
 
-function GetContinentsData(){
-  //Get the data for each continents
+function GetContinentsData() {
+    //Get the data for each continents
     var continents = [];
 
     continents.push(lastDataAvaible.filter(word => word.split(',')[0] == "Europe").toString());
@@ -78,7 +78,7 @@ function GetContinentsData(){
 }
 
 
-  async function GetCountriesByIncome(){
+async function GetCountriesByIncome() {
     //I dont know why i did this, i will probably add this in a future version
     var incomeData = [];
 

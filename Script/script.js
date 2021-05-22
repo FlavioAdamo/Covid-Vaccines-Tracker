@@ -1,5 +1,5 @@
 //THIS IS A MESS, NEED A LOT OF IMPR
-const ACCORDION = document.querySelector("#accordion"); 
+const ACCORDION = document.querySelector("#accordion");
 const COUNTERS_TEMPLATE = document.querySelector('#countersTemplate');
 
 
@@ -54,26 +54,26 @@ function loadCollapse(sortType) {
             vaccinatedPercent: vaccinatedPercentage,
             totalVaccineDifferences: totdifferenceTemp
         }
-      
-      const CONTENT = ACCORDION.content.cloneNode(true);
-      //Load the counters on the top
-      // Change content
-      CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(data.totalVaccine)}`;
-      CONTENT.querySelector('.countryname').innerHTML = data.name;
-      CONTENT.querySelector('.position').innerHTML = data.position;
-      CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${data.vaccinatedPercent}`;
-      CONTENT.querySelector('.differenceCounter').innerHTML = data.totalVaccineDifferences;
-      
-      // Set attribute
-      CONTENT.querySelector('.accordion').setAttribute('data-country-name', data.name);
 
-      // Add click event
-      CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
-        const name = e.target.closest('.accordion').getAttribute('data-country-name');
-        showCountryData(name);
-      })
-      
-      $("#collapseCountries").append(CONTENT);
+        const CONTENT = ACCORDION.content.cloneNode(true);
+        //Load the counters on the top
+        // Change content
+        CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(data.totalVaccine)}`;
+        CONTENT.querySelector('.countryname').innerHTML = data.name;
+        CONTENT.querySelector('.position').innerHTML = data.position;
+        CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${data.vaccinatedPercent}`;
+        CONTENT.querySelector('.differenceCounter').innerHTML = data.totalVaccineDifferences;
+
+        // Set attribute
+        CONTENT.querySelector('.accordion').setAttribute('data-country-name', data.name);
+
+        // Add click event
+        CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
+            const name = e.target.closest('.accordion').getAttribute('data-country-name');
+            showCountryData(name);
+        })
+
+        $("#collapseCountries").append(CONTENT);
     }
     $('#license').css('display', 'inline');
     $('#filterDiv').css('display', 'inline');
@@ -119,42 +119,42 @@ function loadContinents(sortType) {
             vaccinatedPercent: vaccinatedPercentage,
             totalVaccineDifferences: totdifferenceTemp
         }
-      
-      const CONTENT = ACCORDION.content.cloneNode(true);
-      
-      // Change content
-      CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(data.totalVaccine)}`;
-      CONTENT.querySelector('.countryname').innerHTML = data.name;
-      CONTENT.querySelector('.position').innerHTML = data.position;
-      CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${data.vaccinatedPercent}`;
-      CONTENT.querySelector('.differenceCounter').innerHTML = data.totalVaccineDifferences;
-      
-      // Set attribute
-      CONTENT.querySelector('.accordion').setAttribute('data-country-name', data.name);
 
-      // Add click event
-      CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
-        const name = e.target.closest('.accordion').getAttribute('data-country-name');
-        showCountryData(name);
-      })
+        const CONTENT = ACCORDION.content.cloneNode(true);
 
-      $("#collapseContinents").append(CONTENT);
+        // Change content
+        CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(data.totalVaccine)}`;
+        CONTENT.querySelector('.countryname').innerHTML = data.name;
+        CONTENT.querySelector('.position').innerHTML = data.position;
+        CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${data.vaccinatedPercent}`;
+        CONTENT.querySelector('.differenceCounter').innerHTML = data.totalVaccineDifferences;
+
+        // Set attribute
+        CONTENT.querySelector('.accordion').setAttribute('data-country-name', data.name);
+
+        // Add click event
+        CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
+            const name = e.target.closest('.accordion').getAttribute('data-country-name');
+            showCountryData(name);
+        })
+
+        $("#collapseContinents").append(CONTENT);
     }
     $('#license').css('display', 'inline');
 }
 
-function loadCounetrsTemplate(data){
-  //load the counters on top
-  const CONTENT = COUNTERS_TEMPLATE.content.cloneNode(true);
+function loadCounetrsTemplate(data) {
+    //load the counters on top
+    const CONTENT = COUNTERS_TEMPLATE.content.cloneNode(true);
 
-  // Change content
-  CONTENT.querySelector("#totvalue").innerHTML = data[3];
-  CONTENT.querySelector("#totvaccinated").innerHTML = `${data[9]}%`;
-    
-  CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
-  CONTENT.querySelector("#peopleVaccinated").innerHTML = data[4];
+    // Change content
+    CONTENT.querySelector("#totvalue").innerHTML = data[3];
+    CONTENT.querySelector("#totvaccinated").innerHTML = `${data[9]}%`;
 
-  $("#counters").append(CONTENT);
+    CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
+    CONTENT.querySelector("#peopleVaccinated").innerHTML = data[4];
+
+    $("#counters").append(CONTENT);
 }
 
 function loadCounterScript() {
