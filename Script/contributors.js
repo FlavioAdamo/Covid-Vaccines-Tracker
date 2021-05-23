@@ -17,38 +17,26 @@ async function getListOfContributors() {
 }
 
 async function displayList(listOfContributors){
+    const template = document.querySelector('#contrTemplate');
+    const listElement = document.querySelector('#contrList');
     for (let i = 0; i < listOfContributors.length; i++) {
-        const data = listOfContributors[i];
-        const avatar = data.avatar_url;
-        const url = data.html_url;
-        const name = data.login;
-        var listElement = window.document.getElementById("contrList");
-        var divCard = document.createElement("div");
-        divCard.className = "card m-3";
-        var divCardBody = document.createElement('div');
-        divCardBody.className="card-body";
-        var imgAvatar = document.createElement("img");
-        imgAvatar.src = avatar;
-        imgAvatar.className = "float-left rounded-circle mr-2";
-        imgAvatar.width="50";
-        imgAvatar.height="50";
-        var textWrapDiv = document.createElement("div");
-        textWrapDiv.className="px-md-5 mx-md-5 mx-sm-2 px-sm-2";
-        var h5 = document.createElement("h5");
-        var accountLink = document.createElement("a");
-        accountLink.href = url;
-        accountLink.innerText=name;
-        h5.appendChild(accountLink);
-        var h6 = document.createElement("h6");
-        h6.innerText = name==="FlavioAdamo"?"Maintainer":"Contributor";
-        h6.className= "text-secondary";
-        textWrapDiv.appendChild(h5);
-        textWrapDiv.appendChild(h6);
-        divCardBody.appendChild(imgAvatar);
-        divCardBody.appendChild(textWrapDiv);
+        const { avatar_url, html_url, login} = listOfContributors[i];
+        
+        const content = template.content.cloneNode(true);
 
-        divCard.appendChild(divCardBody);
-        listElement.appendChild(divCard);
+        // Change image
+        content.querySelector('img').src = avatar_url;
+
+        // Change link
+        const accountLink = content.querySelector('a');
+        accountLink.href = html_url;
+        accountLink.innerText= login;
+
+        // Change secondary text
+        content.querySelector('h6').innerText = (login === 'FlavioAdamo') ? 'Maintainer' : 'Contributor';
+        //h6.innerText = name==="FlavioAdamo"?"Maintainer":"Contributor";
+        
+        listElement.appendChild(content);
 
     }
 }
