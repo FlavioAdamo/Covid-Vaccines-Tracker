@@ -336,6 +336,7 @@
   top: 50%;
   transform: translateY(-50%);
   left: 4%;
+  width: 20px;
 }
 .search:focus{
   outline: none;
