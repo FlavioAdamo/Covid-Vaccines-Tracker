@@ -20,7 +20,7 @@ async function displayList(listOfContributors){
     const template = document.querySelector('#contrTemplate');
     const listElement = document.querySelector('#contrList');
     for (let i = 0; i < listOfContributors.length; i++) {
-        const { avatar_url, html_url, login} = listOfContributors[i];
+        const { avatar_url, html_url, login: name} = listOfContributors[i];
         
         const content = template.content.cloneNode(true);
 
@@ -30,11 +30,10 @@ async function displayList(listOfContributors){
         // Change link
         const accountLink = content.querySelector('a');
         accountLink.href = html_url;
-        accountLink.innerText= login;
+        accountLink.innerText= name;
 
         // Change secondary text
-        content.querySelector('h6').innerText = (login === 'FlavioAdamo') ? 'Maintainer' : 'Contributor';
-        //h6.innerText = name==="FlavioAdamo"?"Maintainer":"Contributor";
+        if (name === 'FlavioAdamo') content.querySelector('h6').innerText = 'Maintainer';
         
         listElement.appendChild(content);
 
