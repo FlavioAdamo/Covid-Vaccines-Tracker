@@ -5,7 +5,6 @@
   cursor: pointer;
 }
 
-
 .github-btn {
   text-decoration: none;
   line-height: 100%;
@@ -146,6 +145,12 @@
   font-weight: 500;
 }
 
+/* .counter-box p:hover {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 1px solid black;
+} */
+
 .counter-box i {
   font-size: 50px;
   margin: 0 0 15px;
@@ -161,6 +166,11 @@
   font-weight: 700;
   color: #666;
   line-height: 28px;
+  transition: 0.4s;
+}
+
+.counter:hover {
+  font-size: 35px;
 }
 
 .counter1 {
@@ -172,6 +182,11 @@
   font-weight: 700;
   color: #00bcd4;
   line-height: 28px;
+  transition: 0.4s;
+}
+
+.counter1:hover {
+  font-size: 35px;
 }
 
 .counter2 {
@@ -181,6 +196,11 @@
   font-weight: 700;
   color: #2abfa7;
   line-height: 28px;
+  transition: 0.4s;
+}
+
+.counter2:hover {
+  font-size: 35px;
 }
 
 .counter-box.green {
@@ -300,10 +320,10 @@
   padding-left: 15px;
 }
 
-.widthFitContent{
-    width: fit-content;
+.widthFitContent {
+  width: fit-content;
 }
 
-.heightFitContent{
-    height: fit-content;
+.heightFitContent {
+  height: fit-content;
 }
