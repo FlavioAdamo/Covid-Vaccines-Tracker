@@ -5,7 +5,6 @@
   cursor: pointer;
 }
 
-
 .github-btn {
   text-decoration: none;
   line-height: 100%;
@@ -43,19 +42,19 @@
 }
 
 .accordion {
-  background-color: #fff !important;
+  background-color: #fff;
   color: rgb(0, 0, 0);
   padding: 15 0;
   width: 100%;
+  height: 100%;
   border-bottom: 1px solid #f7f7f7;
+  border-radius: 8px;
   border-top: none;
   /* border-left: none; */
   border-right: none;
   text-align: left;
-  outline: none;
   font-size: 17px;
-  font-weight: 400;
-  transition: 0.4s;
+  transition: all 0.2s;
   outline: none;
 }
 
@@ -81,9 +80,7 @@
   font-size: 15px;
   margin-left: 5;
   color: #159655;
-  padding: 3px;
-  padding-right: 10px;
-  padding-right: 10px;
+  padding: 3px 10px;
   border-radius: 30px;
 }
 
@@ -116,13 +113,15 @@
 }
 
 .navbar-light .navbar-toggler {
-  border: 0px !important;
+  border: 0px;
+  outline: 0px;
 }
 
 .active,
 .accordion:hover {
-  font-size: 18px;
-  font-weight: 400;
+  --highlight: #f7f7f7;
+  transform: scale(1.02);
+  background: var(--highlight);
   margin-bottom: 1px solid black;
 }
 
@@ -276,7 +275,7 @@
   z-index: 2;
   /* font-size: 20; */
   color: #424242;
-  font-size: 20px;
+  font-size: 36px;
   font-weight: 500;
 }
 
