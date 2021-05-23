@@ -35,9 +35,19 @@
       <div class="data mt-5 " >
         <h1 class="text-center">❤️Contributors❤️</h1>
         <div class="row px-5">
-            <div class="col-md-8 col-lg-6 col-sm-12 mx-auto p-3" id="contrList">
-
-            </div>
+          <div class="col-md-8 col-lg-6 col-sm-12 mx-auto p-3" id="contrList">
+            <template id="contrTemplate">
+                <div class="card m-3">
+                  <div class="card-body">
+                    <img src="{{userIcon}}" class="float-left rounded-circle mr-2" width="50" height="50">
+                    <div class="px-md-5 mx-md-5 mx-sm-2 px-sm-2">
+                      <h5><a href="{{userName}}">{{userName}}</a></h5>
+                      <h6 class="text-secondary">Contributor</h6>
+                    </div>
+                  </div>
+                </div>
+            </template>
+          </div>
         </div>
       </div>
 
