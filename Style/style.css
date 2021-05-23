@@ -321,6 +321,23 @@
   width: fit-content;
 }
 
-.heightFitContent {
-  height: fit-content;
+.heightFitContent{
+    height: fit-content;
 }
+.search{
+    width: 100%;
+    border: none;
+    padding: 10px 0px 10px 50px;
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 3%) 0px 4px 10px -1px, rgb(0 0 0 / 1%) 0px 2px 4px -1px
+}
+.search-icon{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 4%;
+}
+.search:focus{
+  outline: none;
+}
+
