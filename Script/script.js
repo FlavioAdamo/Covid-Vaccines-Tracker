@@ -287,7 +287,7 @@ function UpdateListFilter(selectedItem) {
             $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
             loadCollapse(2);
             loadContinents(2);
-            $("#dropdownMenuButton").html('<img alt="population" src="Images/Population.png" style="width: 25px; padding-right:10px;">Alphabetical');
+            $("#dropdownMenuButton").html('<img alt="population" src="Images/alphabetical.png" style="width: 25px; padding-right:10px;">Alphabetical');
     }
 
     if ($('#search').val()) {
