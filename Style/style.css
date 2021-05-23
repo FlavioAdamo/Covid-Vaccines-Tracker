@@ -299,3 +299,11 @@
 .dataList {
   padding-left: 15px;
 }
+
+.widthFitContent{
+    width: fit-content;
+}
+
+.heightFitContent{
+    height: fit-content;
+}
