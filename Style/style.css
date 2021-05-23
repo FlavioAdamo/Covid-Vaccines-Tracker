@@ -5,7 +5,6 @@
   cursor: pointer;
 }
 
-
 .github-btn {
   text-decoration: none;
   line-height: 100%;
@@ -161,6 +160,12 @@
   font-weight: 700;
   color: #666;
   line-height: 28px;
+  transition: 0.4s;
+}
+
+.counter:hover {
+  font-size: 35px;
+  cursor: default;
 }
 
 .counter1 {
@@ -172,6 +177,12 @@
   font-weight: 700;
   color: #00bcd4;
   line-height: 28px;
+  transition: 0.4s;
+}
+
+.counter1:hover {
+  font-size: 35px;
+  cursor: default;
 }
 
 .counter2 {
@@ -181,6 +192,12 @@
   font-weight: 700;
   color: #2abfa7;
   line-height: 28px;
+  transition: 0.4s;
+}
+
+.counter2:hover {
+  font-size: 35px;
+  cursor: default;
 }
 
 .counter-box.green {
@@ -300,8 +317,8 @@
   padding-left: 15px;
 }
 
-.widthFitContent{
-    width: fit-content;
+.widthFitContent {
+  width: fit-content;
 }
 
 .heightFitContent{
@@ -323,3 +340,4 @@
 .search:focus{
   outline: none;
 }
+
