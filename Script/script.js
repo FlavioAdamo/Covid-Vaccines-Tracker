@@ -2,6 +2,8 @@
 const ACCORDION = document.querySelector("#accordion");
 const COUNTERS_TEMPLATE = document.querySelector('#countersTemplate');
 
+let selectedType = 0;
+let searchVal = "";
 
 $(document).ready(async () => {
     await loadVariables();
@@ -13,7 +15,16 @@ $(document).ready(async () => {
     $('#collapse').show();
 });
 
-function loadCollapse(sortType) {
+$('#search').bind('change keydown keyup', function () {
+    search($(this).val());
+});
+
+function search(searchVal) {
+    loadCollapse(selectedType, searchVal);
+    loadContinents(selectedType, searchVal);
+}
+
+function loadCollapse(sortType, searchVal = '') {
     //given an id this switch will sort the list of data
     switch (sortType) {
         case 0:
@@ -23,6 +34,8 @@ function loadCollapse(sortType) {
             var temp = sortListByFullyVaccination(GetCountriesLastData());
             break;
     }
+
+    let countryData = [];
 
     for (let index = 1; index < temp.length - 1; index++) {
         var splittedData = temp[index].toString().split(',');
@@ -54,32 +67,44 @@ function loadCollapse(sortType) {
             vaccinatedPercent: vaccinatedPercentage,
             totalVaccineDifferences: totdifferenceTemp
         }
+        countryData.push(data);
+    }
 
-        const CONTENT = ACCORDION.content.cloneNode(true);
-        //Load the counters on the top
-        // Change content
-        CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(data.totalVaccine)}`;
-        CONTENT.querySelector('.countryname').innerHTML = data.name;
-        CONTENT.querySelector('.position').innerHTML = data.position;
-        CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${data.vaccinatedPercent}`;
-        CONTENT.querySelector('.differenceCounter').innerHTML = data.totalVaccineDifferences;
+    countryData = (searchVal != "") ? countryData.filter(x => ((x['name'].replace(/\s+/g, '')).toLowerCase()).includes(searchVal.toLowerCase())) : countryData;
 
-        // Set attribute
-        CONTENT.querySelector('.accordion').setAttribute('data-country-name', data.name);
+    $('.countryCard').remove();
 
-        // Add click event
-        CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
-            const name = e.target.closest('.accordion').getAttribute('data-country-name');
-            showCountryData(name);
-        })
+    if (countryData.length) {
+        countryData.forEach(country => {
+            const CONTENT = ACCORDION.content.cloneNode(true);
+            //Load the counters on the top
+            // Change content
+            CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(country.totalVaccine)}`;
+            CONTENT.querySelector('.countryname').innerHTML = country.name;
+            CONTENT.querySelector('.position').innerHTML = country.position;
+            CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${country.vaccinatedPercent}`;
+            CONTENT.querySelector('.differenceCounter').innerHTML = country.totalVaccineDifferences;
+            CONTENT.querySelector('.accordion').parentNode.classList.add("countryCard");
 
-        $("#collapseCountries").append(CONTENT);
+            // Set attribute
+            CONTENT.querySelector('.accordion').setAttribute('data-country-name', country.name);
+
+            // Add click event
+            CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
+                const name = e.target.closest('.accordion').getAttribute('data-country-name');
+                showCountryData(name);
+            })
+            $("#collapseCountries").append(CONTENT);
+        });
+    } else {
+        var noCountryMsg = '<h6 class="countryCard text-center p-5 w-100">No Country Data Found!</h6>'
+        $("#collapseCountries").append(noCountryMsg);
     }
     $('#license').css('display', 'inline');
     $('#filterDiv').css('display', 'inline');
 }
 
-function loadContinents(sortType) {
+function loadContinents(sortType, searchVal = '') {
     //Same as the function on top, but for the continents
     switch (sortType) {
         case 0:
@@ -89,6 +114,7 @@ function loadContinents(sortType) {
             var temp = sortListByFullyVaccination(GetContinentsData());
             break;
     }
+    let continentData = [];
     for (let index = 0; index < temp.length; index++) {
         var splittedData = temp[index].toString().split(',');
         var totdifferenceTemp = "+" + splittedData[6];
@@ -120,25 +146,38 @@ function loadContinents(sortType) {
             totalVaccineDifferences: totdifferenceTemp
         }
 
-        const CONTENT = ACCORDION.content.cloneNode(true);
+        continentData.push(data);
+    }
 
-        // Change content
-        CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(data.totalVaccine)}`;
-        CONTENT.querySelector('.countryname').innerHTML = data.name;
-        CONTENT.querySelector('.position').innerHTML = data.position;
-        CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${data.vaccinatedPercent}`;
-        CONTENT.querySelector('.differenceCounter').innerHTML = data.totalVaccineDifferences;
+    continentData = (searchVal != "") ? continentData.filter(x => ((x['name'].replace(/\s+/g, '')).toLowerCase()).includes(searchVal.toLowerCase())) : continentData;
 
-        // Set attribute
-        CONTENT.querySelector('.accordion').setAttribute('data-country-name', data.name);
+    $('.continentCard').remove();
 
-        // Add click event
-        CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
-            const name = e.target.closest('.accordion').getAttribute('data-country-name');
-            showCountryData(name);
-        })
+    if (continentData.length) {
+        continentData.forEach(continent => {
+            const CONTENT = ACCORDION.content.cloneNode(true);
+            // Change content
+            CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(continent.totalVaccine)}`;
+            CONTENT.querySelector('.countryname').innerHTML = continent.name;
+            CONTENT.querySelector('.position').innerHTML = continent.position;
+            CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${continent.vaccinatedPercent}`;
+            CONTENT.querySelector('.differenceCounter').innerHTML = continent.totalVaccineDifferences;
+            CONTENT.querySelector('.accordion').parentNode.classList.add("continentCard");
 
-        $("#collapseContinents").append(CONTENT);
+            // Set attribute
+            CONTENT.querySelector('.accordion').setAttribute('data-country-name', continent.name);
+
+            // Add click event
+            CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
+                const name = e.target.closest('.accordion').getAttribute('data-country-name');
+                showCountryData(name);
+            })
+
+            $("#collapseContinents").append(CONTENT);
+        });
+    } else {
+        var noContinentMsg = '<h6 class="continentCard text-center p-5 w-100">No Continent Data Found!</h6>'
+        $("#collapseContinents").append(noContinentMsg);
     }
     $('#license').css('display', 'inline');
 }
@@ -159,7 +198,7 @@ function loadCounetrsTemplate(data) {
 
 function loadCounterScript() {
     //Load the animation to the counter
-    //actually is a copy & paste from some russian website 
+    //actually is a copy & paste from some russian website
     $('.counter').each(function () {
         $(this).prop('Counter', 0.0).animate({
             Counter: $(this).text()
@@ -200,6 +239,7 @@ function sortListByVaccination(data) {
 }
 
 function UpdateListFilter(selectedItem) {
+    selectedType = selectedItem;
     switch (selectedItem) {
         case 0:
             $("#collapseCountries").empty();
@@ -220,10 +260,14 @@ function UpdateListFilter(selectedItem) {
             $("#dropdownMenuButton").html('<img alt="population" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated');
             break;
     }
+
+    if ($('#search').val()) {
+        search($('#search').val());
+    }
 }
 
 function showCountryData(countryname) {
-    //href to the clicked item page 
+    //href to the clicked item page
     window.location.href = "View/country.html" + "?" + countryname.replace(" ", "");
 }
 
