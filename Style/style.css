@@ -41,6 +41,7 @@
   overflow: "hidden" !important;
 }
 
+/* Individual sections */
 .accordion {
   background-color: #fff !important;
   color: rgb(0, 0, 0);
@@ -58,6 +59,7 @@
   outline: none;
 }
 
+/* Each piece of small text */
 .position {
   padding-top: 3px;
   font-size: smaller;
@@ -97,7 +99,8 @@
   float: right;
 }
 
-.popolationpercent {
+/* Percent of population */
+.populationpercent {
   padding-left: 15px;
   background-color: #00bbd409;
   font-size: 12px;
@@ -107,6 +110,7 @@
   border-radius: 30px;
 }
 
+/* Logo */
 .topTitle {
   font-family: "Rubik", sans-serif;
   font-size: 21px;
@@ -125,6 +129,7 @@
   margin-bottom: 1px solid black;
 }
 
+/* Boxes at top of the page */
 .counter-box {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -151,6 +156,7 @@
   color: #d2d2d2;
 }
 
+/* Population in boxes at top of the page */
 .counter {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -168,6 +174,7 @@
   cursor: default;
 }
 
+/* Fully vaccinated population percentage */
 .counter1 {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -185,6 +192,7 @@
   cursor: default;
 }
 
+/* One does population percentage */
 .counter2 {
   font-variant: tabular-nums;
   display: block;
@@ -200,6 +208,7 @@
   cursor: default;
 }
 
+/* Population boxes coloring */
 .counter-box.green {
   background-image: linear-gradient(to bottom right, #6abf69, #2fbeba);
   padding: 35px 20px 43px;
@@ -253,6 +262,7 @@
   font-size: 13px;
 }
 
+/* Navbar */
 .navbar-light .navbar-toggler-icon {
   background-image: url("../Images/sharing.png");
   background-size: 100%;
@@ -271,17 +281,19 @@
   display: flex;
 }
 
+/* Containers for all the countries and continents */
 .left-right-padding15 {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.gropulist {
+.grouplist {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 6px 6px 4px -4px #f1f1;
 }
 
+/* Title for all the countries */
 .groupList-title {
   position: relative;
   padding: 13px 1rem;
@@ -297,6 +309,7 @@
   font-weight: 500;
 }
 
+/* Navbar socials toggler */
 .custom-toggler .navbar-toggler-icon {
   background-image: url("Images/sharing.png");
   background-size: 100%;
@@ -313,10 +326,6 @@
   padding: 15 15 10;
 }
 
-.dataList {
-  padding-left: 15px;
-}
-
 .widthFitContent {
   width: fit-content;
 }
@@ -324,6 +333,8 @@
 .heightFitContent{
     height: fit-content;
 }
+
+/* Search bar for countries */
 .search{
   transition: 0.3s;
   width: 100%;
