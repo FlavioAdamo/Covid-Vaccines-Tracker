@@ -26,16 +26,19 @@ function search(searchVal) {
 }
 
 function loadCollapse(sortType, searchVal = '') {
-    //given an id this switch will sort the list of data
+    // given an id this switch will sort the list of data
+    // 
     switch (sortType) {
-        case 0:
-            var temp = sortListByVaccination(GetCountriesLastData());
+        // dIdx is the index of the data that we want to sort. For example, our data array will have
+        // Country names at index 0, so we pass that to sortData in case 2 when sorting alphabetically
+        case 0: // sort by total vaccinated
+            var temp = sortData(data = GetCountriesLastData(), dIdx = 3); 
             break;
-        case 1:
-            var temp = sortListByFullyVaccination(GetCountriesLastData());
+        case 1: // Sort by percentage vaccinated
+            var temp = sortData(data = GetCountriesLastData(), dIdx = 10);
             break;
-        case 2:
-            var temp = sortListByAlphabetical(GetCountriesLastData());
+        case 2: // Sort alphabetically
+            var temp = sortData(data = GetCountriesLastData(), dIdx = 0);
             break;
 
     }
@@ -113,16 +116,16 @@ function loadCollapse(sortType, searchVal = '') {
 }
 
 function loadContinents(sortType, searchVal = '') {
-    //Same as the function on top, but for the continents
+    //Same as loadCollapse, read comments there for more detail
     switch (sortType) {
         case 0:
-            var temp = sortListByVaccination(GetContinentsData());
+            var temp = sortData(data = GetContinentsData(), dIdx = 3);
             break;
         case 1:
-            var temp = sortListByFullyVaccination(GetContinentsData());
+            var temp = sortData(data = GetContinentsData(), dIdx = 10);
             break;
         case 2:
-            var temp = sortListByAlphabetical(GetContinentsData());
+            var temp = sortData(data = GetContinentsData(), dIdx = 0);
             break;
     }
     let continentData = [];
@@ -223,76 +226,45 @@ function loadCounterScript() {
     });
 }
 
-function sortListByFullyVaccination(data) {
-    //sorting by fult vaccinated
-    var result = [];
-    var temp = [];
-    for (let index = 0; index < data.length; index++) {
-        temp.push(data[index].split(','));
+function compare(a, b) {
+    // If we are comparing alphabetically, like with country / continent names, we use first option
+    if (isNaN(Number(a))) {
+        return a < b ? 1 : -1;
+    } else {
+    // Else we use this option for comparing numerically
+        return a - b
     }
-    result = temp.sort(function (a, b) {
-        return a[10] - b[10]
-    });
+}
+
+function sortData(data, dIdx) {
+    let result = [];
+    let temp = [];
+
+    for (let idx = 0; idx < data.length; idx++) {
+        temp.push(data[idx].split(','));
+    }
+    result = temp.sort((a, b) => compare(a[dIdx], b[dIdx]));
     return result.reverse();
 }
 
-function sortListByVaccination(data) {
-    //sorting by vaccination
-    var result = [];
-    var temp = [];
-    for (let index = 0; index < data.length; index++) {
-        temp.push(data[index].split(','));
-    }
-    result = temp.sort(function (a, b) {
-        return a[3] - b[3]
-    });
-    return result.reverse();
-}
 
-function sortListByAlphabetical(data) {
+// selectedItem will be an integer (1, 2, 3)
+function updateListFilter(selectedItem) {
     
-    var result = [];
-    var temp = [];
-    for (let index = 0; index < data.length; index++) {
-        temp.push(data[index].split(','))
+    const ddAttrs = {
+        alts: ["syringe", "population", "alphabetical"],
+        imgs: ["syringe.png", "Population.png", "alphabetical.png"],
+        text: ["Doses Administered", "% fully vaccinated", "Alphabetical"]
     }
-    result = temp.sort(function (a, b) {
-        return a[0] > b[0] ? 1 : -1
-    });
-    
-    return result
-}
 
-function UpdateListFilter(selectedItem) {
-    selectedType = selectedItem;
-    switch (selectedItem) {
-        case 0:
-            $("#collapseCountries").empty();
-            $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
-            $("#collapseContinents").empty();
-            $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
-            loadCollapse(0);
-            loadContinents(0);
-            $("#dropdownMenuButton").html('<img alt="syringe" src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered');
-            break;
-        case 1:
-            $("#collapseCountries").empty();
-            $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
-            $("#collapseContinents").empty();
-            $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
-            loadCollapse(1);
-            loadContinents(1);
-            $("#dropdownMenuButton").html('<img alt="population" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated');
-            break;
-        case 2:
-            $("#collapseCountries").empty();
-            $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
-            $("#collapseContinents").empty();
-            $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
-            loadCollapse(2);
-            loadContinents(2);
-            $("#dropdownMenuButton").html('<img alt="population" src="Images/alphabetical.png" style="width: 25px; padding-right:10px;">Alphabetical');
-    }
+    $("#collapseCountries").empty();
+    $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
+    $("#collapseContinents").empty();
+    $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
+    loadCollapse(selectedItem);
+    loadContinents(selectedItem);
+    // Keep arrays that are values of ddAttrs in order, and this will work
+    $("#dropdownMenuButton").html(`<img alt=${ddAttrs.alts[selectedItem]} src="Images/${ddAttrs.imgs[selectedItem]}">${ddAttrs.text[selectedItem]}`);
 
     if ($('#search').val()) {
         search($('#search').val());

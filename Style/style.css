@@ -373,6 +373,11 @@
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 10px -1px, rgb(0 0 0 / 7.5%) 0px 2px 4px -1px
 }
 
+#dropdownMenuButton > img {
+  width: 25px; 
+  padding-right:10px;
+}
+
 /* Contributors card in about.html */
 .contributorsCard {
   padding: 18px;
