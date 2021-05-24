@@ -7,49 +7,47 @@
     <link rel="stylesheet" href="../Style/style.css">
   </head>
   <body>
-    <nav class="navbar fixed-top bg-light navbar-light" style="font-family: 'Lato', sans-serif;">
-        <div class="container">
-          <a id="navLogo" class="navbar-brand topTitle" href="../index.html"><img src="../Images/Logo.png" width="160px"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-            <span class="navbar-text" style="float:right;">
-              <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                <center>
-                  <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-                  <a class="a2a_button_facebook"></a>
-                  <a class="a2a_button_whatsapp"></a>
-                  <a class="a2a_button_twitter"></a>
-                  <a class="github-btn" href="https://github.com/FlavioAdamo/Covid-Vaccines-Tracker">
-                    <img class="github-img nav" src="../Images/github-mark.png" data-toggle="tooltip" data-placement="bottom" title="Contribute on GitHub!">
-                  </a>
-                </center>
-                <script async src="https://static.addtoany.com/menu/page.js"></script>
-              </div>
-            </span>
-          </div>
-      </nav>
-      <br>
-      
-      <div class="data mt-5 " >
-        <h1 class="text-center">Contributors</h1>
-        <div class="row px-5">
-          <div class="col-md-8 col-lg-6 col-sm-12 mx-auto p-3" id="contrList">
-            <template id="contrTemplate">
-                <div class="card m-3">
-                  <div class="card-body">
-                    <img src="{{userIcon}}" class="float-left rounded-circle mr-2" width="50" height="50">
-                    <div class="px-md-5 mx-md-5 mx-sm-2 px-sm-2">
-                      <h5><a href="{{userName}}">{{userName}}</a></h5>
-                      <h6 class="text-secondary">Contributor</h6>
-                    </div>
-                  </div>
-                </div>
-            </template>
-          </div>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html"><img id="navLogo" alt="covidvaccinetrack logo" src="../Images/Logo.png" width="160px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-item nav-link active" href="View/contributors.html">Contributors</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link github-btn" href="https://github.com/FlavioAdamo/Covid-Vaccines-Tracker">Contribute
+                <img class="github-img nav" src="../Images/github-mark.png" data-toggle="tooltip" data-placement="bottom"
+                title="Contribute on GitHub!">
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
+    </nav>
+    <br>
+      
+    <div class="data mt-5 " >
+      <h1 class="text-center">Contributors</h1>
+      <div class="row px-5">
+        <div class="col-md-8 col-lg-6 col-sm-12 mx-auto p-3" id="contrList">
+          <template id="contrTemplate">
+              <div class="card m-3">
+                <div class="card-body">
+                  <img src="{{userIcon}}" class="float-left rounded-circle mr-2" width="50" height="50">
+                  <div class="px-md-5 mx-md-5 mx-sm-2 px-sm-2">
+                    <h5><a href="{{userName}}">{{userName}}</a></h5>
+                    <h6 class="text-secondary">Contributor</h6>
+                  </div>
+                </div>
+              </div>
+          </template>
+        </div>
+      </div>
+    </div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
