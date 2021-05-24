@@ -26,16 +26,19 @@ function search(searchVal) {
 }
 
 function loadCollapse(sortType, searchVal = '') {
-    //given an id this switch will sort the list of data
+    // given an id this switch will sort the list of data
+    // 
     switch (sortType) {
-        case 0:
-            var temp = sortData(GetCountriesLastData(), 3);
+        // dIdx is the index of the data that we want to sort. For example, our data array will have
+        // Country names at index 0, so we pass that to sortData in case 2 when sorting alphabetically
+        case 0: // sort by total vaccinated
+            var temp = sortData(data = GetCountriesLastData(), dIdx = 3); 
             break;
-        case 1:
-            var temp = sortData(GetCountriesLastData(), 10);
+        case 1: // Sort by percentage vaccinated
+            var temp = sortData(data = GetCountriesLastData(), dIdx = 10);
             break;
-        case 2:
-            var temp = sortData(GetCountriesLastData(), 0);
+        case 2: // Sort alphabetically
+            var temp = sortData(data = GetCountriesLastData(), dIdx = 0);
             break;
 
     }
@@ -113,16 +116,16 @@ function loadCollapse(sortType, searchVal = '') {
 }
 
 function loadContinents(sortType, searchVal = '') {
-    //Same as the function on top, but for the continents
+    //Same as loadCollapse, read comments there for more detail
     switch (sortType) {
         case 0:
-            var temp = sortData(GetContinentsData(), 3);
+            var temp = sortData(data = GetContinentsData(), dIdx = 3);
             break;
         case 1:
-            var temp = sortData(GetContinentsData(), 10);
+            var temp = sortData(data = GetContinentsData(), dIdx = 10);
             break;
         case 2:
-            var temp = sortData(GetContinentsData(), 0);
+            var temp = sortData(data = GetContinentsData(), dIdx = 0);
             break;
     }
     let continentData = [];
