@@ -263,36 +263,24 @@ function sortListByAlphabetical(data) {
     return result
 }
 
-function UpdateListFilter(selectedItem) {
+// selectedItem will be an integer (1, 2, 3)
+function updateListFilter(selectedItem) {
     selectedType = selectedItem;
-    switch (selectedItem) {
-        case 0:
-            $("#collapseCountries").empty();
-            $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
-            $("#collapseContinents").empty();
-            $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
-            loadCollapse(0);
-            loadContinents(0);
-            $("#dropdownMenuButton").html('<img alt="syringe" src="Images/syringe.png" style="width: 25px; padding-right:10px;">Doses Administered');
-            break;
-        case 1:
-            $("#collapseCountries").empty();
-            $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
-            $("#collapseContinents").empty();
-            $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
-            loadCollapse(1);
-            loadContinents(1);
-            $("#dropdownMenuButton").html('<img alt="population" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated');
-            break;
-        case 2:
-            $("#collapseCountries").empty();
-            $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
-            $("#collapseContinents").empty();
-            $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
-            loadCollapse(2);
-            loadContinents(2);
-            $("#dropdownMenuButton").html('<img alt="population" src="Images/alphabetical.png" style="width: 25px; padding-right:10px;">Alphabetical');
+    const ddAttrs = {
+        alts: ["syringe", "population", "alphabetical"],
+        imgs: ["syringe.png", "Population.png", "alphabetical.png"],
+        text: ["Doses Administered", "% fully vaccinated", "Alphabetical"]
+
     }
+
+    $("#collapseCountries").empty();
+    $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
+    $("#collapseContinents").empty();
+    $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
+    loadCollapse(selectedItem);
+    loadContinents(selectedItem);
+    // Keep arrays that are values of ddAttrs in order, and this will work
+    $("#dropdownMenuButton").html(`<img alt=${ddAttrs.alts[selectedItem]} src="Images/${ddAttrs.imgs[selectedItem]}">${ddAttrs.text[selectedItem]}`);
 
     if ($('#search').val()) {
         search($('#search').val());
