@@ -5,6 +5,33 @@
   cursor: pointer;
 }
 
+.nav-gitLink {
+  height: 45px;
+  width: 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  float: left;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+.nav-gitLink:hover {
+  width: 200px;
+}
+
+.nav-gitLink .nav-gitIcon {
+  display: inline-block;
+  height: 45px;
+  width: 40px;
+  text-align: center;
+  border-radius: 50px;
+}
+
+.nav-gitLink .nav-gitLink .github-img {
+  font-size: 25px;
+  line-height: 60px;
+}
+
 .github-btn {
   text-decoration: none;
   line-height: 100%;
@@ -262,13 +289,8 @@
   box-shadow: 6px 6px 4px -4px #f1f1;
 }
 
-.nav-link,
-.groupList-title {
-  color: #424242;
-  font-weight: 500;
-}
-
-.nav-link:hover {
+.nav-link:hover,
+.nav-gitLink:hover {
   color: #2abfa7 !important;
 }
 
@@ -282,6 +304,8 @@
   box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
   z-index: 2;
   font-size: 20px;
+  color: #424242;
+  font-weight: 500;
 }
 
 .custom-toggler .navbar-toggler-icon {
