@@ -29,13 +29,13 @@ function loadCollapse(sortType, searchVal = '') {
     //given an id this switch will sort the list of data
     switch (sortType) {
         case 0:
-            var temp = sortListByVaccination(GetCountriesLastData());
+            var temp = sortData(GetCountriesLastData(), 3);
             break;
         case 1:
-            var temp = sortListByFullyVaccination(GetCountriesLastData());
+            var temp = sortData(GetCountriesLastData(), 10);
             break;
         case 2:
-            var temp = sortListByAlphabetical(GetCountriesLastData());
+            var temp = sortData(GetCountriesLastData(), 0);
             break;
 
     }
@@ -116,13 +116,13 @@ function loadContinents(sortType, searchVal = '') {
     //Same as the function on top, but for the continents
     switch (sortType) {
         case 0:
-            var temp = sortListByVaccination(GetContinentsData());
+            var temp = sortData(GetContinentsData(), 3);
             break;
         case 1:
-            var temp = sortListByFullyVaccination(GetContinentsData());
+            var temp = sortData(GetContinentsData(), 10);
             break;
         case 2:
-            var temp = sortListByAlphabetical(GetContinentsData());
+            var temp = sortData(GetContinentsData(), 0);
             break;
     }
     let continentData = [];
@@ -223,54 +223,35 @@ function loadCounterScript() {
     });
 }
 
-function sortListByFullyVaccination(data) {
-    //sorting by fult vaccinated
-    var result = [];
-    var temp = [];
-    for (let index = 0; index < data.length; index++) {
-        temp.push(data[index].split(','));
+function compare(a, b) {
+    // If we are comparing alphabetically, like with country / continent names, we use first option
+    if (isNaN(Number(a))) {
+        return a < b ? 1 : -1;
+    } else {
+    // Else we use this option for comparing numerically
+        return a - b
     }
-    result = temp.sort(function (a, b) {
-        return a[10] - b[10]
-    });
+}
+
+function sortData(data, dIdx) {
+    let result = [];
+    let temp = [];
+
+    for (let idx = 0; idx < data.length; idx++) {
+        temp.push(data[idx].split(','));
+    }
+    result = temp.sort((a, b) => compare(a[dIdx], b[dIdx]));
     return result.reverse();
 }
 
-function sortListByVaccination(data) {
-    //sorting by vaccination
-    var result = [];
-    var temp = [];
-    for (let index = 0; index < data.length; index++) {
-        temp.push(data[index].split(','));
-    }
-    result = temp.sort(function (a, b) {
-        return a[3] - b[3]
-    });
-    return result.reverse();
-}
-
-function sortListByAlphabetical(data) {
-    
-    var result = [];
-    var temp = [];
-    for (let index = 0; index < data.length; index++) {
-        temp.push(data[index].split(','))
-    }
-    result = temp.sort(function (a, b) {
-        return a[0] > b[0] ? 1 : -1
-    });
-    
-    return result
-}
 
 // selectedItem will be an integer (1, 2, 3)
 function updateListFilter(selectedItem) {
-    selectedType = selectedItem;
+    
     const ddAttrs = {
         alts: ["syringe", "population", "alphabetical"],
         imgs: ["syringe.png", "Population.png", "alphabetical.png"],
         text: ["Doses Administered", "% fully vaccinated", "Alphabetical"]
-
     }
 
     $("#collapseCountries").empty();
