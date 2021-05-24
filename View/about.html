@@ -1,0 +1,96 @@
+<head>
+    <title>Covid Vaccine Track | World - All country DATA</title>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <link rel="icon" href="../Images/syringe.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Style/style.css">
+  </head>
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html"><img id="navLogo" alt="covidvaccinetrack logo" src="../Images/Logo.png" width="160px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-item nav-link active" href="about.html">About</a>
+            </li>
+            <li class="nav-item active">
+              <div class="nav-gitLink">
+                <div class="nav-gitIcon">
+                  <a class="nav-link github-btn" href="https://github.com/FlavioAdamo/Covid-Vaccines-Tracker">
+                    <img class="github-img nav" src="../Images/github-mark.png" data-toggle="tooltip" data-placement="bottom"
+                    title="Contribute on GitHub!">
+                  </a>
+                </div>
+                <span>Contribute</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
+
+    <div class="page">
+      <div class="container" style="padding-top: 60px;">
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <div class="groupList-title">
+              About
+            </div>
+            <img src="../Images/banner.png" style="width: 100%;">
+            <div class="groupList aboutText" style="padding:18px; text-align: center;">
+              This site was created to keep people informed about the administered doses of the covid vaccine around the world.
+              There are no ads, and there never will be. We have no intention of taking advantage of a global pandemic that has killed millions of people.
+              <br>
+              <div class="aboutTextSmall">
+                <b>
+                  Special thanks go to the contributors on github, who works hard by always adding new features and keeping the site efficient and intuitive. Without them all this would not be possible
+                </b>
+                <br>
+              </div>
+              <div class="aboutTextSmall">
+                <a class="github-btn" href="https://github.com/FlavioAdamo/Covid-Vaccines-Tracker">
+                  <img class="github-img nav" src="../Images/github-mark.png" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Contribute on GitHub!">
+                </a>
+              </div>
+          </div>
+        </div>
+          <div class="col-12 col-md-4">
+              <div class="col-12" id="contrList">
+                <div class="groupList-title">
+                  Contributors
+                </div>
+                <template id="contrTemplate">
+                  <div style="padding-top: 10px;">
+                    <div class="contributorsCard">
+                      <img src="{{userIcon}}" class="float-left rounded-circle mr-2" width="50" height="50">
+                      <h5><a href="{{userName}}">{{userName}}</a></h5>
+                      <h6 class="text-secondary">Contributor</h6>
+                    </div>
+                  </div>
+                </template>
+              </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../Script/contributors.js"></script>
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      });
+    </script>
+  </body>

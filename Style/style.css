@@ -147,7 +147,12 @@
   border: 0px !important;
 }
 
-.active,
+
+.active{
+  font-size: 16px;
+  font-weight: 300;
+}
+
 .accordion:hover {
   font-size: 18px;
   font-weight: 400;
@@ -287,25 +292,6 @@
   font-size: 13px;
 }
 
-/* Navbar */
-.navbar-light .navbar-toggler-icon {
-  background-image: url("../Images/sharing.png");
-  background-size: 100%;
-  background-position: center center;
-  width: 30px;
-  height: 30px;
-  display: flex;
-}
-
-.navbar-inverse .navbar-toggler-icon {
-  background-image: url("../Images/sharing.png");
-  background-size: 100%;
-  background-position: center center;
-  width: 30px;
-  height: 30px;
-  display: flex;
-}
-
 /* Containers for all the countries and continents */
 
 .left-right-padding15 {
@@ -330,8 +316,8 @@
   position: relative;
   padding: 13px 1rem;
   border-bottom: none;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background-color: rgb(253, 253, 253);
   box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
   z-index: 2;
@@ -390,4 +376,28 @@
 #dropdownMenuButton > img {
   width: 25px; 
   padding-right:10px;
+}
+
+/* Contributors card in about.html */
+.contributorsCard {
+  padding: 18px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 6px 6px 4px -4px #f1f1;
+}
+
+.aboutText {
+  font-size: 18px;
+  color: #424242;
+  font-weight: 300;
+  padding:18px;
+  text-align: center;
+}
+
+.aboutTextSmall {
+  font-size: 15px;
+  color: #424242;
+  font-weight: 300;
+  padding:18px;
+  text-align: center;
 }
