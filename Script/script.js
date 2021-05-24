@@ -74,7 +74,10 @@ function loadCollapse(sortType, searchVal = '') {
         countryData.push(data);
     }
 
-    countryData = (searchVal != "") ? countryData.filter(x => ((x['name'].replace(/\s+/g, '')).toLowerCase()).includes(searchVal.toLowerCase())) : countryData;
+    // (1/3) You had removed all spaces from the countryData.name (to remove the space before all names bug), therefore searching
+    // (2/3) anything with a space in it resulted in no results as ' ' was not in countryData.name at all. I added the new .replace()
+    // (3/3) so only the first space of each countryData.name is removed (if there is one). Now you can search for names with spaces. Cheers.
+    countryData = (searchVal != "") ? countryData.filter(x => ((x['name'].replace(/^ /, '')).toLowerCase()).includes(searchVal.toLowerCase())) : countryData;
 
     $('.countryCard').remove();
 
