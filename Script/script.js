@@ -33,6 +33,10 @@ function loadCollapse(sortType, searchVal = '') {
         case 1:
             var temp = sortListByFullyVaccination(GetCountriesLastData());
             break;
+        case 2:
+            var temp = sortListByAlphabetical(GetCountriesLastData());
+            break;
+
     }
 
     let countryData = [];
@@ -70,7 +74,10 @@ function loadCollapse(sortType, searchVal = '') {
         countryData.push(data);
     }
 
-    countryData = (searchVal != "") ? countryData.filter(x => ((x['name'].replace(/\s+/g, '')).toLowerCase()).includes(searchVal.toLowerCase())) : countryData;
+    // (1/3) You had removed all spaces from the countryData.name (to remove the space before all names bug), therefore searching
+    // (2/3) anything with a space in it resulted in no results as ' ' was not in countryData.name at all. I added the new .replace()
+    // (3/3) so only the first space of each countryData.name is removed (if there is one). Now you can search for names with spaces. Cheers.
+    countryData = (searchVal != "") ? countryData.filter(x => ((x['name'].replace(/^ /, '')).toLowerCase()).includes(searchVal.toLowerCase())) : countryData;
 
     $('.countryCard').remove();
 
@@ -112,6 +119,9 @@ function loadContinents(sortType, searchVal = '') {
             break;
         case 1:
             var temp = sortListByFullyVaccination(GetContinentsData());
+            break;
+        case 2:
+            var temp = sortListByAlphabetical(GetContinentsData());
             break;
     }
     let continentData = [];
@@ -238,6 +248,20 @@ function sortListByVaccination(data) {
     return result.reverse();
 }
 
+function sortListByAlphabetical(data) {
+    
+    var result = [];
+    var temp = [];
+    for (let index = 0; index < data.length; index++) {
+        temp.push(data[index].split(','))
+    }
+    result = temp.sort(function (a, b) {
+        return a[0] > b[0] ? 1 : -1
+    });
+    
+    return result
+}
+
 function UpdateListFilter(selectedItem) {
     selectedType = selectedItem;
     switch (selectedItem) {
@@ -259,6 +283,14 @@ function UpdateListFilter(selectedItem) {
             loadContinents(1);
             $("#dropdownMenuButton").html('<img alt="population" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated');
             break;
+        case 2:
+            $("#collapseCountries").empty();
+            $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
+            $("#collapseContinents").empty();
+            $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
+            loadCollapse(2);
+            loadContinents(2);
+            $("#dropdownMenuButton").html('<img alt="population" src="Images/alphabetical.png" style="width: 25px; padding-right:10px;">Alphabetical');
     }
 
     if ($('#search').val()) {

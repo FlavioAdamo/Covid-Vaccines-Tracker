@@ -335,6 +335,7 @@
 .heightFitContent {
   height: fit-content;
 }
+
 .search {
   width: 100%;
   border: none;
@@ -352,4 +353,5 @@
 }
 .search:focus {
   outline: none;
+  box-shadow: rgb(0 0 0 / 15%) 0px 4px 10px -1px, rgb(0 0 0 / 7.5%) 0px 2px 4px -1px
 }
