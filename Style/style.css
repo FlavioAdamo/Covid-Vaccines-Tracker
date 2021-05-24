@@ -5,6 +5,33 @@
   cursor: pointer;
 }
 
+.nav-gitLink {
+  height: 45px;
+  width: 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  float: left;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+.nav-gitLink:hover {
+  width: 200px;
+}
+
+.nav-gitLink .nav-gitIcon {
+  display: inline-block;
+  height: 45px;
+  width: 40px;
+  text-align: center;
+  border-radius: 50px;
+}
+
+.nav-gitLink .nav-gitLink .github-img {
+  font-size: 25px;
+  line-height: 60px;
+}
+
 .github-btn {
   text-decoration: none;
   line-height: 100%;
@@ -19,8 +46,6 @@
   line-height: 100%;
   width: 35px;
   height: auto;
-  border: 1px solid black;
-  border-radius: 4px;
 }
 
 .github-img.nav {
@@ -282,6 +307,7 @@
 }
 
 /* Containers for all the countries and continents */
+
 .left-right-padding15 {
   padding-left: 15px;
   padding-right: 15px;
@@ -291,6 +317,12 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 6px 6px 4px -4px #f1f1;
+}
+
+
+.nav-link:hover,
+.nav-gitLink:hover {
+  color: #2abfa7 !important;
 }
 
 /* Title for all the countries */
@@ -303,9 +335,8 @@
   background-color: rgb(253, 253, 253);
   box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
   z-index: 2;
-  /* font-size: 20; */
-  color: #424242;
   font-size: 20px;
+  color: #424242;
   font-weight: 500;
 }
 
@@ -330,8 +361,8 @@
   width: fit-content;
 }
 
-.heightFitContent{
-    height: fit-content;
+.heightFitContent {
+  height: fit-content;
 }
 
 /* Search bar for countries */
@@ -341,20 +372,17 @@
   border: none;
   padding: 10px 0px 10px 50px;
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 3%) 0px 4px 10px -1px, rgb(0 0 0 / 1%) 0px 2px 4px -1px
+  box-shadow: rgb(0 0 0 / 3%) 0px 4px 10px -1px,
+    rgb(0 0 0 / 1%) 0px 2px 4px -1px;
 }
-.search:hover{
-  transition: 0.3s;
-  box-shadow: rgb(0 0 0 / 15%) 0px 4px 10px -1px, rgb(0 0 0 / 7.5%) 0px 2px 4px -1px
-}
-.search-icon{
+.search-icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   left: 4%;
   width: 20px;
 }
-.search:focus{
+.search:focus {
   outline: none;
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 10px -1px, rgb(0 0 0 / 7.5%) 0px 2px 4px -1px
 }
