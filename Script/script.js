@@ -89,7 +89,7 @@ function loadCollapse(sortType, searchVal = '') {
             CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(country.totalVaccine)}`;
             CONTENT.querySelector('.countryname').innerHTML = country.name;
             CONTENT.querySelector('.position').innerHTML = country.position;
-            CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${country.vaccinatedPercent}`;
+            CONTENT.querySelector('.populationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${country.vaccinatedPercent}`;
             CONTENT.querySelector('.differenceCounter').innerHTML = country.totalVaccineDifferences;
             CONTENT.querySelector('.accordion').parentNode.classList.add("countryCard");
 
@@ -170,7 +170,7 @@ function loadContinents(sortType, searchVal = '') {
             CONTENT.querySelector('.currentVaccineNumber').innerHTML = `<img alt="syringe" src="Images/syringe.png" style="height:14px;"> ${formatNumberWithCommas(continent.totalVaccine)}`;
             CONTENT.querySelector('.countryname').innerHTML = continent.name;
             CONTENT.querySelector('.position').innerHTML = continent.position;
-            CONTENT.querySelector('.popolationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${continent.vaccinatedPercent}`;
+            CONTENT.querySelector('.populationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${continent.vaccinatedPercent}`;
             CONTENT.querySelector('.differenceCounter').innerHTML = continent.totalVaccineDifferences;
             CONTENT.querySelector('.accordion').parentNode.classList.add("continentCard");
 
