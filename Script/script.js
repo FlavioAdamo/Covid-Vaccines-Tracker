@@ -33,6 +33,10 @@ function loadCollapse(sortType, searchVal = '') {
         case 1:
             var temp = sortListByFullyVaccination(GetCountriesLastData());
             break;
+        case 2:
+            var temp = sortListByAlphabetical(GetCountriesLastData());
+            break;
+
     }
 
     let countryData = [];
@@ -112,6 +116,9 @@ function loadContinents(sortType, searchVal = '') {
             break;
         case 1:
             var temp = sortListByFullyVaccination(GetContinentsData());
+            break;
+        case 2:
+            var temp = sortListByAlphabetical(GetContinentsData());
             break;
     }
     let continentData = [];
@@ -238,6 +245,20 @@ function sortListByVaccination(data) {
     return result.reverse();
 }
 
+function sortListByAlphabetical(data) {
+    
+    var result = [];
+    var temp = [];
+    for (let index = 0; index < data.length; index++) {
+        temp.push(data[index].split(','))
+    }
+    result = temp.sort(function (a, b) {
+        return a[0] > b[0] ? 1 : -1
+    });
+    
+    return result
+}
+
 function UpdateListFilter(selectedItem) {
     selectedType = selectedItem;
     switch (selectedItem) {
@@ -259,6 +280,14 @@ function UpdateListFilter(selectedItem) {
             loadContinents(1);
             $("#dropdownMenuButton").html('<img alt="population" src="Images/Population.png" style="width: 25px; padding-right:10px;">% fully vaccinated');
             break;
+        case 2:
+            $("#collapseCountries").empty();
+            $("#collapseCountries").append('<div class="col-12 groupList-title">Countries</div>');
+            $("#collapseContinents").empty();
+            $("#collapseContinents").append('<div class="col-12 groupList-title">Continents</div>');
+            loadCollapse(2);
+            loadContinents(2);
+            $("#dropdownMenuButton").html('<img alt="population" src="Images/alphabetical.png" style="width: 25px; padding-right:10px;">Alphabetical');
     }
 
     if ($('#search').val()) {
