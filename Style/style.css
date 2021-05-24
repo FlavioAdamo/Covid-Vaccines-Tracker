@@ -19,8 +19,6 @@
   line-height: 100%;
   width: 35px;
   height: auto;
-  border: 1px solid black;
-  border-radius: 4px;
 }
 
 .github-img.nav {
@@ -253,24 +251,6 @@
   font-size: 13px;
 }
 
-.navbar-light .navbar-toggler-icon {
-  background-image: url("../Images/sharing.png");
-  background-size: 100%;
-  background-position: center center;
-  width: 30px;
-  height: 30px;
-  display: flex;
-}
-
-.navbar-inverse .navbar-toggler-icon {
-  background-image: url("../Images/sharing.png");
-  background-size: 100%;
-  background-position: center center;
-  width: 30px;
-  height: 30px;
-  display: flex;
-}
-
 .left-right-padding15 {
   padding-left: 15px;
   padding-right: 15px;
@@ -282,6 +262,16 @@
   box-shadow: 6px 6px 4px -4px #f1f1;
 }
 
+.nav-link,
+.groupList-title {
+  color: #424242;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #2abfa7 !important;
+}
+
 .groupList-title {
   position: relative;
   padding: 13px 1rem;
@@ -291,10 +281,7 @@
   background-color: rgb(253, 253, 253);
   box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
   z-index: 2;
-  /* font-size: 20; */
-  color: #424242;
   font-size: 20px;
-  font-weight: 500;
 }
 
 .custom-toggler .navbar-toggler-icon {
@@ -321,24 +308,24 @@
   width: fit-content;
 }
 
-.heightFitContent{
-    height: fit-content;
+.heightFitContent {
+  height: fit-content;
 }
-.search{
-    width: 100%;
-    border: none;
-    padding: 10px 0px 10px 50px;
-    border-radius: 5px;
-    box-shadow: rgb(0 0 0 / 3%) 0px 4px 10px -1px, rgb(0 0 0 / 1%) 0px 2px 4px -1px
+.search {
+  width: 100%;
+  border: none;
+  padding: 10px 0px 10px 50px;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 3%) 0px 4px 10px -1px,
+    rgb(0 0 0 / 1%) 0px 2px 4px -1px;
 }
-.search-icon{
+.search-icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   left: 4%;
   width: 20px;
 }
-.search:focus{
+.search:focus {
   outline: none;
 }
-
