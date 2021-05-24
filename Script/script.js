@@ -12,6 +12,7 @@ $(document).ready(async () => {
     loadCounterScript();
     loadCollapse(0);
     loadContinents(0);
+    $("#filterDiv").show();
     $('#collapse').show();
 });
 
@@ -302,4 +303,3 @@ function showCountryData(countryname) {
     //href to the clicked item page
     window.location.href = "View/country.html" + "?" + countryname.replace(" ", "");
 }
-
