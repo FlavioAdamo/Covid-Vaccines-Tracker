@@ -91,7 +91,7 @@ function loadCollapse(sortType, searchVal = '') {
         countryData.push(data);
     }
 
-    // see line 28 for new algo 'searchCountryOrContinentNameStartsWithSearchVal'
+    // see line 32 for new algo 'searchCountryOrContinentNameStartsWithSearchVal'
 
     countryData = (searchVal != "")
         ? countryData.filter( x => searchCountryOrContinentNameStartsWithSearchVal(((x['name'].replace(/^ /, '')).toLowerCase()), (searchVal.toLowerCase())))
@@ -177,7 +177,7 @@ function loadContinents(sortType, searchVal = '') {
         continentData.push(data);
     }
 
-    // see line 28 for new algo 'earchCountryOrContinentNameStartsWithSearchVal'
+    // see line 32 for new algo 'earchCountryOrContinentNameStartsWithSearchVal'
 
     continentData = (searchVal != "")
         ? continentData.filter( x => searchCountryOrContinentNameStartsWithSearchVal(((x['name'].replace(/^ /, '')).toLowerCase()), (searchVal.toLowerCase())))
