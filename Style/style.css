@@ -6,17 +6,26 @@
 }
 
 .nav-gitLink {
-  height: 45px;
-  width: 50px;
+  display: flex;
+  height: 100%;
   border-radius: 50px;
   cursor: pointer;
   float: left;
   overflow: hidden;
+}
+
+.nav-gitLink span {
+  display: flex;
+  align-items: center;
+  width: 0;
+  margin-left: 5px;
+  opacity: 0;
   transition: all 0.4s ease-in-out;
 }
 
-.nav-gitLink:hover {
-  width: 200px;
+.nav-gitLink:hover span{
+  width: 100px;
+  opacity: 1;
 }
 
 .nav-gitLink .nav-gitIcon {
@@ -49,7 +58,7 @@
 }
 
 .github-img.nav {
-  width: 33px;
+  width: 30px;
 }
 
 .dropdown-item:hover {
@@ -327,6 +336,14 @@
 }
 
 /* Navbar socials toggler */
+
+.nav-item,
+.nav-gitIcon {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .custom-toggler .navbar-toggler-icon {
   background-image: url("Images/sharing.png");
   background-size: 100%;
