@@ -108,7 +108,7 @@ function loadCollapse(sortType, searchVal = '') {
             CONTENT.querySelector('.countryname').innerHTML = country.name;
             CONTENT.querySelector('.position').innerHTML = country.position;
             CONTENT.querySelector('.populationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${country.vaccinatedPercent}`;
-            CONTENT.querySelector('.differenceCounter').innerHTML = country.totalVaccineDifferences;
+            CONTENT.querySelector('.differenceCounter').innerHTML = formatDifferenceWithCommas(country.totalVaccineDifferences);
             CONTENT.querySelector('.accordion').parentNode.classList.add("countryCard");
 
             // Set attribute
@@ -193,7 +193,7 @@ function loadContinents(sortType, searchVal = '') {
             CONTENT.querySelector('.countryname').innerHTML = continent.name;
             CONTENT.querySelector('.position').innerHTML = continent.position;
             CONTENT.querySelector('.populationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${continent.vaccinatedPercent}`;
-            CONTENT.querySelector('.differenceCounter').innerHTML = continent.totalVaccineDifferences;
+            CONTENT.querySelector('.differenceCounter').innerHTML = formatDifferenceWithCommas(continent.totalVaccineDifferences);
             CONTENT.querySelector('.accordion').parentNode.classList.add("continentCard");
 
             // Set attribute
