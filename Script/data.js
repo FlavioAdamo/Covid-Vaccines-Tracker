@@ -92,3 +92,7 @@ function formatNumberWithCommas(number) {
     // Just read the name of the function
     return parseInt(number).toLocaleString();
 }
+
+function formatDifferenceWithCommas(number) {
+    return '+' + parseInt(number.substring(1)).toLocaleString();
+}
