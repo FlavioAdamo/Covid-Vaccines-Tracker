@@ -179,6 +179,7 @@
   padding: 30px 20px 37px;
   text-align: center;
   box-shadow: 6px 6px 4px -4px #f1f1;
+  max-height: 140px;
 }
 
 .counter-box p {
@@ -261,11 +262,13 @@
 .counter-box.blue-light {
   background: #ffffff;
   padding: 30px 20px 37px;
+  max-height: 170px;
 }
 
 .counter-box.green-light {
   background: #ffffff;
   padding: 30px 20px 37px;
+  max-height: 170px;
 }
 
 .counter-box.blue p,
