@@ -25,6 +25,19 @@ function search(searchVal) {
     loadContinents(selectedType, searchVal);
 }
 
+// (1/3) Function for searching, changed it from: look for any match with the string typed
+// (2/3) to: look for a match in the same index location as the typed characters.
+// (3/3) I.e: typing "uni" comes up with only "United States, United ..." as opposed to including "Tunisia" and the like.
+
+function searchCountryOrContinentNameStartsWithSearchVal(name, sVal) {
+    for (let i = 0; i < sVal.length; i ++) {
+        if (sVal[i] !== name[i]) {
+            return false;
+        }
+    }
+    return true
+}
+
 function loadCollapse(sortType, searchVal = '') {
     // given an id this switch will sort the list of data
     // 
@@ -78,10 +91,11 @@ function loadCollapse(sortType, searchVal = '') {
         countryData.push(data);
     }
 
-    // (1/3) You had removed all spaces from the countryData.name (to remove the space before all names bug), therefore searching
-    // (2/3) anything with a space in it resulted in no results as ' ' was not in countryData.name at all. I added the new .replace()
-    // (3/3) so only the first space of each countryData.name is removed (if there is one). Now you can search for names with spaces. Cheers.
-    countryData = (searchVal != "") ? countryData.filter(x => ((x['name'].replace(/^ /, '')).toLowerCase()).includes(searchVal.toLowerCase())) : countryData;
+    // see line 28 for new algo 'searchCountryOrContinentNameStartsWithSearchVal'
+
+    countryData = (searchVal != "")
+        ? countryData.filter( x => searchCountryOrContinentNameStartsWithSearchVal(((x['name'].replace(/^ /, '')).toLowerCase()), (searchVal.toLowerCase())))
+        : countryData;
 
     $('.countryCard').remove();
 
@@ -163,7 +177,11 @@ function loadContinents(sortType, searchVal = '') {
         continentData.push(data);
     }
 
-    continentData = (searchVal != "") ? continentData.filter(x => ((x['name'].replace(/\s+/g, '')).toLowerCase()).includes(searchVal.toLowerCase())) : continentData;
+    // see line 28 for new algo 'earchCountryOrContinentNameStartsWithSearchVal'
+
+    continentData = (searchVal != "")
+        ? continentData.filter( x => searchCountryOrContinentNameStartsWithSearchVal(((x['name'].replace(/^ /, '')).toLowerCase()), (searchVal.toLowerCase())))
+        : continentData;
 
     $('.continentCard').remove();
 
