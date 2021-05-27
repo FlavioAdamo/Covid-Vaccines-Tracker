@@ -2,6 +2,8 @@ var countryName = "";
 var countryData = [];
 var countryLastData = [];
 
+$('#curve_chart').hide();
+
 $(document).ready(async () => {
     await loadVariables();
     countryName = await GetCountryName();
@@ -10,6 +12,7 @@ $(document).ready(async () => {
     await loadCountryCountersTemplate(countryLastData)
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
+    $('#curve_chart').show();
 });
 
 async function GetCountryName() {
@@ -71,3 +74,32 @@ function loadCounterScript() {
         });
       });
   }
+
+// google charts loading
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Year', 'Sales', 'Expenses'],
+        ['2004',  1000,      400],
+        ['2005',  1170,      460],
+        ['2006',  660,       1120],
+        ['2007',  1030,      540]
+    ]);
+
+    var options = {
+        titlePosition: 'none',
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        'height':$(window).height()*0.5,
+        'width':$(window).width()*0.7
+    };
+
+    var chart = new google.visualization.LineChart(document.querySelector('#curve_chart'));
+
+    chart.draw(data, options);
+
+    window.addEventListener('resize', drawChart, false);
+}

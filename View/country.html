@@ -35,8 +35,9 @@
     </div>
   </nav>
   <br>
-
+    
   <div style="padding-top: 60px;">
+    <div class="test"></div>
     <div class="container" id="country_counters">
       <template id="country_counters_template">
         <div class="row">
@@ -75,14 +76,23 @@
           </div>
         </div>
       </template>
+      </div>
+    </div>
+  </div>
+  <div class="container" style="padding-top: 15px;">
+    <div class="row">
+      <div class="col-12 chart-col">
+        <div class="chart-box" id="curve_chart" align="center"></div>
+      </div>
     </div>
   </div>
   <br>
-
+    
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="../Script/country.js"></script>
   <script src="../Script/data.js"></script>
   <script>
