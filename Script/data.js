@@ -13,12 +13,6 @@ async function loadVariables() {
 async function GetAllData() {
     // You would never guess what this function does
     const { data } = await axios.get(MASTER_DATA_URL);
-    // just to see the data --
-
-    // BEN: you gotta for loop the dates (over a certain period of time) and add them to the x-axis,
-    // with the y-axis corresponding values showing the vaccination count
-    
-    $('.test').html(String(data));
     return data.split("\n");
 }
 

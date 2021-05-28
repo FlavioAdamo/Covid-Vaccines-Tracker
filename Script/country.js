@@ -12,6 +12,7 @@ $(document).ready(async () => {
     await loadCountryCountersTemplate(countryLastData)
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
+    drawChart(countryData);
     $('#curve_chart').show();
 });
 
@@ -78,21 +79,34 @@ function loadCounterScript() {
 // google charts loading
 
 google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ['Year', 'Sales', 'Expenses'],
-        ['2004',  1000,      400],
-        ['2005',  1170,      460],
-        ['2006',  660,       1120],
-        ['2007',  1030,      540]
-    ]);
+function drawChart(countryDataForChart) {
+
+    const arrayOfArraysForChart = [['Date', 'Total Vaccinations']]
+    var temp = []
+
+    for (let i = 0; i < countryDataForChart.length; i++) {
+        line = countryDataForChart[i].split(",")
+        if (!!line[2] && !!line[3]) {
+            temp = [line[2], parseInt(line[3])]
+            arrayOfArraysForChart.push(temp)
+        }
+    }
+
+    var data = google.visualization.arrayToDataTable(arrayOfArraysForChart);
 
     var options = {
+        vAxis: {
+            title: 'Total Vaccinations'
+        },
+        colors: ['#a52714', '#097138'],
+        crosshair: {
+            color: '#000',
+            trigger: 'selection'
+        },
         titlePosition: 'none',
         curveType: 'function',
-        legend: { position: 'bottom' },
+        legend: { position: 'none' },
         'height':$(window).height()*0.5,
         'width':$(window).width()*0.7
     };
@@ -101,5 +115,5 @@ function drawChart() {
 
     chart.draw(data, options);
 
-    window.addEventListener('resize', drawChart, false);
+    window.onresize = function() { drawChart(countryData) };
 }
