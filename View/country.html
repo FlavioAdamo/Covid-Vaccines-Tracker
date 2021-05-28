@@ -37,7 +37,6 @@
   <br>
     
   <div style="padding-top: 60px;">
-    <div class="test"></div>
     <div class="container" id="country_counters">
       <template id="country_counters_template">
         <div class="row">
@@ -79,10 +78,25 @@
       </div>
     </div>
   </div>
-  <div class="container" style="padding-top: 15px;">
+  <div id="chart-container" class="container" style="padding-top: 15px;">
     <div class="row">
       <div class="col-12 chart-col">
-        <div class="chart-box" id="curve_chart" align="center"></div>
+        <div class="dropdown" style="margin-top: 60px;">
+          <button class="btn btn-light dropdown-toggle normalText" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Total vaccinations
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item normalText" onclick="drawChart(undefined, 0)">Total vaccinations</a>
+            <a class="dropdown-item normalText" onclick="drawChart(undefined, 1)">People fully vaccinated</a>
+            <a class="dropdown-item normalText" onclick="drawChart(undefined, 2)">People who have recieved at least one dose</a>
+          </div>
+        </div>
+    </div>
+    <div class="row chart-box">
+      <div id="assign-for-centering" class="col-12 chart-col">
+          <div id="curve_chart" align="center"></div>
+        </div>
       </div>
     </div>
   </div>
