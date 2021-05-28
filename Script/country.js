@@ -40,6 +40,7 @@ async function loadCountryCountersTemplate(data) {
     // removes %20 then adds to title card for country (id="countryname")
     let noSpecialCharactersCountryName = countryName.toString().replaceAll("%20", " ");
     CONTENT.querySelector("#countryname").innerHTML = noSpecialCharactersCountryName;
+    document.title = `Covid Vaccine Track | ${noSpecialCharactersCountryName}`;
 
     $("#country_counters").append(CONTENT);
 }

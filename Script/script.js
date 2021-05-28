@@ -268,7 +268,7 @@ function sortData(data, dIdx) {
 
 // selectedItem will be an integer (1, 2, 3)
 function updateListFilter(selectedItem) {
-    
+    selectedType = selectedItem;
     const ddAttrs = {
         alts: ["syringe", "population", "alphabetical"],
         imgs: ["syringe.png", "Population.png", "alphabetical.png"],
