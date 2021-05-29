@@ -12,8 +12,8 @@ $(document).ready(async () => {
     await loadCountryCountersTemplate(countryLastData)
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
-    drawChart(countryData, undefined);
     $('#chart-container').show();
+    drawChart(countryData, undefined);
 });
 
 async function GetCountryName() {
@@ -79,7 +79,7 @@ function loadCounterScript() {
 
 // google charts loading
 
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load('45', {'packages':['corechart']});
 
 function drawChart(countryDataForChart = countryData, sortType = 0) {
 
@@ -145,7 +145,9 @@ function drawChart(countryDataForChart = countryData, sortType = 0) {
             1: {color: '#00bcd4'}
         },
         vAxis: {
-            title: caseTitle
+            title: caseTitle,
+            viewWindowMode: "explicit",
+            viewWindow:{ min: 0 }
         },
         colors: ['#a52714', '#097138'],
         crosshair: {
@@ -169,9 +171,9 @@ function drawChart(countryDataForChart = countryData, sortType = 0) {
 
     window.onresize = function() {
 
-        $('#curve_chart').hide();
-
         drawChart(countryData, tmp)
+
+        $('#curve_chart').hide();
 
         // following code is so chart centering is not lost
 
