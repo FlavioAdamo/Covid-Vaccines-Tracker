@@ -1,16 +1,34 @@
 var countryName = "";
 var countryData = [];
 var countryLastData = [];
+let countryCode = "";
 
 $(document).ready(async () => {
     await loadVariables();
     countryName = await GetCountryName();
+    countryCode = await getCountryCode();
     countryData = await GetCountryData(countryName);
     countryLastData = await GetCountryLastData();
     await loadCountryCountersTemplate(countryLastData)
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
 });
+
+async function getCountryCode() {
+    let response = await fetch(`https://restcountries.eu/rest/v2/name/${countryName}`);
+
+    if(response.status === 200) {
+        countryCode = await response.json();
+    } else if(response.status === 404) {
+        console.log("country not found")
+    }
+
+    if(countryName == "India") {
+        return countryCode[1].alpha2Code;
+    } 
+
+    return countryCode[0]?.alpha2Code; 
+}
 
 async function GetCountryName() {
     // Get the name of the country by reading di url
@@ -37,6 +55,7 @@ async function loadCountryCountersTemplate(data) {
     let noSpecialCharactersCountryName = countryName.toString().replaceAll("%20", " ");
     CONTENT.querySelector("#countryname").innerHTML = noSpecialCharactersCountryName;
     document.title = `Covid Vaccine Track | ${noSpecialCharactersCountryName}`;
+    CONTENT.querySelector("#countryflag").innerHTML = countryCode ? `<img src="https://www.countryflags.io/${countryCode}/flat/64.png">` : ``;
 
     $("#country_counters").append(CONTENT);
 }
