@@ -2,6 +2,8 @@ var countryName = "";
 var countryData = [];
 var countryLastData = [];
 
+$('#chart-container').hide();
+
 $(document).ready(async () => {
     await loadVariables();
     countryName = await GetCountryName();
@@ -10,6 +12,8 @@ $(document).ready(async () => {
     await loadCountryCountersTemplate(countryLastData)
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
+    $('#chart-container').show();
+    drawChart(countryData, undefined);
 });
 
 async function GetCountryName() {
@@ -72,3 +76,110 @@ function loadCounterScript() {
         });
       });
   }
+
+// google charts loading
+
+google.charts.load('45', {'packages':['corechart']});
+
+function drawChart(countryDataForChart = countryData, sortType = 0) {
+
+    switch(sortType) {
+
+        case 0:
+
+            var caseTitle = 'Total vaccinations'
+
+            var arrayOfArraysForChart = [['Date', 'Total vaccinations']]
+            var temp = []
+
+            for (let i = 0; i < countryDataForChart.length; i++) {
+                line = countryDataForChart[i].split(",")
+                if (!!line[2] && !!line[3]) {
+                    temp = [line[2], parseInt(line[3])]
+                    arrayOfArraysForChart.push(temp)
+                }
+            }
+
+            break;
+
+        case 1:
+
+            var caseTitle = 'People fully vaccinated'
+
+            var arrayOfArraysForChart = [['Date', 'People fully vaccinated']]
+            var temp = []
+
+            for (let i = 0; i < countryDataForChart.length; i++) {
+                line = countryDataForChart[i].split(",")
+                if (!!line[2] && !!line[5]) {
+                    temp = [line[2], parseInt(line[5])]
+                    arrayOfArraysForChart.push(temp)
+                }
+            }
+
+            break;
+
+        case 2:
+
+            var caseTitle = 'People who have recieved at least one dose'
+
+            var arrayOfArraysForChart = [['Date', 'People who have recieved at least one dose']]
+            var temp = []
+
+            for (let i = 0; i < countryDataForChart.length; i++) {
+                line = countryDataForChart[i].split(",")
+                if (!!line[2] && !!line[4]) {
+                    temp = [line[2], parseInt(line[4])]
+                    arrayOfArraysForChart.push(temp)
+                }
+            }
+
+            break;
+    }
+
+    var data = google.visualization.arrayToDataTable(arrayOfArraysForChart);
+
+    var options = {
+        series: {
+            0: {color: '#2abfa7'},
+            1: {color: '#00bcd4'}
+        },
+        vAxis: {
+            title: caseTitle,
+            viewWindowMode: "explicit",
+            viewWindow:{ min: 0 }
+        },
+        colors: ['#a52714', '#097138'],
+        crosshair: {
+            color: '#000',
+            trigger: 'selection'
+        },
+        titlePosition: 'none',
+        curveType: 'function',
+        legend: { position: 'none' },
+        'height':$(window).height()*0.5,
+        'width':$(window).width()*0.7
+    };
+
+    var chart = new google.visualization.LineChart(document.querySelector('#curve_chart'));
+
+    chart.draw(data, options);
+
+    $('#dropdownMenuButton').html(caseTitle)
+
+    var tmp = sortType;
+
+    window.onresize = function() {
+
+        drawChart(countryData, tmp)
+
+        $('#curve_chart').hide();
+
+        // following code is so chart centering is not lost
+
+        $('#assign-for-centering').removeClass('chart-col')
+        $('#assign-for-centering').addClass('chart-col')
+
+        $('#curve_chart').show();
+    };
+}
