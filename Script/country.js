@@ -78,20 +78,13 @@ function loadCounterScript() {
   }
 
 // google charts loading
-
 google.charts.load('45', {'packages':['corechart']});
-
 function drawChart(countryDataForChart = countryData, sortType = 0) {
-
     switch(sortType) {
-
         case 0:
-
             var caseTitle = 'Total vaccinations'
-
             var arrayOfArraysForChart = [['Date', 'Total vaccinations']]
             var temp = []
-
             for (let i = 0; i < countryDataForChart.length; i++) {
                 line = countryDataForChart[i].split(",")
                 if (!!line[2] && !!line[3]) {
@@ -99,16 +92,11 @@ function drawChart(countryDataForChart = countryData, sortType = 0) {
                     arrayOfArraysForChart.push(temp)
                 }
             }
-
             break;
-
         case 1:
-
             var caseTitle = 'People fully vaccinated'
-
             var arrayOfArraysForChart = [['Date', 'People fully vaccinated']]
             var temp = []
-
             for (let i = 0; i < countryDataForChart.length; i++) {
                 line = countryDataForChart[i].split(",")
                 if (!!line[2] && !!line[5]) {
@@ -116,13 +104,9 @@ function drawChart(countryDataForChart = countryData, sortType = 0) {
                     arrayOfArraysForChart.push(temp)
                 }
             }
-
             break;
-
         case 2:
-
             var caseTitle = 'People who have recieved at least one dose'
-
             var arrayOfArraysForChart = [['Date', 'People who have recieved at least one dose']]
             var temp = []
 
@@ -133,12 +117,9 @@ function drawChart(countryDataForChart = countryData, sortType = 0) {
                     arrayOfArraysForChart.push(temp)
                 }
             }
-
             break;
     }
-
     var data = google.visualization.arrayToDataTable(arrayOfArraysForChart);
-
     var options = {
         series: {
             0: {color: '#2abfa7'},
@@ -160,17 +141,11 @@ function drawChart(countryDataForChart = countryData, sortType = 0) {
         'height':$(window).height()*0.5,
         'width':$(window).width()*0.7
     };
-
     var chart = new google.visualization.LineChart(document.querySelector('#curve_chart'));
-
     chart.draw(data, options);
-
     $('#dropdownMenuButton').html(caseTitle)
-
     var tmp = sortType;
-
     window.onresize = function() {
-
         drawChart(countryData, tmp)
 
         $('#curve_chart').hide();
