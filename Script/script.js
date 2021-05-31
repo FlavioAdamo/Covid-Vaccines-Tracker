@@ -5,6 +5,8 @@ const COUNTERS_TEMPLATE = document.querySelector('#countersTemplate');
 let selectedType = 0;
 let searchVal = "";
 
+$('#map').hide();
+
 $(document).ready(async () => {
     await loadVariables();
     $('#loadingmodal').css('display', 'none');
@@ -14,6 +16,7 @@ $(document).ready(async () => {
     loadContinents(0);
     $("#filterDiv").show();
     $('#collapse').show();
+    $('#map').show();
 });
 
 $('#search').bind('change keydown keyup', function () {
@@ -119,6 +122,7 @@ function loadCollapse(sortType, searchVal = '') {
                 const name = e.target.closest('.accordion').getAttribute('data-country-name');
                 showCountryData(name);
             })
+
             $("#collapseCountries").append(CONTENT);
         });
     } else {
@@ -292,4 +296,42 @@ function updateListFilter(selectedItem) {
 function showCountryData(countryname) {
     //href to the clicked item page
     window.location.href = "View/country.html" + "?" + countryname.replace(" ", "");
+}
+
+google.charts.load('current', {
+    'packages':['geochart'],
+    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+});
+
+google.charts.setOnLoadCallback(drawRegionsMap);
+
+function drawRegionsMap() {
+
+    // This is for test but you can use CountryData
+    var array = [
+        ["Country", "vaccinated Percentage"]
+        ,["United States", 87]
+        ,["India", 14]
+        ,["Brazil", 31]
+        ,["United Kingdom", 93]
+        ,["England", 94]
+        ,["Germany", 58]
+        ,["France", 51]
+        ,["Italy", 55]
+    ]
+
+    var data = google.visualization.arrayToDataTable(array);
+
+    var options = {
+        region: 'world',
+        colorAxis: {colors: ['#e4efe7','#064420']},
+        backgroundColor: '#f8f9fa',
+        width: $(document.querySelector('#map-holder')).width()*1,
+        height: $(document.querySelector('#map-holder')).height()*1
+        };
+
+
+    var chart = new google.visualization.GeoChart(document.getElementById('map'));
+
+    chart.draw(data, options);
 }

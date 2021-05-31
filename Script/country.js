@@ -156,8 +156,8 @@ function drawChart(countryDataForChart = countryData, sortType = 0) {
         titlePosition: 'none',
         curveType: 'function',
         legend: { position: 'none' },
-        'height':$(window).height()*0.5,
-        'width':$(window).width()*0.7
+        width: $(document.querySelector('#chart-holder')).width(),
+        height: $(document.querySelector('#chart-holder')).height()
     };
     var chart = new google.visualization.LineChart(document.querySelector('#curve_chart'));
     chart.draw(data, options);
