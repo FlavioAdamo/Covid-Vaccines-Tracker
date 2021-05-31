@@ -1,12 +1,14 @@
 var countryName = "";
 var countryData = [];
 var countryLastData = [];
+let countryCode = "";
 
 $('#chart-container').hide();
 
 $(document).ready(async () => {
     await loadVariables();
     countryName = await GetCountryName();
+    countryCode = await getCountryCode();
     countryData = await GetCountryData(countryName);
     countryLastData = await GetCountryLastData();
     await loadCountryCountersTemplate(countryLastData)
@@ -15,6 +17,22 @@ $(document).ready(async () => {
     $('#chart-container').show();
     drawChart(countryData, undefined);
 });
+
+async function getCountryCode() {
+    let response = await fetch(`https://restcountries.eu/rest/v2/name/${countryName}`);
+
+    if(response.status === 200) {
+        countryCode = await response.json();
+    } else if(response.status === 404) {
+        console.log("country not found")
+    }
+
+    if(countryName == "India") {
+        return countryCode[1].alpha2Code;
+    } 
+
+    return countryCode[0]?.alpha2Code; 
+}
 
 async function GetCountryName() {
     // Get the name of the country by reading di url
@@ -39,7 +57,7 @@ async function loadCountryCountersTemplate(data) {
 
     // removes %20 then adds to title card for country (id="countryname")
     let noSpecialCharactersCountryName = countryName.toString().replaceAll("%20", " ");
-    CONTENT.querySelector("#countryname").innerHTML = noSpecialCharactersCountryName;
+    CONTENT.querySelector("#countryname").innerHTML = countryCode ? `<img src="https://www.countryflags.io/${countryCode}/flat/64.png"> &nbsp; ${noSpecialCharactersCountryName}&nbsp; <img src="https://www.countryflags.io/${countryCode}/flat/64.png">` : noSpecialCharactersCountryName;
     document.title = `Covid Vaccine Track | ${noSpecialCharactersCountryName}`;
 
     $("#country_counters").append(CONTENT);
@@ -158,3 +176,4 @@ function drawChart(countryDataForChart = countryData, sortType = 0) {
         $('#curve_chart').show();
     };
 }
+
