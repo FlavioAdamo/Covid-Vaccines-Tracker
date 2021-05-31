@@ -57,7 +57,7 @@ async function loadCountryCountersTemplate(data) {
 
     // removes %20 then adds to title card for country (id="countryname")
     let noSpecialCharactersCountryName = countryName.toString().replaceAll("%20", " ");
-    CONTENT.querySelector("#countryname").innerHTML = countryCode ? `<img src="https://www.countryflags.io/${countryCode}/flat/64.png"> &nbsp; ${noSpecialCharactersCountryName}&nbsp; <img src="https://www.countryflags.io/${countryCode}/flat/64.png">` : noSpecialCharactersCountryName;
+    CONTENT.querySelector("#countryname").innerHTML = countryCode ? `<img src="https://www.countryflags.io/${countryCode}/flat/32.png"> &nbsp; ${noSpecialCharactersCountryName}&nbsp; <img src="https://www.countryflags.io/${countryCode}/flat/32.png">` : noSpecialCharactersCountryName;
     document.title = `Covid Vaccine Track | ${noSpecialCharactersCountryName}`;
 
     $("#country_counters").append(CONTENT);
