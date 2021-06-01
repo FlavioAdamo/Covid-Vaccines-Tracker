@@ -4,11 +4,15 @@ const COUNTERS_TEMPLATE = document.querySelector('#countersTemplate');
 
 let selectedType = 0;
 let searchVal = "";
+let countryLastData = "";
 
 $('#map').hide();
 
 $(document).ready(async () => {
     await loadVariables();
+    countryLastData = await GetLastData();
+    $('#map').show();
+    drawRegionsMap(countryLastData);
     $('#loadingmodal').css('display', 'none');
     loadCounetrsTemplate(await GetWorldLastData());
     loadCounterScript();
@@ -303,24 +307,25 @@ google.charts.load('current', {
     'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
 });
 
-google.charts.setOnLoadCallback(drawRegionsMap);
+google.charts.setOnLoadCallback(drawRegionsMap(countryLastData));
 
-function drawRegionsMap() {
+function drawRegionsMap(countryLastData = countryLastData) {
 
-    // This is for test but you can use CountryData
-    var array = [
-        ["Country", "vaccinated Percentage"]
-        ,["United States", 87]
-        ,["India", 14]
-        ,["Brazil", 31]
-        ,["United Kingdom", 93]
-        ,["England", 94]
-        ,["Germany", 58]
-        ,["France", 51]
-        ,["Italy", 55]
-    ]
+    // append to array -- for all distinct country names -not continents (get lines w/ countryname, get last line from array of lines, split by comma and take the percentage vaccinated, append)
+    
+    countryLastData = countryLastData.filter(x => x.split(',')[0] != 'Asia' || 'North America' || 'Europe' || 'South America' || 'Africa' || 'Oceania');
 
-    var data = google.visualization.arrayToDataTable(array);
+    const arr = [["Country", "Percentage vaccinated"]]
+    
+    for (let i = 0; i < countryLastData.length; i ++) {
+        var temp = [0, 0]
+        var line = countryLastData[i].split(",");
+        temp[0] = line[0]
+        temp[1] = parseFloat(Math.floor(line[9]))
+        arr.push(temp);
+    }
+
+    var data = google.visualization.arrayToDataTable(arr);
 
     var options = {
         region: 'world',
