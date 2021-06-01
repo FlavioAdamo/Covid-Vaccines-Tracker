@@ -321,7 +321,7 @@ function drawRegionsMap(countryLastData = countryLastData) {
         var temp = [0, 0]
         var line = countryLastData[i].split(",");
         temp[0] = line[0]
-        temp[1] = parseFloat(Math.floor(line[9]))
+        temp[1] = Math.floor(parseFloat(line[9]))
         arr.push(temp);
     }
 
@@ -329,14 +329,37 @@ function drawRegionsMap(countryLastData = countryLastData) {
 
     var options = {
         region: 'world',
-        colorAxis: {colors: ['#e4efe7','#064420']},
+        colorAxis: {minValue: 0, maxValue: 100, colors: ['#FFFFFF','#6abf69']},
         backgroundColor: '#f8f9fa',
         width: $(document.querySelector('#map-holder')).width()*1,
-        height: $(document.querySelector('#map-holder')).height()*1
+        height: $(document.querySelector('#map-holder')).height()*1,
         };
 
 
     var chart = new google.visualization.GeoChart(document.getElementById('map'));
 
     chart.draw(data, options);
+
+    window.onresize = function() {
+
+        drawRegionsMap(countryLastData);
+
+        $('#map').hide();
+
+        // following code is so chart centering is not lost
+
+        $('#map-holder').removeClass('chart-col')
+        $('#map-holder').addClass('chart-col')
+
+        $('#map').show();
+    };
+
+    google.visualization.events.addListener(chart, 'select', function() {
+        var selectedItem = chart.getSelection()[0];
+        if (selectedItem) {
+          var country = data.getValue(selectedItem.row, 0);
+          var countryForURL = country.replace(" ", "%20");
+          window.location.href = "/View/country.html?" + countryForURL;
+        }    
+      });
 }
