@@ -4,9 +4,15 @@ const COUNTERS_TEMPLATE = document.querySelector('#countersTemplate');
 
 let selectedType = 0;
 let searchVal = "";
+let countryLastData = "";
+
+$('#map').hide();
 
 $(document).ready(async () => {
     await loadVariables();
+    countryLastData = await GetLastData();
+    $('#map').show();
+    drawRegionsMap(countryLastData);
     $('#loadingmodal').css('display', 'none');
     loadCounetrsTemplate(await GetWorldLastData());
     loadCounterScript();
@@ -14,6 +20,7 @@ $(document).ready(async () => {
     loadContinents(0);
     $("#filterDiv").show();
     $('#collapse').show();
+    $('#map').show();
 });
 
 $('#search').bind('change keydown keyup', function () {
@@ -119,6 +126,7 @@ function loadCollapse(sortType, searchVal = '') {
                 const name = e.target.closest('.accordion').getAttribute('data-country-name');
                 showCountryData(name);
             })
+
             $("#collapseCountries").append(CONTENT);
         });
     } else {
@@ -292,4 +300,66 @@ function updateListFilter(selectedItem) {
 function showCountryData(countryname) {
     //href to the clicked item page
     window.location.href = "View/country.html" + "?" + countryname.replace(" ", "");
+}
+
+google.charts.load('current', {
+    'packages':['geochart'],
+    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+});
+
+google.charts.setOnLoadCallback(drawRegionsMap(countryLastData));
+
+function drawRegionsMap(countryLastData = countryLastData) {
+
+    // append to array -- for all distinct country names -not continents (get lines w/ countryname, get last line from array of lines, split by comma and take the percentage vaccinated, append)
+    
+    countryLastData = countryLastData.filter(x => x.split(',')[0] != 'Asia' || 'North America' || 'Europe' || 'South America' || 'Africa' || 'Oceania');
+
+    const arr = [["Country", "Percentage vaccinated"]]
+    
+    for (let i = 0; i < countryLastData.length; i ++) {
+        var temp = [0, 0]
+        var line = countryLastData[i].split(",");
+        temp[0] = line[0]
+        temp[1] = Math.floor(parseFloat(line[9]))
+        arr.push(temp);
+    }
+
+    var data = google.visualization.arrayToDataTable(arr);
+
+    var options = {
+        region: 'world',
+        colorAxis: {minValue: 0, maxValue: 100, colors: ['#FFFFFF','#6abf69']},
+        backgroundColor: '#f8f9fa',
+        width: $(document.querySelector('#map-holder')).width()*1,
+        height: $(document.querySelector('#map-holder')).height()*1,
+        };
+
+
+    var chart = new google.visualization.GeoChart(document.getElementById('map'));
+
+    chart.draw(data, options);
+
+    window.onresize = function() {
+
+        drawRegionsMap(countryLastData);
+
+        $('#map').hide();
+
+        // following code is so chart centering is not lost
+
+        $('#map-holder').removeClass('chart-col')
+        $('#map-holder').addClass('chart-col')
+
+        $('#map').show();
+    };
+
+    google.visualization.events.addListener(chart, 'select', function() {
+        var selectedItem = chart.getSelection()[0];
+        if (selectedItem) {
+          var country = data.getValue(selectedItem.row, 0);
+          var countryForURL = country.replace(" ", "%20");
+          window.location.href = "/View/country.html?" + countryForURL;
+        }    
+      });
 }
