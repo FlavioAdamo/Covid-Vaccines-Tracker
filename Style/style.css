@@ -111,7 +111,6 @@
 }
 
 .currentVaccineNumber {
-  background-color: #37b12d1a;
   float: right;
   font-size: 15px;
   margin-left: 5;
@@ -119,7 +118,8 @@
   padding: 3px;
   padding-right: 10px;
   padding-right: 10px;
-  border-radius: 30px;
+  border-radius: 8px;
+  background-image: linear-gradient(to bottom right, #2fbeba20, #37b12d10);
 }
 
 .differenceCounter {
