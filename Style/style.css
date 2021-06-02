@@ -342,11 +342,11 @@
   border-bottom: none;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background-color: rgb(253, 253, 253);
+  background-image: linear-gradient(to right, #2fbeba, #6abf69);
   box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
   z-index: 2;
   font-size: 20px;
-  color: #424242;
+  color: #ffffff;
   font-weight: 500;
 }
 
