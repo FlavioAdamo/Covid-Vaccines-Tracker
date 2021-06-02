@@ -321,7 +321,7 @@ function drawRegionsMap(countryLastData = countryLastData) {
         var temp = [0, 0]
         var line = countryLastData[i].split(",");
         temp[0] = line[0]
-        temp[1] = Math.floor(parseFloat(line[9]))
+        temp[1] = Math.floor(parseFloat(line[10]))
         arr.push(temp);
     }
 
