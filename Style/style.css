@@ -136,12 +136,12 @@
 /* Percent of population */
 .populationpercent {
   padding-left: 15px;
-  background-color: #00bbd409;
+  background-color: #00bbd40e;
   font-size: 12px;
   font-weight: bold;
   color: #00bcd4;
   padding: 4px 6px;
-  border-radius: 30px;
+  border-radius: 8px;
 }
 
 /* Logo */
