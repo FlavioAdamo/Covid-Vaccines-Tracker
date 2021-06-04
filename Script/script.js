@@ -4,13 +4,13 @@ const COUNTERS_TEMPLATE = document.querySelector('#countersTemplate');
 
 let selectedType = 0;
 let searchVal = "";
-var countryLastData = [];
+let countryLastData = [];
 
 $('#map').hide();
 
 $(document).ready(async () => {
     await loadVariables();
-    var countryLastData = await GetLastData();
+    countryLastData = await GetLastData();
     $('#map').show();
     drawRegionsMap(countryLastData, 0);
     $('#loadingmodal').css('display', 'none');
