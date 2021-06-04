@@ -321,6 +321,7 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
         case 0:
 
             var arr = [["Country", "Percentage fully vaccinated"]]
+            var color = '#2fbeba'
 
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
@@ -339,6 +340,7 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
         case 1:
 
             var arr = [["Country", "Percentage recieved at least one dose"]]
+            var color = '#6abf69'
 
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
@@ -357,6 +359,7 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
         case 2:
 
             var arr = [["Country", "Vaccines administered"]]
+            var color = '#6abf69'
 
             var max = 0;
 
@@ -378,6 +381,7 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
         case 3:
 
             var arr = [["Country", "People fully vaccinated"]]
+            var color = '#2fbeba'
 
             var max = 0;
 
@@ -402,7 +406,7 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
 
     var options = {
         region: 'world',
-        colorAxis: {minValue: 0, maxValue: max, colors: ['#FFFFFF','#6abf69']},
+        colorAxis: {minValue: 0, maxValue: max, colors: ['#FFFFFF', color]},
         backgroundColor: '#f8f9fa',
         width: $(document.querySelector('#map-holder')).width()*1,
         height: $(document.querySelector('#map-holder')).height()*1,
