@@ -4,15 +4,15 @@ const COUNTERS_TEMPLATE = document.querySelector('#countersTemplate');
 
 let selectedType = 0;
 let searchVal = "";
-let countryLastData = "";
+var countryLastData = [];
 
 $('#map').hide();
 
 $(document).ready(async () => {
     await loadVariables();
-    countryLastData = await GetLastData();
+    var countryLastData = await GetLastData();
     $('#map').show();
-    drawRegionsMap(countryLastData);
+    drawRegionsMap(countryLastData, 0);
     $('#loadingmodal').css('display', 'none');
     loadCounetrsTemplate(await GetWorldLastData());
     loadCounterScript();
@@ -230,7 +230,7 @@ function loadCounetrsTemplate(data) {
     const CONTENT = COUNTERS_TEMPLATE.content.cloneNode(true);
 
     // Change content
-    CONTENT.querySelector("#totvalue").innerHTML = data[5];
+    CONTENT.querySelector("#totvalue").innerHTML = data[3];
     CONTENT.querySelector("#totvaccinated").innerHTML = `${data[9]}%`;
 
     CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
@@ -315,9 +315,7 @@ google.charts.setOnLoadCallback(drawRegionsMap(countryLastData, undefined));
 function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
 
     // append to array -- for all distinct country names -not continents (get lines w/ countryname, get last line from array of lines, split by comma and take the percentage vaccinated, append)
-    
-    countryLastData = countryLastData.filter(x => x.split(',')[0] != 'Asia' || 'North America' || 'Europe' || 'South America' || 'Africa' || 'Oceania');
-    
+
     switch(useCase) {
 
         case 0:
@@ -327,9 +325,11 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
                 var line = countryLastData[i].split(",");
-                temp[0] = line[0]
-                temp[1] = Math.floor(parseFloat(line[10]))
-                arr.push(temp);
+                if (line[0] != 'World' && line[0] != 'High income' && line[0] != 'Upper middle income' && line[0] != 'Lower middle income' && line[0] != 'Low income' && line[0] != 'Asia' && line[0] != 'North America' && line[0] != 'Europe' && line[0] != 'South America' && line[0] != 'Africa' && line[0] != 'Oceania') {
+                    temp[0] = line[0]
+                    temp[1] = Math.floor(parseFloat(line[10]))
+                    arr.push(temp);
+                }
             }
 
             var max = 100
@@ -343,9 +343,11 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
                 var line = countryLastData[i].split(",");
-                temp[0] = line[0]
-                temp[1] = Math.floor(parseFloat(line[9]))
-                arr.push(temp);
+                if (line[0] != 'World' && line[0] != 'High income' && line[0] != 'Upper middle income' && line[0] != 'Lower middle income' && line[0] != 'Low income' && line[0] != 'Asia' && line[0] != 'North America' && line[0] != 'Europe' && line[0] != 'South America' && line[0] != 'Africa' && line[0] != 'Oceania') {
+                    temp[0] = line[0]
+                    temp[1] = Math.floor(parseFloat(line[9]))
+                    arr.push(temp);
+                }
             }
 
             var max = 100
@@ -354,19 +356,21 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
 
         case 2:
 
-            var arr = [["Country", "People recieved at least one dose"]]
+            var arr = [["Country", "Vaccines administered"]]
 
             var max = 0;
 
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
                 var line = countryLastData[i].split(",");
-                temp[0] = line[0]
-                temp[1] = Math.floor(parseFloat(line[4]))
-                if (temp[1] > max) {
-                    max = temp[1]
+                if (line[0] != 'World' && line[0] != 'High income' && line[0] != 'Upper middle income' && line[0] != 'Lower middle income' && line[0] != 'Low income' && line[0] != 'Asia' && line[0] != 'North America' && line[0] != 'Europe' && line[0] != 'South America' && line[0] != 'Africa' && line[0] != 'Oceania') {
+                    temp[0] = line[0]
+                    temp[1] = Math.floor(parseFloat(line[3]))
+                    if (temp[1] > max) {
+                        max = temp[1]
+                    }
+                    arr.push(temp);
                 }
-                arr.push(temp);
             }
 
             break
@@ -380,12 +384,14 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
                 var line = countryLastData[i].split(",");
-                temp[0] = line[0]
-                temp[1] = Math.floor(parseFloat(line[5]))
-                if (temp[1] > max) {
-                    max = temp[1]
+                if (line[0] != 'World' && line[0] != 'High income' && line[0] != 'Upper middle income' && line[0] != 'Lower middle income' && line[0] != 'Low income' && line[0] != 'Asia' && line[0] != 'North America' && line[0] != 'Europe' && line[0] != 'South America' && line[0] != 'Africa' && line[0] != 'Oceania') {
+                    temp[0] = line[0]
+                    temp[1] = Math.floor(parseFloat(line[5]))
+                    if (temp[1] > max) {
+                        max = temp[1]
+                    }
+                    arr.push(temp);
                 }
-                arr.push(temp);
             }
 
             break
