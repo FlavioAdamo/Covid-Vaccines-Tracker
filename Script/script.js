@@ -21,6 +21,9 @@ $(document).ready(async () => {
     $("#filterDiv").show();
     $('#collapse').show();
     $('#map').show();
+    $(".hoverForMapChange").mouseenter(function() {
+        drawRegionsMap(countryLastData, parseInt($(this).attr('id')));
+    });
 });
 
 $('#search').bind('change keydown keyup', function () {
@@ -227,7 +230,7 @@ function loadCounetrsTemplate(data) {
     const CONTENT = COUNTERS_TEMPLATE.content.cloneNode(true);
 
     // Change content
-    CONTENT.querySelector("#totvalue").innerHTML = data[3];
+    CONTENT.querySelector("#totvalue").innerHTML = data[5];
     CONTENT.querySelector("#totvaccinated").innerHTML = `${data[9]}%`;
 
     CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
@@ -307,29 +310,93 @@ google.charts.load('current', {
     'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
 });
 
-google.charts.setOnLoadCallback(drawRegionsMap(countryLastData));
+google.charts.setOnLoadCallback(drawRegionsMap(countryLastData, undefined));
 
-function drawRegionsMap(countryLastData = countryLastData) {
+function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
 
     // append to array -- for all distinct country names -not continents (get lines w/ countryname, get last line from array of lines, split by comma and take the percentage vaccinated, append)
     
     countryLastData = countryLastData.filter(x => x.split(',')[0] != 'Asia' || 'North America' || 'Europe' || 'South America' || 'Africa' || 'Oceania');
-
-    const arr = [["Country", "Percentage vaccinated"]]
     
-    for (let i = 0; i < countryLastData.length; i ++) {
-        var temp = [0, 0]
-        var line = countryLastData[i].split(",");
-        temp[0] = line[0]
-        temp[1] = Math.floor(parseFloat(line[10]))
-        arr.push(temp);
+    switch(useCase) {
+
+        case 0:
+
+            var arr = [["Country", "Percentage fully vaccinated"]]
+
+            for (let i = 0; i < countryLastData.length; i ++) {
+                var temp = [0, 0]
+                var line = countryLastData[i].split(",");
+                temp[0] = line[0]
+                temp[1] = Math.floor(parseFloat(line[10]))
+                arr.push(temp);
+            }
+
+            var max = 100
+
+            break
+
+        case 1:
+
+            var arr = [["Country", "Percentage recieved at least one dose"]]
+
+            for (let i = 0; i < countryLastData.length; i ++) {
+                var temp = [0, 0]
+                var line = countryLastData[i].split(",");
+                temp[0] = line[0]
+                temp[1] = Math.floor(parseFloat(line[9]))
+                arr.push(temp);
+            }
+
+            var max = 100
+
+            break
+
+        case 2:
+
+            var arr = [["Country", "People recieved at least one dose"]]
+
+            var max = 0;
+
+            for (let i = 0; i < countryLastData.length; i ++) {
+                var temp = [0, 0]
+                var line = countryLastData[i].split(",");
+                temp[0] = line[0]
+                temp[1] = Math.floor(parseFloat(line[4]))
+                if (temp[1] > max) {
+                    max = temp[1]
+                }
+                arr.push(temp);
+            }
+
+            break
+        
+        case 3:
+
+            var arr = [["Country", "People fully vaccinated"]]
+
+            var max = 0;
+
+            for (let i = 0; i < countryLastData.length; i ++) {
+                var temp = [0, 0]
+                var line = countryLastData[i].split(",");
+                temp[0] = line[0]
+                temp[1] = Math.floor(parseFloat(line[5]))
+                if (temp[1] > max) {
+                    max = temp[1]
+                }
+                arr.push(temp);
+            }
+
+            break
+
     }
 
     var data = google.visualization.arrayToDataTable(arr);
 
     var options = {
         region: 'world',
-        colorAxis: {minValue: 0, maxValue: 100, colors: ['#FFFFFF','#6abf69']},
+        colorAxis: {minValue: 0, maxValue: max, colors: ['#FFFFFF','#6abf69']},
         backgroundColor: '#f8f9fa',
         width: $(document.querySelector('#map-holder')).width()*1,
         height: $(document.querySelector('#map-holder')).height()*1,
@@ -342,7 +409,7 @@ function drawRegionsMap(countryLastData = countryLastData) {
 
     window.onresize = function() {
 
-        drawRegionsMap(countryLastData);
+        drawRegionsMap(countryLastData, useCase);
 
         $('#map').hide();
 
