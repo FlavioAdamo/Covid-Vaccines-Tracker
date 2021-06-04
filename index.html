@@ -53,25 +53,26 @@
       <template id="countersTemplate">
         <div class="row">
           <div class="four col-md-6" style="padding-top: 15px;">
-            <div class="counter-box green">
+            <div id="2" class="counter-box green hoverForMapChange">
               <i class="fa fa-thumbs-o-up"></i><span class="counter" id="totvalue">{{totvalue}}</span>
-              <p>Vaccine administered around the world</p>
+              <p>Vaccines administered around the world</p>
             </div>
           </div>
           <div class="four col-md-6" style="padding-top: 15px;">
-            <div class="counter-box blue">
+            <div id="3" class="counter-box blue hoverForMapChange">
               <i class="fa fa-thumbs-o-up"></i><span class="counter" id="peopleVaccinated">{{peopleVaccinated}}</span>
-              <p>People received at least one dose</p>
+              <p>People fully vaccinated</p>
             </div>
           </div>
           <div class="col-6 col-md-6" style="padding-top: 15px;">
-            <div class="counter-box green-light">
+            <div id="1" class="counter-box green-light hoverForMapChange">
               <i class="fa fa-thumbs-o-up"></i><span class="counter2" id="totvaccinated">{{totvaccinated}}</span>
               <p>Of the population received<br> at least 1 dose of vaccine</p>
             </div>
           </div>
           <div class="col-6 col-md-6" style="padding-top: 15px;">
-            <div class="counter-box blue-light"><i class="fa fa-thumbs-o-up"></i><span class="counter1"
+            <div id="0" class="counter-box blue-light hoverForMapChange">
+              <i class="fa fa-thumbs-o-up"></i><span class="counter1"
                 id="fullyVaccinated">{{fullyVaccinated}}</span>
               <p>Of the population is<br> fully vaccinated</p>
             </div>
