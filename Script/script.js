@@ -234,7 +234,7 @@ function loadCounetrsTemplate(data) {
     CONTENT.querySelector("#totvaccinated").innerHTML = `${data[9]}%`;
 
     CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
-    CONTENT.querySelector("#peopleVaccinated").innerHTML = data[4];
+    CONTENT.querySelector("#peopleVaccinated").innerHTML = data[5];
 
     $("#counters").append(CONTENT);
 }
