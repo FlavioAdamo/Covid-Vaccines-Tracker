@@ -227,16 +227,12 @@ function loadContinents(sortType, searchVal = '') {
 
 function loadCounetrsTemplate(data) {
     //load the counters on top
-    const CONTENT = COUNTERS_TEMPLATE.content.cloneNode(true);
-
-    // Change content
-    CONTENT.querySelector("#totvalue").innerHTML = data[3];
-    CONTENT.querySelector("#totvaccinated").innerHTML = `${data[9]}%`;
-
-    CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
-    CONTENT.querySelector("#peopleVaccinated").innerHTML = data[5];
-
-    $("#counters").append(CONTENT);
+    var template = $.trim($('#countersTemplate').html());
+    template = template.replace('{{peopleVaccinated}}', data[4]);
+    template = template.replace('{{totvalue}}', data[3]);
+    template = template.replace('{{totvaccinated}}', `${data[9]}%`);
+    template = template.replace('{{fullyVaccinated}}', `${data[10]}%`);
+    $('#counters').append(template);
 }
 
 function loadCounterScript() {
