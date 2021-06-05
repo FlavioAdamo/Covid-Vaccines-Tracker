@@ -350,6 +350,13 @@
   font-weight: 500;
 }
 
+.sharebtns {
+  width : 100%;
+}
+.socialshare {
+  margin : auto; 
+}
+
 .groupList-title-country {
   position: relative;
   padding: 13px 1rem;
