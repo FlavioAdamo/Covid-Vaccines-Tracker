@@ -406,6 +406,9 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
         backgroundColor: '#f8f9fa',
         width: $(document.querySelector('#map-holder')).width()*1,
         height: $(document.querySelector('#map-holder')).height()*1,
+        projection: {
+          name: 'kavrayskiy-vii',
+        }
         };
 
 
