@@ -309,16 +309,11 @@ google.charts.load('current', {
 google.charts.setOnLoadCallback(drawRegionsMap(countryLastData, undefined));
 
 function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
-
     // append to array -- for all distinct country names -not continents (get lines w/ countryname, get last line from array of lines, split by comma and take the percentage vaccinated, append)
-
     switch(useCase) {
-
         case 0:
-
             var arr = [["Country", "Percentage fully vaccinated"]]
             var color = '#2fbeba'
-
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
                 var line = countryLastData[i].split(",");
@@ -328,16 +323,11 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
                     arr.push(temp);
                 }
             }
-
             var max = 100
-
             break
-
         case 1:
-
             var arr = [["Country", "Percentage recieved at least one dose"]]
             var color = '#6abf69'
-
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
                 var line = countryLastData[i].split(",");
@@ -347,18 +337,12 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
                     arr.push(temp);
                 }
             }
-
             var max = 100
-
             break
-
         case 2:
-
             var arr = [["Country", "Vaccines administered"]]
             var color = '#6abf69'
-
             var max = 0;
-
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
                 var line = countryLastData[i].split(",");
@@ -371,16 +355,11 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
                     arr.push(temp);
                 }
             }
-
             break
-        
         case 3:
-
             var arr = [["Country", "People fully vaccinated"]]
             var color = '#2fbeba'
-
             var max = 0;
-
             for (let i = 0; i < countryLastData.length; i ++) {
                 var temp = [0, 0]
                 var line = countryLastData[i].split(",");
@@ -393,13 +372,10 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
                     arr.push(temp);
                 }
             }
-
             break
-
     }
 
     var data = google.visualization.arrayToDataTable(arr);
-
     var options = {
         region: 'world',
         colorAxis: {minValue: 0, maxValue: max, colors: ['#FFFFFF', color]},
@@ -410,23 +386,14 @@ function drawRegionsMap(countryLastData = countryLastData, useCase = 0) {
           name: 'kavrayskiy-vii',
         }
         };
-
-
     var chart = new google.visualization.GeoChart(document.getElementById('map'));
-
     chart.draw(data, options);
-
     window.onresize = function() {
-
         drawRegionsMap(countryLastData, useCase);
-
         $('#map').hide();
-
         // following code is so chart centering is not lost
-
         $('#map-holder').removeClass('chart-col')
         $('#map-holder').addClass('chart-col')
-
         $('#map').show();
     };
 
