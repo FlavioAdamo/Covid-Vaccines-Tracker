@@ -15,7 +15,7 @@ $(document).ready(async () => {
     hideCountersWithNoData(countryLastData);
     loadCounterScript();
     $('#chart-container').show();
-    drawChart(countryData, undefined);
+    drawChart(countryData);
 });
 
 async function getCountryCode() {
@@ -97,74 +97,73 @@ function loadCounterScript() {
 
 // google charts loading
 google.charts.load('45', {'packages':['corechart']});
-function drawChart(countryDataForChart = countryData, sortType = 0) {
-    switch(sortType) {
-        case 0:
-            var caseTitle = 'Total vaccinations'
-            var arrayOfArraysForChart = [['Date', 'Total vaccinations']]
-            var temp = []
-            for (let i = 0; i < countryDataForChart.length; i++) {
-                line = countryDataForChart[i].split(",")
-                if (!!line[2] && !!line[3]) {
-                    temp = [line[2], parseInt(line[3])]
-                    arrayOfArraysForChart.push(temp)
-                }
-            }
-            break;
-        case 1:
-            var caseTitle = 'People fully vaccinated'
-            var arrayOfArraysForChart = [['Date', 'People fully vaccinated']]
-            var temp = []
-            for (let i = 0; i < countryDataForChart.length; i++) {
-                line = countryDataForChart[i].split(",")
-                if (!!line[2] && !!line[5]) {
-                    temp = [line[2], parseInt(line[5])]
-                    arrayOfArraysForChart.push(temp)
-                }
-            }
-            break;
-        case 2:
-            var caseTitle = 'People who have recieved at least one dose'
-            var arrayOfArraysForChart = [['Date', 'People who have recieved at least one dose']]
-            var temp = []
 
-            for (let i = 0; i < countryDataForChart.length; i++) {
-                line = countryDataForChart[i].split(",")
-                if (!!line[2] && !!line[4]) {
-                    temp = [line[2], parseInt(line[4])]
-                    arrayOfArraysForChart.push(temp)
-                }
-            }
-            break;
+function drawChart(countryDataForChart = countryData) {
+
+    // switch(sortType) {
+    //     case 0:
+    //         var caseTitle = 'Total vaccinations'
+    //         var arrayOfArraysForChart = [['Date', 'Total vaccinations']]
+    //         var temp = []
+    //         for (let i = 0; i < countryDataForChart.length; i++) {
+    //             line = countryDataForChart[i].split(",")
+    //             if (!!line[2] && !!line[3]) {
+    //                 temp = [line[2], parseInt(line[3])]
+    //                 arrayOfArraysForChart.push(temp)
+    //             }
+    //         }
+    //         break;
+    //     case 1:
+    //         var caseTitle = 'People fully vaccinated'
+    //         var arrayOfArraysForChart = [['Date', 'People fully vaccinated']]
+    //         var temp = []
+    //         for (let i = 0; i < countryDataForChart.length; i++) {
+    //             line = countryDataForChart[i].split(",")
+    //             if (!!line[2] && !!line[5]) {
+    //                 temp = [line[2], parseInt(line[5])]
+    //                 arrayOfArraysForChart.push(temp)
+    //             }
+    //         }
+    //         break;
+    //     case 2:
+    //         var caseTitle = 'People who have recieved at least one dose'
+    //         var arrayOfArraysForChart = [['Date', 'People who have recieved at least one dose']]
+    //         var temp = []
+
+    //         for (let i = 0; i < countryDataForChart.length; i++) {
+    //             line = countryDataForChart[i].split(",")
+    //             if (!!line[2] && !!line[4]) {
+    //                 temp = [line[2], parseInt(line[4])]
+    //                 arrayOfArraysForChart.push(temp)
+    //             }
+    //         }
+    //         break;
+    // }
+
+    var arrayOfArraysForChart = [['Date', 'People fully vaccinated', 'People who have recieved at least one dose']]
+    var temp = []
+    for (let i = 0; i < countryDataForChart.length; i++) {
+        line = countryDataForChart[i].split(",")
+        if (!!line[2] && (!!line[5] || parseInt(line[5]) == 0) && (!!line[4]) || parseInt(line[4]) == 0) {
+            temp = [line[2], parseInt(line[5]), parseInt(line[4])]
+            arrayOfArraysForChart.push(temp)
+        }
     }
+
     var data = google.visualization.arrayToDataTable(arrayOfArraysForChart);
+
     var options = {
-        series: {
-            0: {color: '#2abfa7'},
-            1: {color: '#00bcd4'}
-        },
-        vAxis: {
-            title: caseTitle,
-            viewWindowMode: "explicit",
-            viewWindow:{ min: 0 }
-        },
-        colors: ['#a52714', '#097138'],
-        crosshair: {
-            color: '#000',
-            trigger: 'selection'
-        },
-        titlePosition: 'none',
-        curveType: 'function',
-        legend: { position: 'none' },
         width: $(document.querySelector('#chart-holder')).width(),
-        height: $(document.querySelector('#chart-holder')).height()
+        height: $(document.querySelector('#chart-holder')).height(),
+        colors: ['#2fbeba', '#6abf69']
     };
-    var chart = new google.visualization.LineChart(document.querySelector('#curve_chart'));
+
+    var chart = new google.visualization.AreaChart(document.querySelector('#curve_chart'));
+
     chart.draw(data, options);
-    $('#dropdownMenuButton').html(caseTitle)
-    var tmp = sortType;
+
     window.onresize = function() {
-        drawChart(countryData, tmp)
+        drawChart(countryData)
 
         $('#curve_chart').hide();
 
