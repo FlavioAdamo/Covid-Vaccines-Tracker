@@ -120,16 +120,13 @@ function loadCollapse(sortType, searchVal = '') {
             CONTENT.querySelector('.populationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${country.vaccinatedPercent}`;
             CONTENT.querySelector('.differenceCounter').innerHTML = formatDifferenceWithCommas(country.totalVaccineDifferences);
             CONTENT.querySelector('.accordion').parentNode.classList.add("countryCard");
-
             // Set attribute
             CONTENT.querySelector('.accordion').setAttribute('data-country-name', country.name);
-
             // Add click event
             CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
                 const name = e.target.closest('.accordion').getAttribute('data-country-name');
                 showCountryData(name);
             })
-
             $("#collapseCountries").append(CONTENT);
         });
     } else {
@@ -206,16 +203,13 @@ function loadContinents(sortType, searchVal = '') {
             CONTENT.querySelector('.populationpercent').innerHTML = `<img alt="syringe" src="Images/Population.png" style="height:14px;"> ${continent.vaccinatedPercent}`;
             CONTENT.querySelector('.differenceCounter').innerHTML = formatDifferenceWithCommas(continent.totalVaccineDifferences);
             CONTENT.querySelector('.accordion').parentNode.classList.add("continentCard");
-
             // Set attribute
             CONTENT.querySelector('.accordion').setAttribute('data-country-name', continent.name);
-
             // Add click event
             CONTENT.querySelector('.accordion').addEventListener('click', (e) => {
                 const name = e.target.closest('.accordion').getAttribute('data-country-name');
                 showCountryData(name);
             })
-
             $("#collapseContinents").append(CONTENT);
         });
     } else {

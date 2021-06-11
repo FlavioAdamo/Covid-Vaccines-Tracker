@@ -19,19 +19,20 @@ $(document).ready(async () => {
 });
 
 async function getCountryCode() {
+    //Get countryCode for to display flags
     let response = await fetch(`https://restcountries.eu/rest/v2/name/${countryName}`);
 
-    if(response.status === 200) {
+    if (response.status === 200) {
         countryCode = await response.json();
-    } else if(response.status === 404) {
+    } else if (response.status === 404) {
         console.log("country not found")
     }
 
-    if(countryName == "India") {
+    if (countryName == "India") {
         return countryCode[1].alpha2Code;
-    } 
+    }
 
-    return countryCode[0]?.alpha2Code; 
+    return countryCode[0]?.alpha2Code;
 }
 
 async function GetCountryName() {
@@ -45,24 +46,18 @@ async function GetCountryLastData() {
 }
 
 async function loadCountryCountersTemplate(data) {
-    const TEMPLATE = document.querySelector("#country_counters_template");
-    const CONTENT = TEMPLATE.content.cloneNode(true);
-
-    // Change content
-    CONTENT.querySelector("#totvalue").innerHTML = data[3];
-    CONTENT.querySelector("#totvaccinated").innerHTML = `${data[9]}%`;
-    
-    CONTENT.querySelector("#fullyVaccinated").innerHTML = `${data[10]}%`;
-    CONTENT.querySelector("#peopleVaccinated").innerHTML = data[4];
-
-    // removes %20 then adds to title card for country (id="countryname")
+    // Load counters on top
     let noSpecialCharactersCountryName = countryName.toString().replaceAll("%20", " ");
-    CONTENT.querySelector("#countryname").innerHTML = countryCode ? `<img src="https://www.countryflags.io/${countryCode}/flat/32.png"> &nbsp; ${noSpecialCharactersCountryName}&nbsp; <img src="https://www.countryflags.io/${countryCode}/flat/32.png">` : noSpecialCharactersCountryName;
-    document.title = `Covid Vaccine Track | ${noSpecialCharactersCountryName}`;
-
-    $("#country_counters").append(CONTENT);
+    //The row below is to long, need some improvement to make it more understandable
+    var countryname = countryCode ? `<img src="https://www.countryflags.io/${countryCode}/flat/32.png"> &nbsp; ${noSpecialCharactersCountryName}&nbsp; <img src="https://www.countryflags.io/${countryCode}/flat/32.png">` : noSpecialCharactersCountryName;
+    var template = $.trim($('#country_counters_template').html());
+    template = template.replace('{{peopleVaccinated}}', data[4]);
+    template = template.replace('{{totvalue}}', data[3]);
+    template = template.replace('{{totvaccinated}}', `${data[9]}%`);
+    template = template.replace('{{fullyVaccinated}}', `${data[10]}%`);
+    template = template.replace('{{countryName}}', countryname);
+    $('#country_counters').append(template);
 }
-
 
 function hideCountersWithNoData(data) {
     // Hide the counters on the top if the the data is not avaible
@@ -80,7 +75,6 @@ function hideCountersWithNoData(data) {
     }
 }
 
-
 function loadCounterScript() {
     // Load the animation to the counter
     // actually is a copy & paste from some russian website 
@@ -92,54 +86,13 @@ function loadCounterScript() {
                 $(this).text(formatNumberWithCommas(Math.ceil(now)));
             }
         });
-      });
-  }
+    });
+}
 
 // google charts loading
-google.charts.load('45', {'packages':['corechart']});
+google.charts.load('45', { 'packages': ['corechart'] });
 
 function drawChart(countryDataForChart = countryData) {
-
-    // switch(sortType) {
-    //     case 0:
-    //         var caseTitle = 'Total vaccinations'
-    //         var arrayOfArraysForChart = [['Date', 'Total vaccinations']]
-    //         var temp = []
-    //         for (let i = 0; i < countryDataForChart.length; i++) {
-    //             line = countryDataForChart[i].split(",")
-    //             if (!!line[2] && !!line[3]) {
-    //                 temp = [line[2], parseInt(line[3])]
-    //                 arrayOfArraysForChart.push(temp)
-    //             }
-    //         }
-    //         break;
-    //     case 1:
-    //         var caseTitle = 'People fully vaccinated'
-    //         var arrayOfArraysForChart = [['Date', 'People fully vaccinated']]
-    //         var temp = []
-    //         for (let i = 0; i < countryDataForChart.length; i++) {
-    //             line = countryDataForChart[i].split(",")
-    //             if (!!line[2] && !!line[5]) {
-    //                 temp = [line[2], parseInt(line[5])]
-    //                 arrayOfArraysForChart.push(temp)
-    //             }
-    //         }
-    //         break;
-    //     case 2:
-    //         var caseTitle = 'People who have recieved at least one dose'
-    //         var arrayOfArraysForChart = [['Date', 'People who have recieved at least one dose']]
-    //         var temp = []
-
-    //         for (let i = 0; i < countryDataForChart.length; i++) {
-    //             line = countryDataForChart[i].split(",")
-    //             if (!!line[2] && !!line[4]) {
-    //                 temp = [line[2], parseInt(line[4])]
-    //                 arrayOfArraysForChart.push(temp)
-    //             }
-    //         }
-    //         break;
-    // }
-
     var arrayOfArraysForChart = [['Date', 'People fully vaccinated', 'People who have recieved at least one dose']]
     var temp = []
     for (let i = 0; i < countryDataForChart.length; i++) {
@@ -162,13 +115,12 @@ function drawChart(countryDataForChart = countryData) {
 
     chart.draw(data, options);
 
-    window.onresize = function() {
+    window.onresize = function () {
         drawChart(countryData)
 
         $('#curve_chart').hide();
 
         // following code is so chart centering is not lost
-
         $('#assign-for-centering').removeClass('chart-col')
         $('#assign-for-centering').addClass('chart-col')
 
