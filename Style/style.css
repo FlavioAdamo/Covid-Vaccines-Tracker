@@ -53,8 +53,9 @@
 .github-img {
   display: inline;
   line-height: 100%;
-  width: 35px;
+  width: 20px;
   height: auto;
+
 }
 
 .github-img.nav {
