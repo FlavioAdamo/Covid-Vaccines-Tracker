@@ -49,14 +49,14 @@
             <div id="total_doses" class="counter-box green">
               <i class="fa fa-thumbs-o-up"></i>
               <span class="counter" id="totvalue">{{totvalue}}</span> 
-              <p>Vaccine administered</p>
+              <p>Vaccines administered</p>
             </div>
           </div>
           <div class="four col-md-6" style="padding-top: 15px;">
             <div id="people_vaccinated" class="counter-box blue">
               <i class="fa fa-thumbs-o-up"></i>
               <span class="counter" id="peopleVaccinated">{{peopleVaccinated}}</span>
-              <p>People received at least one dose</p>
+              <p>People fully vaccinated</p>
             </div>
           </div>
           <div class="col-6 col-md-6" style="padding-top: 15px;">
@@ -79,23 +79,8 @@
     </div>
   </div>
   <div id="chart-container" class="container h-50" style="padding-top: 15px;">
-    <div class="row">
-      <div class="col-12 chart-col">
-        <div style="margin-top: 60px;">
-          <button class="btn btn-light dropdown-toggle normalText" type="button" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Total vaccinations
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item normalText" onclick="drawChart(undefined, 0)">Total vaccinations</a>
-            <a class="dropdown-item normalText" onclick="drawChart(undefined, 1)">People fully vaccinated</a>
-            <a class="dropdown-item normalText" onclick="drawChart(undefined, 2)">People who have recieved at least one dose</a>
-          </div>
-        </div>
-    </div>
-  </div>
-  <div id="chart-holder" class="row chart-box" style="height: 100%; width: 100%;">
-    <div id="assign-for-centering" class="col-12 chart-col" style="height: 100%; width: 100%;">
+    <div id="chart-holder" class="row chart-box" style="height: 100%; width: 100%;">
+      <div id="assign-for-centering" class="col-12 chart-col" style="height: 100%; width: 100%;">
         <div id="curve_chart" align="center"></div>
       </div>
     </div>
